@@ -4,7 +4,9 @@
     box-sizing: border-box;
     font-family: sans-serif;
 }
-
+body{
+    text-align: center;
+}
 html{
     scroll-behavior: smooth;
 }
@@ -24,6 +26,7 @@ html{
 }
 
 section{
+    text-align: center;
     width: 100%;
     background-image: url(image/bg1.png);
     background-size: cover;
@@ -31,7 +34,6 @@ section{
 }
 
 section nav{
-    
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -39,13 +41,17 @@ section nav{
     background: white;
     position: fixed;
     top: 0;
-    left: 0;
+    left: -85px;
     right: 0;
     z-index: 1000;
+
 }
 @media(max-width:767px){
     section nav{
+        width: 100%;
+        margin-left: auto;
         flex-direction: column;
+        text-align: center;
     }
 }
 section nav .logo{
@@ -189,11 +195,18 @@ section .main .social_icon{
     position: fixed;
     z-index: 100;
     top: 70%;
-    left: 98%;
+    right: 0;
     transform: translate(-50%,-50%);
     font-size: 19px;
+    display: flex;
+    flex-direction: column;
 }
 
+@media(max-width:767px){
+    section .main .social_icon{
+        display: none;
+    }
+}
 section .main .social_icon i{
     margin: 8px 0;
     cursor: pointer;
@@ -471,7 +484,11 @@ section .main .button:hover i{
     padding: 30px;
     box-shadow: 0 0 8px #6c14d0;
 }
-
+@media(max-width:767px){
+    .about .about_main .image_contaner img{
+        width: 300px;
+    }
+}
 .about .about_main .about_text{
     margin-top: 45px;
 }
@@ -481,7 +498,7 @@ section .main .button:hover i{
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     line-height: 22px;
-    width: 600px;
+    width: 500px;
     text-align: justify;
     padding: 25px 30px;
     border: 2px solid #c72092;
