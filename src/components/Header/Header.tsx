@@ -1,44 +1,33 @@
-import { Box } from "@chakra-ui/react";
-import { Heading } from "@chakra-ui/react";
-import { Link, Stack } from "@chakra-ui/react";
-import Links from "./links";
-import { IconButton } from "@chakra-ui/react"
-import { LuSearch } from "react-icons/lu"
+import { Stack } from "@chakra-ui/react";
+
+import HeaderLogo from "./HeaderLogo";
+import HeaderLinks from "./HeaderLinks";
+import HeaderIcons from "./HeaderIcons";
+import MobileLinks from "../MobileLinks";
+
 const Header = () => {
   return (
     <>
       <Stack
+        padding="10px"
         direction="row"
-        justifyContent="space-around"
+        justifyContent="space-between"
         alignItems="center"
-        className="bg-amber-200"
+        // className="bg-amber-200"
+        className="shadow-lg p-6 rounded-md"
       >
         {/* logo */}
-        <Box>
-          <Heading size="6xl" className="text-fuchsia-700">
-            NIK<span className="text-violet-700">e</span>
-          </Heading>
-        </Box>
-
-        {/* links */}
-        <Box>
-          <Stack direction="row">
-            {Links.map((link) => (
-              <Link key={link.id} href="#">
-                {link.label}
-              </Link>
-            ))}
-          </Stack>
-        </Box>
+        <HeaderLogo />
 
         {/* icons */}
-        <Box>
-          <Stack direction="row">
-            <IconButton aria-label="Search database">
-              <LuSearch />
-            </IconButton>
-          </Stack>
-        </Box>
+        <HeaderIcons />
+
+        {/* links on md lg */}
+        <HeaderLinks />
+
+        
+        {/* Links on mobile */}
+        <MobileLinks />
       </Stack>
     </>
   );
