@@ -8,7 +8,7 @@ const HeaderLinks = () => {
       <Container>
         <Stack direction="row" justifyContent={{sm:'start',md:'start',lg:"space-between"}}>
           {Links.map((link) => (
-            <Text key={link.id} color="#a21caf" marginEnd={{sm:"0.5",md:"2",lg:"6"}} fontSize={{md:"16px",lg:"18px"}} _hover={{ color: "#4d06a3",marginTop:"-8px",cursor:"pointer"}} transition="0.5s">
+            <Text key={link.id} color="#a21caf" marginEnd={{sm:"0.5",md:"2",lg:"6"}} fontSize={{md:"16px",lg:"22px"}} _hover={{ color: "#4d06a3",marginTop:"-8px",cursor:"pointer"}} transition="0.5s">
               {link.label}
             </Text>
           ))}

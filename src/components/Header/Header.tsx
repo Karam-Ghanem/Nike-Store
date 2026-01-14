@@ -9,12 +9,16 @@ const Header = () => {
   return (
     <>
       <Stack
-        padding="10px"
+        position={"fixed"}
+        top={0}
+        width={"100%"}
+        zIndex={100}
+        bg={"white"}
+        padding="20px 30px"
         direction="row"
         justifyContent="space-between"
         alignItems="center"
-        // className="bg-amber-200"
-        className="shadow-lg p-6 rounded-md"
+        className="shadow-lg p-6 rounded-md "
       >
         {/* logo */}
         <HeaderLogo />
@@ -25,7 +29,6 @@ const Header = () => {
         {/* links on md lg */}
         <HeaderLinks />
 
-        
         {/* Links on mobile */}
         <MobileLinks />
       </Stack>
