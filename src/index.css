@@ -8,3 +8,15 @@
   font-style: normal;
   font-variation-settings: "wdth" 100;
 }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  zoom: 100%;
+}
