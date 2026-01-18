@@ -16,7 +16,7 @@ const AddToCartButton = () => {
           _hover={{ backgroundColor: "#6c14d0", color: "white" }}
           fontSize={{ base: 14, sm: 15, lg: 18, xl: 20 }}
         >
-          Add to cart end
+          Add to cart
         </Button>
       </Box>
     </>
