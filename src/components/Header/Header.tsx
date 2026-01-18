@@ -7,18 +7,14 @@ import MobileLinks from "../MobileLinks";
 
 const Header = () => {
   return (
-    <Box position={"relative"} marginBottom={40}>
+    <Box>
       <Stack
-        position={"fixed"}
-        top={0}
-        width={"100%"}
-        zIndex={100}
         bg={"white"}
         padding="20px 30px"
         direction="row"
         justifyContent="space-between"
         alignItems="center"
-        className="shadow-lg p-6 rounded-md"
+        className="shadow-lg  rounded-md"
       >
         {/* logo */}
         <HeaderLogo />
