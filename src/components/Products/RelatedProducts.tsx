@@ -4,8 +4,7 @@ import { Card, Image } from "@chakra-ui/react";
 import { FaHeart } from "react-icons/fa";
 import ProductsList from "./productsList";
 import { Link } from "react-router-dom";
-import AddToCartButton from "../PublicCompontents/addToCartButton";
-
+import AddToCartButton from "../PublicCompontents/AddToCartButton";
 const RelatedProducts = () => {
   return (
     <>

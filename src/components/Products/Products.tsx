@@ -5,8 +5,7 @@ import {Card, Image } from "@chakra-ui/react";
 import { FaHeart } from "react-icons/fa";
 import ProductsList from "./productsList";
 import { Link } from "react-router-dom";
-import AddToCartButton from "../PublicCompontents/addToCartButton";
-
+import AddToCartButton from "../PublicCompontents/AddToCartButton";
 const Products = () => {
   return (
     <>
@@ -43,7 +42,7 @@ const Products = () => {
           >
             <Link to={`/${item.href}${item.id}`}>
               <Image
-              width={"100%"}
+                width={"100%"}
                 src={item.productImg}
                 alt="error"
                 backgroundColor="#f6f6f6"
@@ -66,7 +65,7 @@ const Products = () => {
               </Text>
             </Card.Body>
             <Card.Footer gap="2">
-                <AddToCartButton/>
+              <AddToCartButton />
               <Box textAlign="end" width="100%">
                 <IconButton
                   alignItems="center"

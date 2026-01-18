@@ -12,9 +12,8 @@ const HeaderLinks = () => {
           justifyContent={{ sm: "start", md: "start", lg: "space-between" }}
         >
           {Links.map((link) => (
-            <Link to={link.href}>
+            <Link to={link.href} key={link.id}>
               <Text
-                key={link.id}
                 color="#a21caf"
                 marginEnd={{ sm: "0.5", md: "2", lg: "6" }}
                 fontSize={{ md: "16px", lg: "22px" }}

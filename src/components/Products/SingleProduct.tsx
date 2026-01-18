@@ -1,5 +1,5 @@
 import { Box, Heading, Image, Input, SimpleGrid, Text } from "@chakra-ui/react";
-import AddToCartButton from "../PublicCompontents/addToCartButton";
+import AddToCartButton from "../PublicCompontents/AddToCartButton";
 import shoese1 from "@/assets/shoese/_3.jpeg";
 import MainHead from "../PublicCompontents/MainHead";
 import RelatedProducts from "./RelatedProducts";
