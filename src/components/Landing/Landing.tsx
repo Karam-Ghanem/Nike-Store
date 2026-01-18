@@ -10,8 +10,8 @@ import WelcomeBack from "../WelcomeBack/WelcomeBack";
 const Landing = () => {
   return (
     <Box>
-      <SimpleGrid columns={{ base: 1, sm: 1, md: 2, lg: 2 }} gap="40px" marginTop={100}>
-        <Box padding={6}>
+      <SimpleGrid columns={{ base: 1, sm: 1, md: 2, lg: 2 }} gap="10px" marginTop={100} bg={""}>
+        <Box padding={2}>
           <Heading
             size={{ lg: "5xl", xl: "6xl" }}
             display={{ base:"none",sm: "none", md: "none", lg: "block" }}

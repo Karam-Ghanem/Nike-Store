@@ -1,4 +1,4 @@
-import { Stack } from "@chakra-ui/react";
+import { Stack,Box } from "@chakra-ui/react";
 
 import HeaderLogo from "./HeaderLogo";
 import HeaderLinks from "./HeaderLinks";
@@ -7,7 +7,7 @@ import MobileLinks from "../MobileLinks";
 
 const Header = () => {
   return (
-    <>
+    <Box position={"relative"} marginBottom={40}>
       <Stack
         position={"fixed"}
         top={0}
@@ -18,7 +18,7 @@ const Header = () => {
         direction="row"
         justifyContent="space-between"
         alignItems="center"
-        className="shadow-lg p-6 rounded-md "
+        className="shadow-lg p-6 rounded-md"
       >
         {/* logo */}
         <HeaderLogo />
@@ -32,7 +32,7 @@ const Header = () => {
         {/* Links on mobile */}
         <MobileLinks />
       </Stack>
-    </>
+    </Box>
   );
 };
 

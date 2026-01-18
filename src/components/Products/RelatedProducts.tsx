@@ -1,32 +1,14 @@
 import { Box, IconButton, Text } from "@chakra-ui/react";
-import MainHead from "../PublicCompontents/MainHead";
 import { SimpleGrid } from "@chakra-ui/react";
-import {Card, Image } from "@chakra-ui/react";
+import { Card, Image } from "@chakra-ui/react";
 import { FaHeart } from "react-icons/fa";
 import ProductsList from "./productsList";
 import { Link } from "react-router-dom";
 import AddToCartButton from "../PublicCompontents/addToCartButton";
 
-const Products = () => {
+const RelatedProducts = () => {
   return (
     <>
-      <MainHead head="PRODUCTS" />
-      <Box marginBottom="50px" textAlign={{ base: "center", md: "start" }}>
-        <Text
-          cursor="pointer"
-          display={{ base: "inline-block", md: "inline" }}
-          color="white"
-          backgroundColor="#6c14d0"
-          padding={{ base: "10px", sm: "10px 20px", lg: "15px 30px" }}
-          className="shadow-xl shadow-blue-500/50"
-          _hover={{ color: "black", backgroundColor: "#a800b7" }}
-          transition="0.5s"
-          fontSize={"20px"}
-        >
-          Show All Products
-        </Text>
-      </Box>
-
       <SimpleGrid columns={{ base: 1, sm: 2, md: 3, lg: 3, xl: 4 }} gap="20px">
         {ProductsList.map((item) => (
           <Card.Root
@@ -43,7 +25,7 @@ const Products = () => {
           >
             <Link to={`/${item.href}${item.id}`}>
               <Image
-              width={"100%"}
+                width={"100%"}
                 src={item.productImg}
                 alt="error"
                 backgroundColor="#f6f6f6"
@@ -66,7 +48,7 @@ const Products = () => {
               </Text>
             </Card.Body>
             <Card.Footer gap="2">
-                <AddToCartButton/>
+              <AddToCartButton />
               <Box textAlign="end" width="100%">
                 <IconButton
                   alignItems="center"
@@ -84,4 +66,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default RelatedProducts;
