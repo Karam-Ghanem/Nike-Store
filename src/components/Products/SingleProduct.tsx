@@ -7,7 +7,7 @@ import RelatedProducts from "./RelatedProducts";
 const SingleProduct = () => {
   return (
     <>
-      <SimpleGrid columns={{ base: 1, sm: 1, lg: 1, xl: 2 }} gap={20} marginTop={20}>
+      <SimpleGrid columns={{ base: 1, sm: 1, lg: 1, xl: 2 }} gap={20} marginTop={30}>
         <Box className="shadow-xl flex justify-center">
           <Image src={shoese1} width={"96"} />
         </Box>
