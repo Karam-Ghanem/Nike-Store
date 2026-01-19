@@ -2,11 +2,12 @@ import { Box } from "@chakra-ui/react";
 import { FaBars } from "react-icons/fa";
 import { Button, Menu, Portal, Text } from "@chakra-ui/react";
 import Links from "./Header/links";
+import { Link } from "react-router-dom";
 
 const MobileLinks = () => {
   return (
     <>
-      <Box className="md:hidden" >
+      <Box className="md:hidden">
         <Menu.Root>
           <Menu.Trigger asChild>
             <Button variant="outline" size="sm">
@@ -14,10 +15,17 @@ const MobileLinks = () => {
             </Button>
           </Menu.Trigger>
           <Portal>
-            <Menu.Positioner width={{base:"100px",sm:"300px"}} maxWidth="100%" >
-              <Menu.Content marginLeft="-150px" marginTop="20px" bg="" width="">
+            <Menu.Positioner
+              width={{ base: "100px", sm: "300px" }}
+              maxWidth="100%"
+            >
+              <Menu.Content marginLeft="-150px" marginTop="20px">
                 {Links.map((link) => (
-                  <Box key={link.id} borderBottom="1px solid #fcfc "  width="100%">
+                  <Box
+                    key={link.id}
+                    borderBottom="1px solid #fcfc "
+                    width="100%"
+                  >
                     <Menu.Item
                       fontSize={16}
                       value="new-txt"
@@ -31,7 +39,9 @@ const MobileLinks = () => {
                       }}
                       transition="0.5s"
                     >
-                      <Text padding={3}>{link.label}</Text>
+                      <Link to={link.href}>
+                        <Text padding={3}>{link.label}</Text>
+                      </Link>
                     </Menu.Item>
                   </Box>
                 ))}
