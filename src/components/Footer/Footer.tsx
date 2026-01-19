@@ -8,14 +8,13 @@ const Footer = () => {
   return (
     <Box marginTop={40}>
       <SimpleGrid
-        fontSize={{ base: 14, sm: 16, lg: 18, xl: 20 }}
-        // position={"absolute"}
-        width={"100%"}
-        bottom={0}
+        fontSize={{ base: 13, sm: 13,md:16, lg: 15, xl: 15 }}
         padding={10}
         paddingBottom={2}
-        columns={{ base: 1, sm: 2, lg: 4, xl: 4 }}
+        justifyContent={"space-between"}
+        columns={{ base: 1, sm: 2,md:2, lg: 4, xl: 4 }}
         bg={"#f3f1f1"}
+        gap={10}
       >
         {/* Footer Contact */}
         <FooterContact />

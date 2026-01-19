@@ -7,10 +7,10 @@ import MobileLinks from "../MobileLinks";
 
 const Header = () => {
   return (
-    <Box>
+    <Box marginBottom={"10px"}>
       <Stack
         bg={"white"}
-        padding="20px 30px"
+        padding="15px 25px"
         direction="row"
         justifyContent="space-between"
         alignItems="center"

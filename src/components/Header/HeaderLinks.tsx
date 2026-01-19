@@ -16,7 +16,7 @@ const HeaderLinks = () => {
               <Text
                 color="#a21caf"
                 marginEnd={{ sm: "0.5", md: "2", lg: "6" }}
-                fontSize={{ md: "16px", lg: "22px" }}
+                fontSize={{ md: "16px", lg: "18px" }}
                 _hover={{
                   color: "#4d06a3",
                   marginTop: "-8px",

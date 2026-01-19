@@ -21,7 +21,7 @@ const Review = () => {
   return (
     <>
     <MainHead head="CUSTOMER'S REVIEW"/>
-    <SimpleGrid columns={{ base: 1, sm: 2, md: 3, lg: 3, xl: 3 }} gap="40px" justifyContent="space-between">
+    <SimpleGrid columns={{ base: 1, sm: 1, md: 3, lg: 3, xl: 3 }} gap="40px" justifyContent="space-between">
         {Review.map((item)=>
         <Card.Root key={item.name}   boxShadow={"0 0 12px #7008e7"} >
             <Card.Body gap="2" className="bg-linear-65 from-purple-200 to-pink-200">
@@ -30,7 +30,7 @@ const Review = () => {
                 <Avatar.Fallback name="person img" />
               </Avatar.Root>
               <Card.Title mb="2">{item.name}</Card.Title>
-              <Card.Description fontSize={{base:"15px",sm:"16px",lg:"17px"}}>
+              <Card.Description fontSize={{base:"12px",sm:"15px",md:"12px",lg:"14px",xl:"16px"}}>
                 {item.description}
               </Card.Description>
             </Card.Body>

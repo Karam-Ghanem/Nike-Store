@@ -25,7 +25,7 @@ const About = () => {
         </Box>
     </HStack>
     <Box width={{base:"350px",sm:"450px",lg:"65%"}} padding={4} boxShadow={"0 0 12px #c72092"} border={"1px solid #701ad1"} borderRadius={10} textAlign="center">
-        <Text textAlign="start" lineHeight="1.6" fontSize={"20px"} >
+        <Text textAlign="start" lineHeight="1.6" fontSize={{base:"13px",sm:"14px",md:"15px",lg:"15px",xl:"16px"}} >
             Welcome to Nike Store,
             your premier destination for authentic Nike footwear in Lattakia,
             Syria. Established in 2024,

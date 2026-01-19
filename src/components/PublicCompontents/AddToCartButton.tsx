@@ -14,7 +14,7 @@ const AddToCartButton = () => {
           variant="ghost"
           transition="0.8s"
           _hover={{ backgroundColor: "#6c14d0", color: "white" }}
-          fontSize={{ base: 14, sm: 15, lg: 18, xl: 20 }}
+          fontSize={{ base: 12, sm: 14, lg: 15, xl: 16 }}
         >
           Add to cart
         </Button>

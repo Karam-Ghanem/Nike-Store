@@ -10,11 +10,16 @@ import WelcomeBack from "../WelcomeBack/WelcomeBack";
 const Landing = () => {
   return (
     <Box>
-      <SimpleGrid columns={{ base: 1, sm: 1, md: 2, lg: 2 }} gap="10px" marginTop={100} bg={""}>
+      <SimpleGrid
+        columns={{ base: 1, sm: 1, md: 2, lg: 2 }}
+        gap="10px"
+        marginTop={50}
+        bg={""}
+      >
         <Box padding={2}>
           <Heading
-            size={{ lg: "5xl", xl: "6xl" }}
-            display={{ base:"none",sm: "none", md: "none", lg: "block" }}
+            size={{ lg: "4xl", xl: "5xl" }}
+            display={{ base: "none", sm: "none", md: "none", lg: "block" }}
           >
             NIKE
             <br />
@@ -32,11 +37,21 @@ const Landing = () => {
           <Box
             padding={6}
             lineHeight="2"
-            bgImage={{md:`url(${backGroundImage})`,base:`url(${backGroundImage})`,lg:"none"}}
+            bgImage={{
+              md: `url(${backGroundImage})`,
+              base: `url(${backGroundImage})`,
+              lg: "none",
+            }}
             bgSize="cover"
             bgRepeat="no-repeat"
             width="100%"
-            fontSize="20px"
+            fontSize={{
+              base: "15px",
+              sm: "16px",
+              md: "15px",
+              lg: "16px",
+              xl: "17px",
+            }}
             className="shadow-xl/30"
           >
             Discover the latest Nike Collection now available in our store!
@@ -57,21 +72,17 @@ const Landing = () => {
           />
         </Box>
       </SimpleGrid>
-      
 
       {/* Product Section */}
-      <Products/>
+      <Products />
       {/* Web About */}
-      <About/>
+      <About />
       {/* Review */}
-      <Review/>
+      <Review />
       {/* Services */}
-      <Services/>
+      <Services />
       {/* Welcome Back */}
-      <WelcomeBack/>
-
-
-
+      <WelcomeBack />
     </Box>
   );
 };

@@ -7,22 +7,21 @@ import RelatedProducts from "./RelatedProducts";
 const SingleProduct = () => {
   return (
     <>
-      <SimpleGrid columns={{ base: 1, sm: 1, lg: 1, xl: 2 }} gap={20}>
-        {/*  */}
+      <SimpleGrid columns={{ base: 1, sm: 1, lg: 1, xl: 2 }} gap={20} marginTop={20}>
         <Box className="shadow-xl flex justify-center">
           <Image src={shoese1} width={"96"} />
         </Box>
         <Box>
-          <Heading size={"4xl"} marginBottom={2}>
+          <Heading size={"3xl"} marginBottom={2}>
             Green apples have polyphenols
           </Heading>
-          <Text marginBottom={4} fontSize={20}>
+          <Text marginBottom={4} fontSize={18}>
             Per Kg
           </Text>
-          <Text marginBottom={4} fontSize={20}>
+          <Text marginBottom={4} fontSize={18}>
             $50
           </Text>
-          <Text marginBottom={4} fontSize={18}>
+          <Text marginBottom={4} fontSize={16} color={"#777"}>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta sint
             dignissimos, rem commodi cum voluptatem quae reprehenderit
             repudiandae ea tempora incidunt ipsa, quisquam animi perferendis eos

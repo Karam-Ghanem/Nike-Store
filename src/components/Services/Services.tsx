@@ -48,13 +48,13 @@ const Services = () => {
                 />
               </Box>
               <Heading
-                size={{ base: "xl", sm: "2xl", lg: "3xl", xl: "4xl" }}
+                size={{ base: "2xl", sm: "3xl",md:"2xl", lg: "2xl", xl: "3xl" }}
                 marginBottom={"30px"}
               >
                 {item.name}
               </Heading>
               <Text
-                fontSize={{ base: 13, sm: 14, lg: 17, xl: 18 }}
+                fontSize={{ base: 16, sm: 18, md:14,lg: 15, xl: 18 }}
                 color={"777"}
               >
                 {item.description}

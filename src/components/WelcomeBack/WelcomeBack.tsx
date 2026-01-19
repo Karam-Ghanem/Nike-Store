@@ -11,7 +11,7 @@ const WelcomeBack = () => {
           <Image src={loginShoese} />
         </Box>
         <Box
-          padding={20}
+          padding={{base:"2",sm:10}}
           className="w-2xl"
           style={{
             backgroundImage: `url(${logingShoeseBlur0})`,

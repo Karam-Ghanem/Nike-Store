@@ -20,7 +20,13 @@ const Products = () => {
           className="shadow-xl shadow-blue-500/50"
           _hover={{ color: "black", backgroundColor: "#a800b7" }}
           transition="0.5s"
-          fontSize={"20px"}
+          fontSize={{
+            base: "13px",
+            sm: "18px",
+            md: "19px",
+            lg: "18px",
+            xl: "18px",
+          }}
         >
           Show All Products
         </Text>

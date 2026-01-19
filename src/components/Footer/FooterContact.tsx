@@ -4,7 +4,7 @@ import { FaPhone, FaEnvelope } from "react-icons/fa6";
 import { List, Box } from "@chakra-ui/react";
 const FooterContact = () => {
   return (
-    <Box marginBottom={{base:6,sm:6,lg:0}}>
+    <Box marginBottom={{base:6,sm:6,lg:0}} >
       <FooterTitle head="Contact" />
       <List.Root gap="2" variant="plain" align="center">
         <List.Item>

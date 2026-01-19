@@ -11,20 +11,17 @@ const HeaderIcons = () => {
     <Box>
       <Stack direction="row">
         <IconButton bg="inherit" _hover={{ bg: "#f9f9fb" }}>
-          <FaHeart size={24} color="#7008e7" />
+          <FaHeart  color="#7008e7" />
         </IconButton>
 
         <IconButton bg="inherit" _hover={{ bg: "#f9f9fb" }}>
-          <FaShoppingCart size={24} color="#7008e7" />
+          <FaShoppingCart color="#7008e7" />
         </IconButton>
 
         <IconButton bg="inherit" _hover={{ bg: "#f9f9fb" }}>
-          <FaUser size={24} color="#7008e7" />
+          <FaUser color="#7008e7" />
         </IconButton>
-
-        {/* <IconButton bg="inherit" _hover={{ bg: "#f9f9fb" }}> */}
           <ColorModeToggle />
-        {/* </IconButton> */}
       </Stack>
     </Box>
   );
