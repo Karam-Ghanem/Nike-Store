@@ -74,7 +74,7 @@ const Landing = () => {
       </SimpleGrid>
 
       {/* Product Section */}
-      <Products />
+      <Products  homePage={true}/>
       {/* Web About */}
       <About />
       {/* Review */}

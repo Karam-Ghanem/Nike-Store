@@ -2,26 +2,39 @@ import { IconButton } from "@chakra-ui/react";
 import { FaHeart } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
-
 import { Box, Stack } from "@chakra-ui/react";
 import ColorModeToggle from "../ColorModeToggle";
-
+import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 const HeaderIcons = () => {
+  const location = useLocation();
+  const isFavoritesPage = location.pathname === "/favorites";
+  const isCartPage = location.pathname === "/cart";
   return (
     <Box>
       <Stack direction="row">
-        <IconButton bg="inherit" _hover={{ bg: "#f9f9fb" }}>
-          <FaHeart  color="#7008e7" />
-        </IconButton>
+        <Link to="/favorites">
+          <IconButton
+            bg={isFavoritesPage ? "#7008e7 " : "inherit"}
+            _hover={isFavoritesPage ? { bg: "" } : { bg: "#f9f9fb" }}
+          >
+            <FaHeart color={isFavoritesPage ? "white" : "#7008e7"} />
+          </IconButton>
+        </Link>
 
-        <IconButton bg="inherit" _hover={{ bg: "#f9f9fb" }}>
-          <FaShoppingCart color="#7008e7" />
-        </IconButton>
+        <Link to="/cart">
+          <IconButton
+            bg={isCartPage ? "#7008e7 " : "inherit"}
+            _hover={isCartPage ? { bg: "" } : { bg: "#f9f9fb" }}
+          >
+            <FaShoppingCart color={isCartPage ? "white" : "#7008e7"} />
+          </IconButton>
+        </Link>
 
         <IconButton bg="inherit" _hover={{ bg: "#f9f9fb" }}>
           <FaUser color="#7008e7" />
         </IconButton>
-          <ColorModeToggle />
+        <ColorModeToggle />
       </Stack>
     </Box>
   );
