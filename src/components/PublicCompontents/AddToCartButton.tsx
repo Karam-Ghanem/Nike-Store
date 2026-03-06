@@ -57,3 +57,11 @@ const AddToCartButton = ({ product }: Props) => {
 };
 
 export default AddToCartButton;
+
+
+
+
+
+
+
+

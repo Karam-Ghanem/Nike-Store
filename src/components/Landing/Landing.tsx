@@ -10,6 +10,7 @@ import WelcomeBack from "../WelcomeBack/WelcomeBack";
 const Landing = () => {
   return (
     <Box>
+      
       <SimpleGrid
         columns={{ base: 1, sm: 1, md: 2, lg: 2 }}
         gap="10px"

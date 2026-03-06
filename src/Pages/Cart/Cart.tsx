@@ -203,7 +203,7 @@ const Cart = () => {
                       borderRadius="full"
                       _hover={{ bg: "#7008e7" }}
                     >
-                      Check Out
+                      <Link to={"/checkout"}>Check Out</Link>
                     </Button>
                   </HStack>
                 </Card.Root>

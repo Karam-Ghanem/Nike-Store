@@ -8,6 +8,7 @@ import Favorites from "@/Pages/Favorites/Favorites";
 import HomePage from "@/Pages/HomePage";
 import Layout from "@/Pages/Layout";
 import { createBrowserRouter } from "react-router-dom";
+import CheckOut from "@/Pages/CheckOut/CheckOut";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
       { path: "product/:id/:category", element: <SingleProduct /> },
       { path: "cart", element: <Cart /> },
       { path: "favorites", element: <Favorites /> },
+      { path: "checkout", element: <CheckOut onChange={()=>console.log("hi")} /> },
     ],
   },
 ]);
