@@ -20,6 +20,7 @@ const TextReviewForm = () => {
   const { AddReview } = useReviewStore();
 
   const [selectedIDImg, setSelectedIDImage] = useState("");
+  const [openForm,setOpenForm] = useState(false);
   const [selectedPersonalImg, setSelectedPersonalImage] = useState<
     string | undefined
   >(undefined);
@@ -101,10 +102,12 @@ const TextReviewForm = () => {
               cursor="pointer"
               value="Submit"
               fontSize={17}
+              disabled={selectedIDImg ? false : true}
+              onClick={(e)=>{e.preventDefault();setOpenForm(true);}}
             />
           </form>
         </Box>
-        {selectedIDImg && (
+        {openForm && (
           <Box>
             <form action="">
               <Stack gap="4" align="flex-start" maxW="xl">
