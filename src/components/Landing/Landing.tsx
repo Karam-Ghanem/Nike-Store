@@ -3,14 +3,15 @@ import backGroundImage from "@/assets/bg1.png";
 import ShoeseIMG from "@/assets/shoese/shoes.png";
 import Products from "../Products/Products";
 import About from "../About/About";
-import Review from "../Review/Review";
+import TextReview from "../../Pages/Review/TextReview";
 import Services from "../Services/Services";
 import WelcomeBack from "../WelcomeBack/WelcomeBack";
+import MainHead from "../PublicCompontents/MainHead";
 
 const Landing = () => {
+
   return (
     <Box>
-      
       <SimpleGrid
         columns={{ base: 1, sm: 1, md: 2, lg: 2 }}
         gap="10px"
@@ -75,11 +76,12 @@ const Landing = () => {
       </SimpleGrid>
 
       {/* Product Section */}
-      <Products  homePage={true}/>
+      <Products homePage={true} />
       {/* Web About */}
       <About />
       {/* Review */}
-      <Review />
+      <MainHead head="REVIEWS"/>
+      <TextReview />
       {/* Services */}
       <Services />
       {/* Welcome Back */}

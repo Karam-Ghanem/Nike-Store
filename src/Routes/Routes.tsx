@@ -1,7 +1,7 @@
 import About from "@/components/About/About";
 import Products from "@/components/Products/Products";
 import SingleProduct from "@/components/Products/SingleProduct";
-import Review from "@/components/Review/Review";
+import Review from "@/Pages/Review/Review";
 import Services from "@/components/Services/Services";
 import Cart from "@/Pages/Cart/Cart";
 import Favorites from "@/Pages/Favorites/Favorites";
@@ -23,7 +23,7 @@ const router = createBrowserRouter([
       { path: "product/:id/:category", element: <SingleProduct /> },
       { path: "cart", element: <Cart /> },
       { path: "favorites", element: <Favorites /> },
-      { path: "checkout", element: <CheckOut onChange={()=>console.log("hi")} /> },
+      { path: "checkout", element: <CheckOut /> },
     ],
   },
 ]);

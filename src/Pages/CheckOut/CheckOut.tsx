@@ -11,7 +11,7 @@ import CheckOutTable from "./CheckOutTable";
 const CheckOut = () => {
   return (
     <>
-      <MainHead head="Check Out" />
+      <MainHead head="CHECK OUT" />
 
       <SimpleGrid columns={{ base: 1, sm: 1, md: 2 }} gap="40px">
         <Box>
