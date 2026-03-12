@@ -182,6 +182,7 @@ const TextReviewForm = () => {
                 </Field.Root>
               </Stack>
               <Button
+              disabled={singleReview.description &&singleReview.name && singleReview.img ? false : true}
                 marginTop={4}
                 bg="#a353e9"
                 onClick={() => {
