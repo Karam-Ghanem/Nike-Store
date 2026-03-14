@@ -3,26 +3,39 @@ import MainHead from "../PublicCompontents/MainHead";
 import { SimpleGrid } from "@chakra-ui/react";
 import {Card, Image } from "@chakra-ui/react";
 import { FaHeart } from "react-icons/fa";
-import ProductsList from "./productsList";
 import { Link } from "react-router-dom";
 import AddToCartButton from "../PublicCompontents/AddToCartButton";
 import { Toaster, toaster } from "@/components/ui/toaster";
 import useFavoriteStore from "@/Pages/Favorites/FavoritesStore";
 import { useState } from "react";
+import ProductControls from "./ProductControls";
+import useProductStore from "./ProductStore";
 
 interface Props {
   homePage: boolean;
 }
 const Products = ({ homePage }: Props) => {
-  const actualProductList = homePage ? ProductsList.slice(0, 4) : ProductsList;
+
+  const {products} = useProductStore();
+
+  const actualProductList = homePage ? products.slice(0, 4) : products;
 
   const { addProductToFavList, favoritesItems, deleteProductFromFav } =useFavoriteStore();
 
   const [favItems,setFavItems] = useState(favoritesItems.map((item) => item.id))
 
+
+
+
+
   return (
     <>
       <MainHead head="PRODUCTS" />
+
+      {!homePage && <ProductControls />}
+
+      {products.length < 1 && <MainHead head="No Products To Show" />}
+
       <Box marginBottom="50px" textAlign={{ base: "center", md: "start" }}>
         {homePage && (
           <Link to={"/products"}>
@@ -49,10 +62,7 @@ const Products = ({ homePage }: Props) => {
         )}
       </Box>
 
-      <SimpleGrid
-        columns={{ base: 1, sm: 1, md: 3, lg: 3, xl: 4 }}
-        gap="10px"
-      >
+      <SimpleGrid columns={{ base: 1, sm: 1, md: 3, lg: 3, xl: 4 }} gap="10px">
         {actualProductList.map((item) => (
           <Card.Root
             height={570}
@@ -70,8 +80,7 @@ const Products = ({ homePage }: Props) => {
             _hover={{ margin: "-10px 0 0 -10px" }}
             transition="0.3s"
           >
-            <Link
-              to={`/${item.href}${item.id}/${item.category}`}            >
+            <Link to={`/${item.href}${item.id}/${item.category}`}>
               <Image
                 padding={1}
                 width={"100%"}
@@ -96,6 +105,8 @@ const Products = ({ homePage }: Props) => {
               >
                 {item.productPrice}
               </Text>
+              <Box>{item.category}</Box>
+              <Box>{item.gender}</Box>
             </Card.Body>
             <Card.Footer gap="0">
               <AddToCartButton product={item} />
@@ -112,14 +123,18 @@ const Products = ({ homePage }: Props) => {
                     onClick={() => {
                       if (!favItems.includes(item.id)) {
                         addProductToFavList(item);
-                        setFavItems([...favItems,item.id])
+                        setFavItems([...favItems, item.id]);
                       } else {
                         deleteProductFromFav(item.id);
-                        const  newFavItem = favItems.filter(i=>i!=item.id)
+                        const newFavItem = favItems.filter((i) => i != item.id);
                         setFavItems(newFavItem);
                       }
                       toaster.create({
-                        title: `Item ${favItems.includes(item.id) ? "deleted from" : "added to"}  your Favourite successfully!`,
+                        title: `Item ${
+                          favItems.includes(item.id)
+                            ? "deleted from"
+                            : "added to"
+                        }  your Favourite successfully!`,
                         type: "success",
                         duration: 5000,
                       });
