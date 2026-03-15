@@ -1,4 +1,4 @@
-import { Flex, HStack } from "@chakra-ui/react";
+import { Box, Flex, HStack } from "@chakra-ui/react";
 
 
 import ProductFilteration from "./ProductFilteration";
@@ -19,17 +19,19 @@ const ProductControls = ({isAnimating}:Props) => {
   return (
     <>
       <Flex justifyContent={"center"}>
-        <HStack
+        <Box
+          display={"flex"}
           width={"80%"}
           padding={2}
           className="bg-linear-65 from-purple-200 to-pink-200 shadow-xl shadow-blue-500/50"
           justifyContent={"space-between"}
+          flexDirection={{ base: "column", md: "column", lg: "row" }}
         >
-          {/* Filter */}
-          <ProductFilteration isAnimating={(animate)=>isAnimating(animate)}/>
           {/* Search */}
-          <ProductSearching isAnimating={(animate)=>isAnimating(animate)}/>
-        </HStack>
+          <ProductSearching isAnimating={(animate) => isAnimating(animate)} />
+          {/* Filter */}
+          <ProductFilteration isAnimating={(animate) => isAnimating(animate)} />
+        </Box>
       </Flex>
     </>
   );

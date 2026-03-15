@@ -15,8 +15,9 @@ const ProductSearching = ({ isAnimating }: Props) => {
   return (
     <>
       <HStack
-        width={"40%"}
+        width={{ base: "100%", md: "100%", lg: "40%" }}
         position={"relative"}
+        marginBottom={{ base: "30px", md: "30px",lg:"0" }}
         className="bg-linear-30 from-purple-50 to-pink-200"
       >
         <Button
