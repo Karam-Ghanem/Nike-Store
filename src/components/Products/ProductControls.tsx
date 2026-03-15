@@ -1,4 +1,4 @@
-import { Box, Flex, HStack } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 
 
 import ProductFilteration from "./ProductFilteration";

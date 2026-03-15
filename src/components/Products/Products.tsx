@@ -117,8 +117,10 @@ const Products = ({ homePage }: Props) => {
                   >
                     {item.productPrice}
                   </Text>
-                  <Box>{item.category}</Box>
-                  <Box>{item.gender}</Box>
+                  <Text fontSize={10}>
+                    {item.category}
+                    {item.gender}
+                  </Text>
                 </Card.Body>
                 <Card.Footer gap="0">
                   <AddToCartButton product={item} />
