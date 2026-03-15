@@ -20,12 +20,9 @@ const Products = ({ homePage }: Props) => {
 
   const actualProductList = homePage ? products.slice(0, 4) : products;
 
-  const { addProductToFavList, favoritesItems, deleteProductFromFav } =
-    useFavoriteStore();
+  const { addProductToFavList, favoritesItems, deleteProductFromFav } =useFavoriteStore();
 
-  const [favItems, setFavItems] = useState(
-    favoritesItems.map((item) => item.id)
-  );
+  const [favItems, setFavItems] = useState(favoritesItems.map((item) => item.id));
 
 
   return (

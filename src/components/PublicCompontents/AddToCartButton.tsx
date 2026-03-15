@@ -1,6 +1,6 @@
 import { Button } from "@chakra-ui/react";
 import { Box } from "@chakra-ui/react";
-import type { Product } from "../Products/productsList";
+import type { Product } from "../Products/Products Data/productsList";
 import { Toaster, toaster } from "@/components/ui/toaster";
 import useCartStore from "@/Pages/Cart/cartStore";
 interface Props {

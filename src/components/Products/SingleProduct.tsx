@@ -3,7 +3,7 @@ import AddToCartButton from "../PublicCompontents/AddToCartButton";
 import MainHead from "../PublicCompontents/MainHead";
 import RelatedProducts from "./RelatedProducts";
 import { useParams } from "react-router-dom";
-import ProductsList from "./productsList";
+import ProductsList from "./Products Data/productsList";
 import View360 from "../About/View360";
 
 

@@ -2,7 +2,7 @@ import { Box, IconButton, Text } from "@chakra-ui/react";
 import { SimpleGrid } from "@chakra-ui/react";
 import { Card, Image } from "@chakra-ui/react";
 import { FaHeart } from "react-icons/fa";
-import ProductsList from "./productsList";
+import ProductsList from "./Products Data/productsList";
 import { Link } from "react-router-dom";
 import AddToCartButton from "../PublicCompontents/AddToCartButton";
 import { useParams } from "react-router-dom";

@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import type { Product } from '@/components/Products/productsList';
+import type { Product } from '@/components/Products/Products Data/productsList';
 
 interface productStore{
     favoritesItems:Product [];

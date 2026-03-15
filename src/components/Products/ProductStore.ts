@@ -1,6 +1,6 @@
 import { create } from "zustand";
-import type { Product } from "./productsList";
-import ProductsList from "./productsList";
+import type { Product } from "./Products Data/productsList";
+import ProductsList from "./Products Data/productsList";
 import type { Query } from "./ProductControls";
 
 
@@ -30,7 +30,6 @@ const useProductStore = create<ProductStore>(set=>({
         products:
         searchText !=="" ?
         isNaN(parseFloat(searchText)) ?
-        // ProductsList.filter((product)=>product.productName==searchText.trim())
         ProductsList.filter((product)=>product.productName.includes(`${searchText[0].toUpperCase()}${searchText.slice(1)}`))
         :
         ProductsList.filter(product=>product.productPrice===`${searchText}$`)
