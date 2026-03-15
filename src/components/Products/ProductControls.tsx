@@ -1,4 +1,4 @@
-import { Box, Flex, HStack, Input, Span, Spinner } from "@chakra-ui/react";
+import { Box, Flex, HStack, Input, Span } from "@chakra-ui/react";
 import { Button, Menu, Portal } from "@chakra-ui/react";
 import { FiSearch } from "react-icons/fi";
 import useProductStore from "./ProductStore";
@@ -9,7 +9,11 @@ export interface Query {
   selectedGender: string;
 }
 
-const ProductControls = () => {
+interface Props{
+  isAnimating:(animate:boolean)=>void,
+}
+
+const ProductControls = ({isAnimating}:Props) => {
   const Categories = [
     { label: "All", value: "" },
     { label: "Lifestyle", value: "Lifestyle" },
@@ -38,17 +42,11 @@ const ProductControls = () => {
   const [selectedCategory, setSelectedCategry] = useState("");
   const [selectedGender, setSelectedGender] = useState("");
 
-  const [animating, setAnimating] = useState(false);
 
   const [searchText, setSearchText] = useState("");
+console.log("selectedCategory  :: "+ selectedCategory)
+console.log("selectedGender  :" + setSelectedGender)
 
-  if (animating) {
-    return (
-      <Flex justifyContent="center" mt={10}>
-        <Spinner size="xl" />
-      </Flex>
-    );
-  }
 
   return (
     <>
@@ -83,10 +81,17 @@ const ProductControls = () => {
                           key={cat.value}
                           value={cat.value}
                           onClick={() => {
-                            setAnimating(true);
+                            
+                            isAnimating(true);
+                                                          setSelectedCategry(
+                                                            cat.value
+                                                          );
+                                                          setSelectedGender(
+                                                            selectedGender
+                                                          );
+
                             setTimeout(() => {
-                              setSelectedCategry(cat.value);
-                              setSelectedGender(selectedGender)
+
                               setQuery(() => ({
                                 ...query,
                                 selectedCategory: cat.value,
@@ -97,7 +102,7 @@ const ProductControls = () => {
                                 selectedGender,
                               });
 
-                              setAnimating(false);
+                              isAnimating(false);
                             }, 800);
                           }}
                         >
@@ -128,7 +133,7 @@ const ProductControls = () => {
                           key={gender.value}
                           value={gender.value}
                           onClick={() => {
-                            setAnimating(true);
+                            isAnimating(true);
 
                             setTimeout(() => {
                               setSelectedGender(gender.value);
@@ -144,7 +149,7 @@ const ProductControls = () => {
                                 selectedGender: gender.value,
                               });
 
-                              setAnimating(false);
+                              isAnimating(false);
                             }, 800); 
                           }}
                         >
@@ -180,13 +185,15 @@ const ProductControls = () => {
                 (e)=>{
 
                   if(e.key==="Enter"){
-                    setAnimating(true);
+                    isAnimating(true);
                     setTimeout(()=>{
                     Searching(searchText);
                     setSelectedCategry("");
                     setSelectedGender("");
-                    setAnimating(false);
-                    },800)                    
+                    isAnimating(false);
+                    
+                    },800) 
+                                       
                   }
 
                 }
@@ -196,6 +203,7 @@ const ProductControls = () => {
               <FiSearch size={30} color="#7008e7" />
             </Span>
           </HStack>
+          
 
         </HStack>
 

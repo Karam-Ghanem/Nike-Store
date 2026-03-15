@@ -30,7 +30,8 @@ const useProductStore = create<ProductStore>(set=>({
         products:
         searchText !=="" ?
         isNaN(parseFloat(searchText)) ?
-        ProductsList.filter((product)=>product.productName==searchText.trim())
+        // ProductsList.filter((product)=>product.productName==searchText.trim())
+        ProductsList.filter((product)=>product.productName.includes(`${searchText[0].toUpperCase()}${searchText.slice(1)}`))
         :
         ProductsList.filter(product=>product.productPrice===`${searchText}$`)
         :
