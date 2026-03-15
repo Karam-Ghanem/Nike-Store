@@ -1,11 +1,13 @@
+import useTextReview from "@/Hooks/ReviewHook/useTextReview";
 import { SimpleGrid, Card, Avatar } from "@chakra-ui/react";
-import useReviewStore from "./reviewStore";
 
 
 
 const TextReview = () => {
 
-  const {reviews} = useReviewStore();
+  const {reviews} = useTextReview()
+
+  
 
 
   return (

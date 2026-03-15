@@ -1,5 +1,4 @@
-import { useState, type ChangeEvent } from "react";
-import useReviewStore from "./reviewStore";
+
 import {
   Box,
   Button,
@@ -12,46 +11,28 @@ import {
 } from "@chakra-ui/react";
 
 import { Textarea } from "@chakra-ui/react";
-import { type ReviewType } from "./Review";
 import { Toaster, toaster } from "@/components/ui/toaster";
+import useTextReview from "@/Hooks/ReviewHook/useTextReview";
 
 
 const TextReviewForm = () => {
-  const { AddReview } = useReviewStore();
 
-  const [selectedIDImg, setSelectedIDImage] = useState("");
-  const [openForm,setOpenForm] = useState(false);
-  const [selectedPersonalImg, setSelectedPersonalImage] = useState<
-    string | undefined
-  >(undefined);
+  const {
+    AddReview,
+    selectedIDImg,
+    setSelectedIDImage,
+    openForm,
+    setOpenForm,
+    selectedPersonalImg,
+    setSelectedPersonalImage,
+    HandleIDImg,
+    HandlePersonalImg,
+    singleReview,
+    setSingleReview
+  } = useTextReview();
 
-  const [singleReview, setSingleReview] = useState<ReviewType>({
-    name: "",
-    img: "",
-    description: "",
-  });
-  
-  const HandleIDImg = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
 
-    const imageURL = URL.createObjectURL(file);
-    setSelectedIDImage(imageURL);
-  };
 
-  const HandlePersonalImg = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    const imageURL = URL.createObjectURL(file);
-
-    setSelectedPersonalImage(imageURL);
-
-    setSingleReview({
-      ...singleReview,
-      img: imageURL,
-    });
-  };
   return (
     <Box>
       <Toaster />

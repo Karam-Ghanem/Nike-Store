@@ -1,28 +1,13 @@
+import useStarsReview from "@/Hooks/ReviewHook/useStarsReview";
 import { Box, Button, HStack, Text } from "@chakra-ui/react";
 import { AiFillStar } from "react-icons/ai";
-import { useState } from "react";
-import Stars from "./StarsList";
+
 
 
 const ReviewWithStars = () => {
 
-  const [currentStars, setCurrentStars] = useState(Stars);
-  const FillStars = (id: number) => {
-    const currStars = currentStars.map((star) =>
-      star.id <= id
-        ? { ...star, color: "#FFD700" }
-        : { ...star, color: "white" }
-    );
-    setCurrentStars(currStars);
-  };
-  const ResetStars = () => {
-    const currStars = currentStars.map((star) => ({
-      ...star,
-      color: "white",
-    }));
-    setCurrentStars(currStars);
-  };
-
+  
+  const { FillStars, ResetStars, currentStars } = useStarsReview();
 
   
   return (
