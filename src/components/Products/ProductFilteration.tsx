@@ -4,9 +4,7 @@ import Categories from "./Products Data/ProductCategories";
 import Genders from "./Products Data/ProductsGender";
 import { Button,Box, Menu, Portal } from "@chakra-ui/react";
 import {  HStack } from "@chakra-ui/react";
-import useProductStore from "./ProductStore";
-import { useState } from "react";
-import { type Query } from "./ProductControls";
+import useFilterAndSearch from "@/Hooks/ProductsHook/useFilterAndSearch";
 
 
 interface Props {
@@ -14,14 +12,17 @@ interface Props {
   
 }
 
-
-
 const ProductFilteration = ({isAnimating}:Props) => {
 
-    const [selectedCategory, setSelectedCategry] = useState("");
-    const [selectedGender, setSelectedGender] = useState("");
-    const [query, setQuery] = useState<Query>({selectedCategory: "",selectedGender: "",});
-    const { Filteration } = useProductStore();
+    const {
+      selectedCategory,
+      setSelectedCategry,
+      selectedGender,
+      setSelectedGender,
+      query,
+      setQuery,
+      Filteration,
+    } = useFilterAndSearch(isAnimating);
 
 
   return (

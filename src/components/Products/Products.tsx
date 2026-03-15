@@ -6,24 +6,25 @@ import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import AddToCartButton from "../PublicCompontents/AddToCartButton";
 import { Toaster, toaster } from "@/components/ui/toaster";
-import useFavoriteStore from "@/Pages/Favorites/FavoritesStore";
-import { useState } from "react";
+
 import ProductControls from "./ProductControls";
-import useProductStore from "./ProductStore";
+import useProduct from "@/Hooks/ProductsHook/useProduct";
 
 interface Props {
   homePage: boolean;
 }
 const Products = ({ homePage }: Props) => {
-  const { products } = useProductStore();
-  const [isAnimating,setIsAnimating] = useState(false)
 
-  const actualProductList = homePage ? products.slice(0, 4) : products;
-
-  const { addProductToFavList, favoritesItems, deleteProductFromFav } =useFavoriteStore();
-
-  const [favItems, setFavItems] = useState(favoritesItems.map((item) => item.id));
-
+  const {
+    products,
+    isAnimating,
+    setIsAnimating,
+    actualProductList,
+    addProductToFavList,
+    deleteProductFromFav,
+    favItems,
+    setFavItems,
+  } = useProduct(homePage);
 
   return (
     <>

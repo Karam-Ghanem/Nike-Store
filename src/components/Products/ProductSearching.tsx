@@ -1,31 +1,17 @@
+import useFilterAndSearch from "@/Hooks/ProductsHook/useFilterAndSearch";
 import { Button, HStack, Input, Span } from "@chakra-ui/react";
 import { FiSearch } from "react-icons/fi";
-import useProductStore from "./ProductStore";
-import { useState } from "react";
+
 
 interface Props {
   isAnimating: (animate: boolean) => void;
 }
 
 const ProductSearching = ({ isAnimating }: Props) => {
-  const startSearching = () => {
-    isAnimating(true);
-    setTimeout(() => {
-      Searching(searchText);
-      isAnimating(false);
-    }, 800);
-  };
-  const ResetSearching = () => {
-    isAnimating(true);
-    setTimeout(() => {
-      Searching("");
-      isAnimating(false);
-    }, 800);
-  };
 
-  const { Searching } = useProductStore();
+    const { startSearching, ResetSearching, setSearchText,searchText } =useFilterAndSearch(isAnimating);
 
-  const [searchText, setSearchText] = useState("");
+    
   return (
     <>
       <HStack

@@ -14,6 +14,7 @@ interface Props{
   isAnimating:(animate:boolean)=>void,
 }
 
+
 const ProductControls = ({isAnimating}:Props) => {
   return (
     <>
