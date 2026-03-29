@@ -7,9 +7,10 @@ interface Props {
   isAnimating: (animate: boolean) => void;
 }
 
+
 const ProductSearching = ({ isAnimating }: Props) => {
 
-    const { startSearching, ResetSearching, setSearchText,searchText } =useFilterAndSearch(isAnimating);
+  const { startSearching, ResetSearching, setSearchText,searchText } =useFilterAndSearch(isAnimating);
 
     
   return (

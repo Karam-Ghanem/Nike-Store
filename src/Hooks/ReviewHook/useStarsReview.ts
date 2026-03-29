@@ -5,6 +5,8 @@ import Stars from "@/Pages/Review/StarsList";
 const useStarsReview = ()=>{
 
     const [currentStars, setCurrentStars] = useState(Stars);
+      const [hiddenBtn,setHiddenBtn] = useState(true);
+
     const FillStars = (id: number) => {
     const currStars = currentStars.map((star) =>
       star.id <= id
@@ -26,6 +28,8 @@ const useStarsReview = ()=>{
         FillStars,
         ResetStars,
         currentStars,
+        hiddenBtn,
+        setHiddenBtn,
         
     }
 }

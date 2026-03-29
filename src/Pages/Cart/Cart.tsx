@@ -22,6 +22,7 @@ import { Toaster, toaster } from "@/components/ui/toaster";
 
 const Cart = () => {
   const { deleteProductFromCart, cartItems, setCartItems } = useCartStore();
+  
 
   if (cartItems.length < 1) {
     return <MainHead head="No Items To Show" />;
@@ -32,6 +33,7 @@ const Cart = () => {
     { label: "Image" },
     { label: "Product" },
     { label: "Price" },
+    { label: "Size" },
     { label: "Qty" },
     { label: "Total" },
     { label: "" },
@@ -65,42 +67,50 @@ const Cart = () => {
                   <Table.Root>
                     <Table.Header bg="#f6f6f6">
                       <Table.Row>
-
-
                         {ColumnsHeader.map((item) => (
                           <Table.ColumnHeader key={item.label} color="#7008e7" fontSize={{base:"7px",sm:"12px",md:"15px",}}>
                             {item.label}
                           </Table.ColumnHeader>
-                        ))}
-
-                        
+                        ))}  
                         <Table.ColumnHeader textAlign="center"></Table.ColumnHeader>
                       </Table.Row>
                     </Table.Header>
 
                     <Table.Body>
                       {cartItems.map((product) => (
-                        <Table.Row key={product.id}>
+                        <Table.Row key={product.product.id}>
                           <Table.Cell>
                             <Link
-                              to={`/${product.href}${product.id}/${product.category}`}
+                              to={`/${product.product.href}${product.product.id}/${product.product.category}`}
                             >
                               <Image
                                 width={{ base: 8, md: 10 }}
-                                src={product?.productImg}
+                                src={product?.product.productImg}
                               />
                             </Link>
                           </Table.Cell>
 
                           <Table.Cell>
                             <Text fontSize={{ base: "5px", md: "sm" }}>
-                              {product.productName}
+                              {product.product.productName}
                             </Text>
                           </Table.Cell>
 
+
                           <Table.Cell fontSize={{ base: "xs", md: "sm" }}>
-                            {product.productPrice}
+                            {product.product.productPrice}
                           </Table.Cell>
+
+
+
+
+                          <Table.Cell fontSize={{ base: "xs", md: "sm" }}>
+                            {product.currentShoseSize}
+                          </Table.Cell>
+
+
+
+
 
                           <Table.Cell>
                             <Input
@@ -117,7 +127,7 @@ const Cart = () => {
                                     ? (Number(e.target.value) * -1).toString()
                                     : e.target.value;
                                 setCartItems(
-                                  product.id,
+                                  product.product.id,
                                   Number(e.target.value)
                                 );
                               }}
@@ -125,8 +135,8 @@ const Cart = () => {
                           </Table.Cell>
 
                           <Table.Cell textAlign="right" fontSize="xs">
-                            {product.quantity *
-                              parseFloat(product.productPrice)}{" "}
+                            {product.product.quantity *
+                              parseFloat(product.product.productPrice)}{" "}
                             $
                           </Table.Cell>
 
@@ -146,10 +156,10 @@ const Cart = () => {
                                 border={"1px solid #333"}
                                 fontSize="sm"
                                 onClick={() => {
-                                  deleteProductFromCart(product.id);
+                                  deleteProductFromCart(product.product.id);
                                   toaster.create({
                                     title:
-                                      "Item Deleted From your cart successfully!",
+                                      "Product Deleted From your cart successfully!",
                                     type: "success",
                                     duration: 5000,
                                   });
@@ -194,7 +204,7 @@ const Cart = () => {
                       >
                         {cartItems.reduce(
                           (acc, item) =>
-                            acc + item.quantity * parseFloat(item.productPrice),
+                            acc + item.product.quantity * parseFloat(item.product.productPrice),
                           0
                         )}{" "}
                         $
@@ -232,7 +242,7 @@ const Cart = () => {
                       >
                         {cartItems.reduce(
                           (acc, item) =>
-                            acc + item.quantity * parseFloat(item.productPrice),
+                            acc + item.product.quantity * parseFloat(item.product.productPrice),
                           0
                         ) + 45}{" "}
                         $

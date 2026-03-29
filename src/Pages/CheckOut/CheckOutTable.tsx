@@ -20,11 +20,11 @@ const CheckOutTable = () => {
       </Table.Header>
       <Table.Body>
         {cartItems.map((item) => (
-          <Table.Row key={item.id}>
+          <Table.Row key={item.product.id}>
             <Table.Cell>
-              {item.productName} <Span color="#a800b7">({item.quantity})</Span>
+              {item.product.productName} <Span color="#a800b7">({item.product.quantity})</Span>
             </Table.Cell>
-            <Table.Cell>{item.productPrice}</Table.Cell>
+            <Table.Cell>{item.product.productPrice}</Table.Cell>
           </Table.Row>
         ))}
       </Table.Body>
@@ -34,7 +34,7 @@ const CheckOutTable = () => {
           <Table.Cell>
             {cartItems.reduce(
               (acc, item) =>
-                acc + item.quantity * parseFloat(item.productPrice),
+                acc + item.product.quantity * parseFloat(item.product.productPrice),
               0
             )}
             $

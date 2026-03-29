@@ -1,22 +1,28 @@
 import { create } from 'zustand'
 import type { Product } from '@/components/Products/Products Data/productsList';
 
+export interface CatrtItem{
+    product:Product;
+    currentShoseSize:string;
+    // id:string;
+}
+
 interface cartStore{
-    cartItems:Product [];
-    addProductToCart:(product:Product)=>void;
+    cartItems:CatrtItem [];
+    addProductToCart:(product:Product,currentShoseSize:string)=>void;
     deleteProductFromCart:(productID:string)=>void;
     setCartItems:(productID:string,newQuantityValue:number)=>void;
 }
 const useCartStore =create<cartStore>(set=>({
     cartItems:[],
-    addProductToCart:(product)=>set((store)=>({
-        cartItems:[...store.cartItems,product]
+    addProductToCart:(product,currentShoeseSize)=>set((store)=>({
+        cartItems:[...store.cartItems,{product: product,currentShoseSize: currentShoeseSize}]
     })),
     deleteProductFromCart:(productID)=>set((store)=>({
-        cartItems:store.cartItems.filter((prod)=>prod.id!=productID)
+        cartItems:store.cartItems.filter((prod)=>prod.product.id!=productID)
     })),
     setCartItems:(productID,newQuantityValue)=>set((store)=>({
-        cartItems:[...store.cartItems.map((product)=>{if(product.id===productID)product.quantity=newQuantityValue; return product})]
+        cartItems:[...store.cartItems.map((product)=>{if(product.product.id===productID)product.product.quantity=newQuantityValue; return product})]
     }))
 }))
 

@@ -14,6 +14,7 @@ import AddToCartButton from "@/components/PublicCompontents/AddToCartButton";
 import { Link } from "react-router-dom";
 import useFavoriteStore from "./FavoritesStore";
 import { Toaster, toaster } from "@/components/ui/toaster";
+import PurchaseProcess from "@/components/Products/PurchaseProcess";
 
 
 const Favorites = () => {
@@ -85,7 +86,8 @@ const Favorites = () => {
                       {/* ADD TO CART */}
                       <Table.Cell>
                         <Flex justify="center">
-                          <AddToCartButton product={product} />
+                          {/* <AddToCartButton product={product} /> */}
+                          <PurchaseProcess item={product}/>
                         </Flex>
                       </Table.Cell>
 

@@ -1,19 +1,23 @@
-import { Box, Flex, IconButton, Spinner, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, IconButton, Spinner, Text } from "@chakra-ui/react";
 import MainHead from "../PublicCompontents/MainHead";
 import { SimpleGrid } from "@chakra-ui/react";
 import { Card, Image } from "@chakra-ui/react";
 import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import AddToCartButton from "../PublicCompontents/AddToCartButton";
 import { Toaster, toaster } from "@/components/ui/toaster";
-
 import ProductControls from "./ProductControls";
 import useProduct from "@/Hooks/ProductsHook/useProduct";
+import PurchaseProcess from "./PurchaseProcess";
 
 interface Props {
   homePage: boolean;
 }
 const Products = ({ homePage }: Props) => {
+
+
+
+
+
 
   const {
     products,
@@ -24,7 +28,13 @@ const Products = ({ homePage }: Props) => {
     deleteProductFromFav,
     favItems,
     setFavItems,
+    currentPage,
+    setCurrentPage,
+    neededPages,
   } = useProduct(homePage);
+
+
+
 
   return (
     <>
@@ -35,6 +45,7 @@ const Products = ({ homePage }: Props) => {
       )}
 
       {products.length < 1 && <MainHead head="No Products To Show" />}
+
       {isAnimating ? (
         <Flex justifyContent={"center"} marginTop={100}>
           <Spinner color={"#7008e7"} width={"100px"} height={"100px"} />
@@ -66,6 +77,32 @@ const Products = ({ homePage }: Props) => {
               </Link>
             )}
           </Box>
+
+          {actualProductList.length >= 1 && !homePage && (
+            <Flex justifyContent={"center"}>
+              <Button
+                bg={"#7008e7"}
+                disabled={currentPage == 1}
+                _disabled={{ cursor: "menuitem" }}
+                onClick={() => {
+                  setCurrentPage(currentPage - 1);
+                }}
+              >
+                Prev
+              </Button>
+              <Box margin={"10px 20px"}></Box>
+              <Button
+                bg={"#7008e7"}
+                disabled={currentPage == neededPages}
+                _disabled={{ cursor: "menuitem" }}
+                onClick={() => {
+                  setCurrentPage(currentPage + 1);
+                }}
+              >
+                Next
+              </Button>
+            </Flex>
+          )}
 
           <SimpleGrid
             columns={{ base: 1, sm: 1, md: 3, lg: 3, xl: 4 }}
@@ -107,6 +144,10 @@ const Products = ({ homePage }: Props) => {
                   <Card.Description
                     fontSize={{ base: 14, sm: 15, lg: 15, xl: 16 }}
                   >
+                    <Text fontSize={10}>
+                      {item.category}
+                      {item.gender}
+                    </Text>
                     {item.productDescription}
                   </Card.Description>
                   <Text
@@ -117,13 +158,11 @@ const Products = ({ homePage }: Props) => {
                   >
                     {item.productPrice}
                   </Text>
-                  <Text fontSize={10}>
-                    {item.category}
-                    {item.gender}
-                  </Text>
                 </Card.Body>
                 <Card.Footer gap="0">
-                  <AddToCartButton product={item} />
+
+                  <PurchaseProcess item={item}/>
+
                   <Box textAlign="end" width="100%">
                     <IconButton
                       alignItems="center"

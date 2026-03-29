@@ -5,6 +5,7 @@ import Genders from "./Products Data/ProductsGender";
 import { Button,Box, Menu, Portal } from "@chakra-ui/react";
 import {  HStack } from "@chakra-ui/react";
 import useFilterAndSearch from "@/Hooks/ProductsHook/useFilterAndSearch";
+import useProduct from "@/Hooks/ProductsHook/useProduct";
 
 
 interface Props {
@@ -22,7 +23,14 @@ const ProductFilteration = ({isAnimating}:Props) => {
       query,
       setQuery,
       Filteration,
+      products,
+      
     } = useFilterAndSearch(isAnimating);
+
+    const {setNeededPages,produtsPerPage,filteredProducts} = useProduct(false)
+    // const {products} = useProductStore();
+
+
 
 
   return (
@@ -50,6 +58,9 @@ const ProductFilteration = ({isAnimating}:Props) => {
                       key={cat.value}
                       value={cat.value}
                       onClick={() => {
+
+                          alert("products : " + filteredProducts.length);
+
                         isAnimating(true);
                         setSelectedCategry(cat.value);
                         setSelectedGender(selectedGender);
@@ -64,9 +75,19 @@ const ProductFilteration = ({isAnimating}:Props) => {
                             selectedCategory: cat.value,
                             selectedGender,
                           });
+                          
+                        // setNeededPages((products.length / produtsPerPage )+(products.length % produtsPerPage ) );
+                        setNeededPages(products.length>produtsPerPage ? (products.length / produtsPerPage )+(products.length % produtsPerPage ) : 1);
+
 
                           isAnimating(false);
+                          
                         }, 800);
+                        
+                        // alert(neededPages)
+                        
+                        
+                        // alert("needed Pages  : " + neededPages);
                       }}
                     >
                       {cat.label}
@@ -106,17 +127,15 @@ const ProductFilteration = ({isAnimating}:Props) => {
                             ...query,
                             selectedGender: gender.value,
                           }));
-
                           Filteration({
                             selectedCategory,
                             selectedGender: gender.value,
                           });
-
                           isAnimating(false);
                         }, 800);
                       }}
                     >
-                      {gender.label}
+                    {gender.label}
                     </Menu.Item>
                   ))}
                 </Menu.Content>

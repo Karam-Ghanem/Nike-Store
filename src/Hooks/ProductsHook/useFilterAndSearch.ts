@@ -8,7 +8,7 @@ import { type Query } from "@/components/Products/ProductControls";
 
 const useFilterAndSearch = (isAnimating:(animate:boolean)=>void)=>{
 // search
-      const startSearching = () => {
+    const startSearching = () => {
     isAnimating(true);
     setTimeout(() => {
       Searching(searchText);
@@ -23,7 +23,7 @@ const useFilterAndSearch = (isAnimating:(animate:boolean)=>void)=>{
     }, 800);
   };
 
-  const { Searching } = useProductStore();
+  const { Searching ,products } = useProductStore();
 
   const [searchText, setSearchText] = useState("");
 
@@ -49,7 +49,8 @@ const useFilterAndSearch = (isAnimating:(animate:boolean)=>void)=>{
         setSelectedGender,
         query,
         setQuery,
-        Filteration
+        Filteration,
+        products
     }
 }
 
