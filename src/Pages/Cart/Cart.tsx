@@ -156,7 +156,7 @@ const Cart = () => {
                                 border={"1px solid #333"}
                                 fontSize="sm"
                                 onClick={() => {
-                                  deleteProductFromCart(product.product.id);
+                                  deleteProductFromCart(product.product.id+product.currentShoseSize);
                                   toaster.create({
                                     title:
                                       "Product Deleted From your cart successfully!",

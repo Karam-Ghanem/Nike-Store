@@ -10,7 +10,6 @@ import {
   Image,
   Flex,
 } from "@chakra-ui/react";
-import AddToCartButton from "@/components/PublicCompontents/AddToCartButton";
 import { Link } from "react-router-dom";
 import useFavoriteStore from "./FavoritesStore";
 import { Toaster, toaster } from "@/components/ui/toaster";

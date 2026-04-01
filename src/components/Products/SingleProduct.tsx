@@ -27,7 +27,7 @@ const SingleProduct = () => {
 
   return (
     <>
-    <Toaster/>
+      <Toaster />
       <SimpleGrid
         columns={{ base: 1, sm: 1, lg: 1, xl: 2 }}
         gap={20}
@@ -55,7 +55,8 @@ const SingleProduct = () => {
             {currentProduct?.sizes.map((size) => (
               <Button
                 onClick={() => setShoeseSize(size)}
-                bg={shoseSize === size ? "#a800b7" : "#7008e7"}
+                bg={shoseSize === size ? "#7008e7" : "#7777"}
+                color={shoseSize === size ? "white" : "black"}
                 fontSize={12}
                 size={"sm"}
                 marginEnd={1}
@@ -68,21 +69,27 @@ const SingleProduct = () => {
           </Box>
           <HStack>
             <AddToCartButton
+              currentShoeseID={currentProduct?.id + shoseSize}
               isSelectSize={shoseSize ? false : true}
               currentShoeseSize={shoseSize}
               product={currentProduct}
             />
             <Button
-            onClick={()=>{
-              deleteProductFromCart(currentProduct!.id);
-              toaster.create({
-                title:
-                  "Product Deleted From your cart successfully!",
-                type: "success",
-                duration: 5000,
-              });
-            }}
-              display={cartItems.map((item) => item.product.id).includes(currentProduct!.id) ? "block" : "none"}
+              onClick={() => {
+                deleteProductFromCart(currentProduct?.id + shoseSize);
+                toaster.create({
+                  title: "Product Deleted From your Cart Successfully!",
+                  type: "success",
+                  duration: 5000,
+                });
+              }}
+              display={
+                cartItems
+                  .map((item) => item.currentShoeseID)
+                  .includes(currentProduct?.id+shoseSize)
+                  ? "block"
+                  : "none"
+              }
               borderRadius={20}
               bg={"red"}
               color={"white"}
