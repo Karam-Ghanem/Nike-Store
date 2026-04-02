@@ -8,6 +8,7 @@ import { Toaster, toaster } from "@/components/ui/toaster";
 import ProductControls from "./ProductControls";
 import useProduct from "@/Hooks/ProductsHook/useProduct";
 import PurchaseProcess from "./PurchaseProcess";
+import useProductPagentaion from "@/Hooks/ProductsHook/useProductsPagentation";
 
 interface Props {
   homePage: boolean;
@@ -20,18 +21,22 @@ const Products = ({ homePage }: Props) => {
 
 
   const {
+    actualProductList,
+    currentPage,
+    setCurrentPage,
+    needed,
+  } = useProductPagentaion();
+
+  const {
     products,
     isAnimating,
     setIsAnimating,
-    actualProductList,
     addProductToFavList,
     deleteProductFromFav,
     favItems,
     setFavItems,
-    currentPage,
-    setCurrentPage,
-    neededPages,
-  } = useProduct(homePage);
+  } = useProduct(false);
+
 
 
 
@@ -90,10 +95,11 @@ const Products = ({ homePage }: Props) => {
               >
                 Prev
               </Button>
+
               <Box margin={"10px 20px"}></Box>
               <Button
                 bg={"#7008e7"}
-                disabled={currentPage == neededPages}
+                disabled={currentPage == needed}
                 _disabled={{ cursor: "menuitem" }}
                 onClick={() => {
                   setCurrentPage(currentPage + 1);

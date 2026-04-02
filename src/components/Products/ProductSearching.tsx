@@ -10,7 +10,7 @@ interface Props {
 
 const ProductSearching = ({ isAnimating }: Props) => {
 
-  const { startSearching, ResetSearching, setSearchText,searchText } =useFilterAndSearch(isAnimating);
+  const { startSearching, ResetSearching, setSearchText,searchText,setQuery } =useFilterAndSearch(isAnimating);
 
     
   return (
@@ -52,6 +52,7 @@ const ProductSearching = ({ isAnimating }: Props) => {
             color="#7008e7"
             onClick={() => {
               startSearching();
+              setQuery({selectedCategory:"",selectedGender:""})
             }}
           />
         </Span>

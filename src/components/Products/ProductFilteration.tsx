@@ -5,7 +5,6 @@ import Genders from "./Products Data/ProductsGender";
 import { Button,Box, Menu, Portal } from "@chakra-ui/react";
 import {  HStack } from "@chakra-ui/react";
 import useFilterAndSearch from "@/Hooks/ProductsHook/useFilterAndSearch";
-import useProduct from "@/Hooks/ProductsHook/useProduct";
 
 
 interface Props {
@@ -23,11 +22,10 @@ const ProductFilteration = ({isAnimating}:Props) => {
       query,
       setQuery,
       Filteration,
-      products,
       
     } = useFilterAndSearch(isAnimating);
 
-    const {setNeededPages,produtsPerPage} = useProduct(false)
+
 
 
 
@@ -71,8 +69,6 @@ const ProductFilteration = ({isAnimating}:Props) => {
                             selectedGender,
                           });
                           
-                        setNeededPages(products.length>produtsPerPage ? (products.length / produtsPerPage )+(products.length % produtsPerPage ) : 1);
-
 
                           isAnimating(false);
                           
