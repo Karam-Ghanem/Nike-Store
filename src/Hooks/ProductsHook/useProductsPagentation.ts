@@ -4,7 +4,7 @@ import { useState } from "react";
 import useProductStore from "@/components/Products/ProductStore";
 
 
-const useProduct = (homePage:boolean)=>{
+const useProduct = ()=>{
       // const { products } = useProductStore();
 
 //pagination

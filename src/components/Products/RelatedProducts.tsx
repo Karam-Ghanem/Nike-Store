@@ -4,15 +4,21 @@ import { Card, Image } from "@chakra-ui/react";
 import { FaHeart } from "react-icons/fa";
 import ProductsList from "./Products Data/productsList";
 import { Link } from "react-router-dom";
-import AddToCartButton from "../PublicCompontents/AddToCartButton";
 import { useParams } from "react-router-dom";
+import PurchaseProcess from "./PurchaseProcess";
+import useFavoriteStore from "@/Pages/Favorites/FavoritesStore";
+import useProduct from "@/Hooks/ProductsHook/useProduct";
+import { Toaster,toaster } from "../ui/toaster";
 
 const RelatedProducts = () => {
 
  const { category } = useParams();
+ const {addProductToFavList,deleteProductFromFav} = useFavoriteStore();
+ const {favItems,setFavItems} = useProduct(false)
 
   return (
     <>
+      <Toaster />
       <SimpleGrid columns={{ base: 1, sm: 2, md: 3, lg: 3, xl: 4 }} gap="10px">
         {ProductsList.map(
           (item) =>
@@ -24,7 +30,9 @@ const RelatedProducts = () => {
                 maxW="sm"
                 overflow="hidden"
                 key={item.id}
-                backgroundColor="#f6f6f6"
+                backgroundColor={
+                  favItems.includes(item.id) ? "pink" : "#f6f6f6"
+                }
                 borderRadius="10px"
                 border="5px solid #f6f6f6"
                 className="shadow-xl shadow-blue-500/50"
@@ -59,12 +67,33 @@ const RelatedProducts = () => {
                   </Text>
                 </Card.Body>
                 <Card.Footer gap="2">
-                  <AddToCartButton  product={item}/>
+                  <PurchaseProcess item={item} />
                   <Box textAlign="end" width="100%">
                     <IconButton
                       alignItems="center"
                       bg="inherit"
                       _hover={{ bg: "#f2e7fe" }}
+                      onClick={() => {
+                        if (!favItems.includes(item.id)) {
+                          addProductToFavList(item);
+                          setFavItems([...favItems, item.id]);
+                        } else {
+                          deleteProductFromFav(item.id);
+                          const newFavItem = favItems.filter(
+                            (i) => i != item.id
+                          );
+                          setFavItems(newFavItem);
+                        }
+                        toaster.create({
+                          title: `One  Product ${
+                            favItems.includes(item.id)
+                              ? "deleted from"
+                              : "added to"
+                          }  your Favourite successfully!`,
+                          type: "success",
+                          duration: 5000,
+                        });
+                      }}
                     >
                       <FaHeart size={24} color="#7008e7" />
                     </IconButton>
