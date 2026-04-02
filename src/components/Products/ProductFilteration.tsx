@@ -27,8 +27,7 @@ const ProductFilteration = ({isAnimating}:Props) => {
       
     } = useFilterAndSearch(isAnimating);
 
-    const {setNeededPages,produtsPerPage,filteredProducts} = useProduct(false)
-    // const {products} = useProductStore();
+    const {setNeededPages,produtsPerPage} = useProduct(false)
 
 
 
@@ -58,13 +57,9 @@ const ProductFilteration = ({isAnimating}:Props) => {
                       key={cat.value}
                       value={cat.value}
                       onClick={() => {
-
-                          alert("products : " + filteredProducts.length);
-
                         isAnimating(true);
                         setSelectedCategry(cat.value);
                         setSelectedGender(selectedGender);
-
                         setTimeout(() => {
                           setQuery(() => ({
                             ...query,
@@ -76,7 +71,6 @@ const ProductFilteration = ({isAnimating}:Props) => {
                             selectedGender,
                           });
                           
-                        // setNeededPages((products.length / produtsPerPage )+(products.length % produtsPerPage ) );
                         setNeededPages(products.length>produtsPerPage ? (products.length / produtsPerPage )+(products.length % produtsPerPage ) : 1);
 
 
@@ -84,10 +78,8 @@ const ProductFilteration = ({isAnimating}:Props) => {
                           
                         }, 800);
                         
-                        // alert(neededPages)
                         
                         
-                        // alert("needed Pages  : " + neededPages);
                       }}
                     >
                       {cat.label}

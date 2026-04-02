@@ -5,7 +5,7 @@ import useProductStore from "@/components/Products/ProductStore";
 
 
 const useProduct = (homePage:boolean)=>{
-      const { products,filteredProducts } = useProductStore();
+      const { products } = useProductStore();
 
 //pagination
     const [currentPage,setCurrentPage] = useState(1);
@@ -52,7 +52,6 @@ const useProduct = (homePage:boolean)=>{
     neededPages,
     setNeededPages,
     needed,
-    filteredProducts,
   }
 }
 
