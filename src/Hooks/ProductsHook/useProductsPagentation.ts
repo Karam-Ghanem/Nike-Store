@@ -9,7 +9,7 @@ const useProductPagentaion = ()=>{
     const {products,homePage} = useProduct(false)
 
     const [currentPage,setCurrentPage] = useState(1);
-    const produtsPerPage = 3;
+    const produtsPerPage = 4;
     const lastIndex = currentPage * produtsPerPage;
     const firstIndex = lastIndex - produtsPerPage;
 
