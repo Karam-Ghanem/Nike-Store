@@ -157,7 +157,7 @@ const TextReviewForm = () => {
                     border={"1px solid #a800b7"}
                     width={"20%"}
                     display={"none"}
-                    onChange={(e) => {
+                    onChange={(e) =>{
                       HandlePersonalImg(e);
                     }}
                   />

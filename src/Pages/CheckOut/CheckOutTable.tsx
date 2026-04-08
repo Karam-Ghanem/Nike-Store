@@ -34,7 +34,7 @@ const CheckOutTable = () => {
           <Table.Cell>
             {cartItems.reduce(
               (acc, item) =>
-                acc + item.product.quantity * parseFloat(item.product.productPrice),
+                acc + item.product.quantity! * parseFloat(item.product.productPrice),
               0
             )}
             $

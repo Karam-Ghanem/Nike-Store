@@ -135,7 +135,7 @@ const Cart = () => {
                           </Table.Cell>
 
                           <Table.Cell textAlign="right" fontSize="xs">
-                            {product.product.quantity *
+                            {product.product.quantity! *
                               parseFloat(product.product.productPrice)}{" "}
                             $
                           </Table.Cell>
@@ -204,7 +204,7 @@ const Cart = () => {
                       >
                         {cartItems.reduce(
                           (acc, item) =>
-                            acc + item.product.quantity * parseFloat(item.product.productPrice),
+                            acc + item.product.quantity! * parseFloat(item.product.productPrice),
                           0
                         )}{" "}
                         $
@@ -242,7 +242,7 @@ const Cart = () => {
                       >
                         {cartItems.reduce(
                           (acc, item) =>
-                            acc + item.product.quantity * parseFloat(item.product.productPrice),
+                            acc + item.product.quantity! * parseFloat(item.product.productPrice),
                           0
                         ) + 45}{" "}
                         $

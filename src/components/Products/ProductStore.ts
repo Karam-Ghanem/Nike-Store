@@ -8,13 +8,15 @@ interface ProductStore{
     products:Product[],
     Filteration:(query:Query)=>void,
     Searching:(textSearch:string)=>void,
-    // productLength :number,
+    addProduct:(product:Product)=>void,
+    deleteProduct:(productID:string|Product)=>void,
+    editProduct:(productID:string,product:Product)=>void,
+
 }
 
 
 const useProductStore = create<ProductStore>(set=>({
     products:ProductsList,
-    // productLength:3,
     Filteration:(query)=>set(()=>({
         products:
         query.selectedCategory && query.selectedGender ?
@@ -41,6 +43,31 @@ const useProductStore = create<ProductStore>(set=>({
         
         
     })),
+    addProduct:(product)=>set((store)=>({
+        products:[...store.products,product]
+    })),
+    deleteProduct:(productID)=>set((store)=>({
+        products:
+        store.products.filter((product)=>product.id!==productID)
+    })),
+    editProduct:(productID,product)=>set((store)=>({
+        products:
+        store.products.map((prod)=>prod.id==productID ?
+         {
+            productName:product.productName,
+            category:product.category,
+            gender:product.gender,
+            href:product.href,
+            id:product.id,
+            productDescription:product.productDescription,
+            productImg:product.productImg,
+            productPrice:product.productPrice,
+            quantity:product.quantity,
+            sizes:product.sizes
+        }
+         :
+          prod)
+    }))
 
 
 

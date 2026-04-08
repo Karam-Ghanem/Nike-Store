@@ -9,13 +9,13 @@ import shoese8 from "@/assets/shoese/_8.jpeg";
 
 export interface Product{
     id: string;
-    productImg: string;
+    productImg: string | undefined;
     productName: string;
     productDescription: string;
     productPrice: string;
     category: string;
     href: string;
-    quantity:number;
+    quantity:number | null;
     gender:string;
     sizes:string[];
 }
@@ -24,7 +24,7 @@ const ProductsList = [
     {id:"0",productImg:shoese1,productName:"Nike Air Force 1",productDescription:"This Nike sneaker is perfect for urban streetwear looks, minimalist modern outfits.",productPrice:"400$",category:"Lifestyle",href:'product/',quantity:1,sizes:["40","41","42","43"],gender:"Men"},
     {id:"1",productImg:shoese2,productName:"Nike Air Max 90",productDescription:"This Nike runner is perfect for athletic-inspired styles, clean contemporary wardrobes.",productPrice:"500$",category:"Running",href:'product/',quantity:1,sizes:["40","41","42","43"],gender:"Wommen"},
     {id:"2",productImg:shoese3,productName:"Nike Air Jordan 1",productDescription:"This Nike Air model is perfect for bold street aesthetics, retro‑inspired fashion.",productPrice:"600$",category:"Basketball",href:'product/',quantity:1,sizes:["40","41","42","43"],gender:"Kids"},
-    {id:"3",productImg:shoese4,productName:"Nike Dunk Low",productDescription:"This Nike Court shoe is perfect for casual everyday outfits, sporty chic combinations.",productPrice:"700$",category:"Training /Gym",href:'product/',quantity:1,sizes:["40","41","42","43"],gender:"Men"},
+    {id:"3",productImg:shoese4,productName:"Nike Dunk Low",productDescription:"This Nike Court shoe is perfect for casual everyday outfits, sporty chic combinations.",productPrice:"700$",category:"Training-Gym",href:'product/',quantity:1,sizes:["40","41","42","43"],gender:"Men"},
     {id:"4",productImg:shoese5,productName:"Nike Blazer Mid '77",productDescription:"This Nike Zoom pair is perfect for high‑energy training vibes, futuristic activewear looks.",productPrice:"80$",category:"Football/Soccer",href:'product/',quantity:1,sizes:["40","41","42","43"],gender:"Wommen"},
     {id:"5",productImg:shoese6,productName:"Nike Pegasus 40",productDescription:"This Nike Dunk is perfect for vintage street culture, colorful expressive styles.",productPrice:"900$",category:"Tennis",href:'product/',quantity:1,sizes:["40","41","42","43"],gender:"Kids"},
     {id:"6",productImg:shoese7,productName:"Nike React Infinity Run",productDescription:"This Nike Free shoe is perfect for relaxed lifestyle outfits, breathable summer looks.",productPrice:"1000$",category:"Skateboarding",href:'product/',quantity:1,sizes:["40","41","42","43"],gender:"Men"},
@@ -34,7 +34,7 @@ const ProductsList = [
     // {id:"8",productImg:shoese1,productName:"Nike Air Force 1",productDescription:"This Nike sneaker is perfect for urban streetwear looks, minimalist modern outfits.",productPrice:"400$",category:"Lifestyle",href:'product/',quantity:1,sizes:["40","41","42","43"],gender:"Men"},
     // {id:"9",productImg:shoese2,productName:"Nike Air Max 90",productDescription:"This Nike runner is perfect for athletic-inspired styles, clean contemporary wardrobes.",productPrice:"500$",category:"Running",href:'product/',quantity:1,sizes:["40","41","42","43"],gender:"Wommen"},
     // {id:"10",productImg:shoese3,productName:"Nike Air Jordan 1",productDescription:"This Nike Air model is perfect for bold street aesthetics, retro‑inspired fashion.",productPrice:"600$",category:"Basketball",href:'product/',quantity:1,sizes:["40","41","42","43"],gender:"Kids"},
-    // {id:"11",productImg:shoese4,productName:"Nike Dunk Low",productDescription:"This Nike Court shoe is perfect for casual everyday outfits, sporty chic combinations.",productPrice:"700$",category:"Training /Gym",href:'product/',quantity:1,sizes:["40","41","42","43"],gender:"Men"},
+    // {id:"11",productImg:shoese4,productName:"Nike Dunk Low",productDescription:"This Nike Court shoe is perfect for casual everyday outfits, sporty chic combinations.",productPrice:"700$",category:"Training-Gym",href:'product/',quantity:1,sizes:["40","41","42","43"],gender:"Men"},
     // {id:"12",productImg:shoese5,productName:"Nike Blazer Mid '77",productDescription:"This Nike Zoom pair is perfect for high‑energy training vibes, futuristic activewear looks.",productPrice:"80$",category:"Football/Soccer",href:'product/',quantity:1,sizes:["40","41","42","43"],gender:"Wommen"},
     // {id:"13",productImg:shoese6,productName:"Nike Pegasus 40",productDescription:"This Nike Dunk is perfect for vintage street culture, colorful expressive styles.",productPrice:"900$",category:"Tennis",href:'product/',quantity:1,sizes:["40","41","42","43"],gender:"Kids"},
     // {id:"14",productImg:shoese7,productName:"Nike React Infinity Run",productDescription:"This Nike Free shoe is perfect for relaxed lifestyle outfits, breathable summer looks.",productPrice:"1000$",category:"Skateboarding",href:'product/',quantity:1,sizes:["40","41","42","43"],gender:"Men"},
@@ -44,7 +44,7 @@ const ProductsList = [
     // {id:"16",productImg:shoese1,productName:"Nike Air Force 1",productDescription:"This Nike sneaker is perfect for urban streetwear looks, minimalist modern outfits.",productPrice:"400$",category:"Lifestyle",href:'product/',quantity:1,sizes:["40","41","42","43"],gender:"Men"},
     // {id:"17",productImg:shoese2,productName:"Nike Air Max 90",productDescription:"This Nike runner is perfect for athletic-inspired styles, clean contemporary wardrobes.",productPrice:"500$",category:"Running",href:'product/',quantity:1,sizes:["40","41","42","43"],gender:"Wommen"},
     // {id:"18",productImg:shoese3,productName:"Nike Air Jordan 1",productDescription:"This Nike Air model is perfect for bold street aesthetics, retro‑inspired fashion.",productPrice:"600$",category:"Basketball",href:'product/',quantity:1,sizes:["40","41","42","43"],gender:"Kids"},
-    // {id:"19",productImg:shoese4,productName:"Nike Dunk Low",productDescription:"This Nike Court shoe is perfect for casual everyday outfits, sporty chic combinations.",productPrice:"700$",category:"Training /Gym",href:'product/',quantity:1,sizes:["40","41","42","43"],gender:"Men"},
+    // {id:"19",productImg:shoese4,productName:"Nike Dunk Low",productDescription:"This Nike Court shoe is perfect for casual everyday outfits, sporty chic combinations.",productPrice:"700$",category:"Training-Gym",href:'product/',quantity:1,sizes:["40","41","42","43"],gender:"Men"},
     // {id:"20",productImg:shoese5,productName:"Nike Blazer Mid '77",productDescription:"This Nike Zoom pair is perfect for high‑energy training vibes, futuristic activewear looks.",productPrice:"80$",category:"Football/Soccer",href:'product/',quantity:1,sizes:["40","41","42","43"],gender:"Wommen"},
     // {id:"21",productImg:shoese6,productName:"Nike Pegasus 40",productDescription:"This Nike Dunk is perfect for vintage street culture, colorful expressive styles.",productPrice:"900$",category:"Tennis",href:'product/',quantity:1,sizes:["40","41","42","43"],gender:"Kids"},
     // {id:"21",productImg:shoese7,productName:"Nike React Infinity Run",productDescription:"This Nike Free shoe is perfect for relaxed lifestyle outfits, breathable summer looks.",productPrice:"1000$",category:"Skateboarding",href:'product/',quantity:1,sizes:["40","41","42","43"],gender:"Men"},
@@ -54,7 +54,7 @@ const ProductsList = [
     // {id:"23",productImg:shoese1,productName:"Nike Air Force 1",productDescription:"This Nike sneaker is perfect for urban streetwear looks, minimalist modern outfits.",productPrice:"400$",category:"Lifestyle",href:'product/',quantity:1,sizes:["40","41","42","43"],gender:"Men"},
     // {id:"24",productImg:shoese2,productName:"Nike Air Max 90",productDescription:"This Nike runner is perfect for athletic-inspired styles, clean contemporary wardrobes.",productPrice:"500$",category:"Running",href:'product/',quantity:1,sizes:["40","41","42","43"],gender:"Wommen"},
     // {id:"25",productImg:shoese3,productName:"Nike Air Jordan 1",productDescription:"This Nike Air model is perfect for bold street aesthetics, retro‑inspired fashion.",productPrice:"600$",category:"Basketball",href:'product/',quantity:1,sizes:["40","41","42","43"],gender:"Kids"},
-    // {id:"26",productImg:shoese4,productName:"Nike Dunk Low",productDescription:"This Nike Court shoe is perfect for casual everyday outfits, sporty chic combinations.",productPrice:"700$",category:"Training /Gym",href:'product/',quantity:1,sizes:["40","41","42","43"],gender:"Men"},
+    // {id:"26",productImg:shoese4,productName:"Nike Dunk Low",productDescription:"This Nike Court shoe is perfect for casual everyday outfits, sporty chic combinations.",productPrice:"700$",category:"Training-Gym",href:'product/',quantity:1,sizes:["40","41","42","43"],gender:"Men"},
     // {id:"27",productImg:shoese5,productName:"Nike Blazer Mid '77",productDescription:"This Nike Zoom pair is perfect for high‑energy training vibes, futuristic activewear looks.",productPrice:"80$",category:"Football/Soccer",href:'product/',quantity:1,sizes:["40","41","42","43"],gender:"Wommen"},
     // {id:"28",productImg:shoese6,productName:"Nike Pegasus 40",productDescription:"This Nike Dunk is perfect for vintage street culture, colorful expressive styles.",productPrice:"900$",category:"Tennis",href:'product/',quantity:1,sizes:["40","41","42","43"],gender:"Kids"},
     // {id:"29",productImg:shoese7,productName:"Nike React Infinity Run",productDescription:"This Nike Free shoe is perfect for relaxed lifestyle outfits, breathable summer looks.",productPrice:"1000$",category:"Skateboarding",href:'product/',quantity:1,sizes:["40","41","42","43"],gender:"Men"},
@@ -64,7 +64,7 @@ const ProductsList = [
     // {id:"31",productImg:shoese1,productName:"Nike Air Force 1",productDescription:"This Nike sneaker is perfect for urban streetwear looks, minimalist modern outfits.",productPrice:"400$",category:"Lifestyle",href:'product/',quantity:1,sizes:["40","41","42","43"],gender:"Men"},
     // {id:"32",productImg:shoese2,productName:"Nike Air Max 90",productDescription:"This Nike runner is perfect for athletic-inspired styles, clean contemporary wardrobes.",productPrice:"500$",category:"Running",href:'product/',quantity:1,sizes:["40","41","42","43"],gender:"Wommen"},
     // {id:"33",productImg:shoese3,productName:"Nike Air Jordan 1",productDescription:"This Nike Air model is perfect for bold street aesthetics, retro‑inspired fashion.",productPrice:"600$",category:"Basketball",href:'product/',quantity:1,sizes:["40","41","42","43"],gender:"Kids"},
-    // {id:"34",productImg:shoese4,productName:"Nike Dunk Low",productDescription:"This Nike Court shoe is perfect for casual everyday outfits, sporty chic combinations.",productPrice:"700$",category:"Training /Gym",href:'product/',quantity:1,sizes:["40","41","42","43"],gender:"Men"},
+    // {id:"34",productImg:shoese4,productName:"Nike Dunk Low",productDescription:"This Nike Court shoe is perfect for casual everyday outfits, sporty chic combinations.",productPrice:"700$",category:"Training-Gym",href:'product/',quantity:1,sizes:["40","41","42","43"],gender:"Men"},
     // {id:"35",productImg:shoese5,productName:"Nike Blazer Mid '77",productDescription:"This Nike Zoom pair is perfect for high‑energy training vibes, futuristic activewear looks.",productPrice:"80$",category:"Football/Soccer",href:'product/',quantity:1,sizes:["40","41","42","43"],gender:"Wommen"},
     // {id:"36",productImg:shoese6,productName:"Nike Pegasus 40",productDescription:"This Nike Dunk is perfect for vintage street culture, colorful expressive styles.",productPrice:"900$",category:"Tennis",href:'product/',quantity:1,sizes:["40","41","42","43"],gender:"Kids"},
     // {id:"37",productImg:shoese7,productName:"Nike React Infinity Run",productDescription:"This Nike Free shoe is perfect for relaxed lifestyle outfits, breathable summer looks.",productPrice:"1000$",category:"Skateboarding",href:'product/',quantity:1,sizes:["40","41","42","43"],gender:"Men"},

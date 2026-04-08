@@ -3,12 +3,12 @@ import AddToCartButton from "../PublicCompontents/AddToCartButton";
 import MainHead from "../PublicCompontents/MainHead";
 import RelatedProducts from "./RelatedProducts";
 import { useParams } from "react-router-dom";
-import ProductsList from "./Products Data/productsList";
 import View360 from "../About/View360";
 import { useState } from "react";
 import { useEffect } from "react";
 import useCartStore from "@/Pages/Cart/cartStore";
 import { Toaster, toaster } from "@/components/ui/toaster";
+import useProductStore from "./ProductStore";
 
 
 
@@ -20,9 +20,11 @@ const SingleProduct = () => {
 
 
    const { id } = useParams();
-   const currentProduct = ProductsList.find((product2)=>product2.id===id)
+      const { cartItems, deleteProductFromCart } = useCartStore();
+      const {products} = useProductStore()
+
+   const currentProduct = products.find((product2) => product2.id === id);
    const [shoseSize,setShoeseSize] = useState<string>('')
-   const {cartItems,deleteProductFromCart} = useCartStore()
    
 
   return (
@@ -35,7 +37,7 @@ const SingleProduct = () => {
         marginBottom={35}
       >
         <Box className="shadow-xl flex justify-center">
-          <Image src={currentProduct?.productImg} width={"96"} />
+          <Image src={currentProduct?.productImg} width={"96"} height={'96'} />
         </Box>
         <Box>
           <Heading size={"3xl"} marginBottom={2}>

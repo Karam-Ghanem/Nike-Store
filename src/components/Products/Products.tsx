@@ -1,4 +1,4 @@
-import { Box, Button, Flex, IconButton, Spinner, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, HStack, IconButton, Spinner, Text } from "@chakra-ui/react";
 import MainHead from "../PublicCompontents/MainHead";
 import { SimpleGrid } from "@chakra-ui/react";
 import { Card, Image } from "@chakra-ui/react";
@@ -9,11 +9,13 @@ import ProductControls from "./ProductControls";
 import useProduct from "@/Hooks/ProductsHook/useProduct";
 import PurchaseProcess from "./PurchaseProcess";
 import useProductPagentaion from "@/Hooks/ProductsHook/useProductsPagentation";
-
+import useProductStore from "./ProductStore";
+import MainDialog from "@/Admin/components/MainDialog";
 interface Props {
   homePage: boolean;
+  edit_delete:boolean;
 }
-const Products = ({ homePage }: Props) => {
+const Products = ({ homePage,edit_delete }: Props) => {
 
 
 
@@ -36,6 +38,8 @@ const Products = ({ homePage }: Props) => {
     favItems,
     setFavItems,
   } = useProduct(false);
+
+  const {deleteProduct} = useProductStore()
 
 
 
@@ -116,7 +120,7 @@ const Products = ({ homePage }: Props) => {
           >
             {actualProductList.map((item) => (
               <Card.Root
-                height={570}
+                height={edit_delete ? "" : 570}
                 scale={0.9}
                 cursor="pointer"
                 maxW="sm"
@@ -166,8 +170,7 @@ const Products = ({ homePage }: Props) => {
                   </Text>
                 </Card.Body>
                 <Card.Footer gap="0">
-
-                  <PurchaseProcess item={item}/>
+                  <PurchaseProcess item={item} />
 
                   <Box textAlign="end" width="100%">
                     <IconButton
@@ -204,6 +207,28 @@ const Products = ({ homePage }: Props) => {
                     </IconButton>
                   </Box>
                 </Card.Footer>
+                {edit_delete && (
+                  <HStack
+                    justifyContent={"space-between"}
+                    width={"100%"}
+                    padding={2}
+                    borderTop={"1px solid #6c14d0"}
+                  >
+                    <Button bg={"blue"}>
+                      {/* <Link to={'/admin/editproduct'}>Edit</Link> */}
+                      <Link to={`/admin/editproduct/${item.id}`}>Edit</Link>
+                    </Button>
+
+                    <MainDialog
+                      parameter={item.id}
+                      completeTheProcess={(id) => deleteProduct(id)}
+                      theProces="delete"
+                      btnName="Dlete"
+                    >
+                      <Button bg={"red"}>Delete</Button>
+                    </MainDialog>
+                  </HStack>
+                )}
               </Card.Root>
             ))}
           </SimpleGrid>
