@@ -19,25 +19,13 @@ import {
 import useCartStore from "@/Pages/Cart/cartStore";
 import { Link } from "react-router-dom";
 import { Toaster, toaster } from "@/components/ui/toaster";
-
+import ColumnsHeader from "./CartData";
 const Cart = () => {
   const { deleteProductFromCart, cartItems, setCartItems } = useCartStore();
   
-
   if (cartItems.length < 1) {
     return <MainHead head="No Items To Show" />;
   }
-
-
-  const ColumnsHeader = [
-    { label: "Image" },
-    { label: "Product" },
-    { label: "Price" },
-    { label: "Size" },
-    { label: "Qty" },
-    { label: "Total" },
-    { label: "" },
-  ];
 
   return (
     <>

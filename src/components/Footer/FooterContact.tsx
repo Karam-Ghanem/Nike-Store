@@ -2,7 +2,11 @@ import FooterTitle from "./FooterTitle";
 import { FaHouse } from "react-icons/fa6";
 import { FaPhone, FaEnvelope } from "react-icons/fa6";
 import { List, Box, Link } from "@chakra-ui/react";
+import { Emails } from "./DataFooter";
+
 const FooterContact = () => {
+
+
   return (
     <Box marginBottom={{ base: 6, sm: 6, lg: 0 }}>
       <FooterTitle head="Contact" />
@@ -21,40 +25,16 @@ const FooterContact = () => {
             +963 938309217
           </Link>
         </List.Item>
-
-        <List.Item>
-          <List.Indicator asChild color="#ba1e9a">
-            <FaEnvelope />
-          </List.Indicator>
-          <Link target="_blank" href="mailto:karamghanem34@gmail.com">
-            karamghanem34@gmail.com
-          </Link>
-        </List.Item>
-        <List.Item>
-          <List.Indicator asChild color="#ba1e9a">
-            <FaEnvelope />
-          </List.Indicator>
-          <Link target="_blank" href="naghamlaila1@gmail.com">
-            naghamlaila1@gmail.com
-          </Link>
-        </List.Item>
-        <List.Item>
-          <List.Indicator asChild color="#ba1e9a">
-            <FaEnvelope />
-          </List.Indicator>
-          <Link target="_blank" href="mailto:nawwaribrahem2@gmail.com">
-            nawwaribrahem2@gmail.com
-          </Link>
-        </List.Item>
-        <List.Item>
-          <List.Indicator asChild color="#ba1e9a">
-            <FaEnvelope />
-          </List.Indicator>
-
-          <Link target="_blank" href="mailto:reemhasan3@gmail.com">
-            reemhasan3@gmail.com
-          </Link>
-        </List.Item>
+        {Emails.map((email) => (
+          <List.Item>
+            <List.Indicator asChild color="#ba1e9a">
+              <FaEnvelope />
+            </List.Indicator>
+            <Link target="_blank" href={email.href}>
+              {email.email}
+            </Link>
+          </List.Item>
+        ))}
       </List.Root>
     </Box>
   );

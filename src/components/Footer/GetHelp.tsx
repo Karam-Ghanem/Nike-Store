@@ -1,16 +1,17 @@
 
 import FooterTitle from "./FooterTitle";
 import { List, Box } from "@chakra-ui/react";
+import { GetHelpArray} from "./DataFooter";
+
 
 const GetHelp = () => {
   return (
-    <Box marginBottom={{ base: 6, sm: 6, lg: 0 }} >
+    <Box marginBottom={{ base: 6, sm: 6, lg: 0 }}>
       <FooterTitle head="Get Help" />
       <List.Root gap="2" variant="plain" align="center">
-        <List.Item>FAQ</List.Item>
-        <List.Item>Shipping</List.Item>
-        <List.Item>Returns</List.Item>
-        <List.Item>Payment Options</List.Item>
+        {GetHelpArray.map((helpItem) => (
+          <List.Item key={helpItem}>{helpItem}</List.Item>
+        ))}
       </List.Root>
     </Box>
   );

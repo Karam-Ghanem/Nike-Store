@@ -19,7 +19,6 @@ const Layout = () => {
           </Container>
         </PageTransition>
       </AnimatePresence>
-
       <Footer />
     </>
   );

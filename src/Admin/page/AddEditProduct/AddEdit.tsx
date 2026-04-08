@@ -1,17 +1,20 @@
-import Categories from "@/components/Products/Products Data/ProductCategories";
-import Genders from "@/components/Products/Products Data/ProductsGender";
+
 import MainHead from "@/components/PublicCompontents/MainHead";
 import { Box, Button, Menu, SimpleGrid, Portal, Text } from "@chakra-ui/react";
 import { Textarea } from "@chakra-ui/react";
 import { Field, Input } from "@chakra-ui/react";
-import { useState, type ChangeEvent } from "react";
-import { v4 as uuidv4 } from "uuid";
+import { Toaster, toaster } from "@/components/ui/toaster";
 import { Image } from "@chakra-ui/react";
-import useProductStore from "@/components/Products/ProductStore";
+import { v4 as uuidv4 } from "uuid";
+
 import { Checkbox } from "@chakra-ui/react";
-import type { Product } from "@/components/Products/Products Data/productsList";
-import { Toaster,toaster } from "@/components/ui/toaster";
-import { useParams } from "react-router-dom";
+
+
+import { type ChangeEvent } from "react";
+import useProductAdmin from "@/Admin/Hooks/useProductAdmin";
+
+
+
 
 interface Props{
   head:string;
@@ -19,30 +22,7 @@ interface Props{
 
 const AddProduct = ({head}:Props) => {
 
-  const Sizes = ["30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47"];
-  const {addProduct,products,editProduct} = useProductStore();
-  const {id} = useParams();
-  const currenntProductData = products.find(product=>product.id==id);
-  const [ currentShoeseSizes, ] =useState((currenntProductData?.sizes.map((size) => size) || [])
-)
-
-
-
-  const [newProduct, setNewProduct] = useState<Product>(currenntProductData ||{
-    productName: "",
-    productDescription: "",
-    productPrice: "",
-    category: "Category",
-    quantity: null,
-    gender: "Gender ",
-    sizes: currentShoeseSizes,
-    href: "product/",
-    id:uuidv4(),
-    productImg:"",
-  });
-
-  const genders = Genders.filter((_gender,index)=>index!==0)
-  const categories = Categories.filter((_cat,index)=>index!==0)
+  const {Sizes,addProduct,categories,currenntProductData,editProduct,genders,newProduct,setNewProduct,id} = useProductAdmin()
 
   return (
     <>

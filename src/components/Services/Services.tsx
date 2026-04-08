@@ -1,32 +1,11 @@
 import { Heading, SimpleGrid, Box, Text } from "@chakra-ui/react";
 import MainHead from "../PublicCompontents/MainHead";
-import { faTruckFast } from "@fortawesome/free-solid-svg-icons";
-import { faRotateLeft } from "@fortawesome/free-solid-svg-icons";
-import { faHeadset } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ServicesData from "./ServicesData";
+import {components} from "./ServicesData";
+
 const Services = () => {
-  const Services = [
-    {
-      name: "Fast Delivery",
-      img: "faTruckFast",
-      description: " Your Nike shoes arrive swiftly within 24 hours locally! ",
-    },
-    {
-      name: "10 Days Replacement",
-      img: "faRotateLeft",
-      description: " Easy exchanges, no hassle your satisfaction guaranteed! ",
-    },
-    {
-      name: "24 x 7 Support",
-      img: "faHeadset",
-      description: " 24/7 customer care instant help anytime! ",
-    },
-  ];
-  const components = {
-    faTruckFast: faTruckFast,
-    faRotateLeft: faRotateLeft,
-    faHeadset: faHeadset,
-  };
+
 
   return (
     <>
@@ -35,9 +14,8 @@ const Services = () => {
         columns={{ base: 1, sm: 1, md: 3, lg: 3, xl: 3 }}
         gap="0px"
         textAlign={"center"}
-        
       >
-        {Services.map((item) => {
+        {ServicesData.map((item) => {
           return (
             <Box key={item.name} marginBottom={"70px"}>
               <Box marginBottom={"30px"}>
@@ -48,13 +26,19 @@ const Services = () => {
                 />
               </Box>
               <Heading
-                size={{ base: "2xl", sm: "3xl",md:"2xl", lg: "2xl", xl: "3xl" }}
+                size={{
+                  base: "2xl",
+                  sm: "3xl",
+                  md: "2xl",
+                  lg: "2xl",
+                  xl: "3xl",
+                }}
                 marginBottom={"30px"}
               >
                 {item.name}
               </Heading>
               <Text
-                fontSize={{ base: 16, sm: 18, md:14,lg: 15, xl: 18 }}
+                fontSize={{ base: 16, sm: 18, md: 14, lg: 15, xl: 18 }}
                 color={"777"}
               >
                 {item.description}

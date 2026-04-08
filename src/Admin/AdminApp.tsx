@@ -25,7 +25,7 @@ import LineChart from "./page/lineChart/LineChart";
 import Geography from "./page/geography/Geography";
 import NotFound from "./page/notFound/NotFound";
 import { useState,useMemo } from "react";
-import AddProduct from "./page/addProduct/AddProduct";
+import AddProduct from "./page/AddEditProduct/AddEdit";
 import Products from "@/components/Products/Products";
 
 

@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { Box, HStack } from "@chakra-ui/react";
 import {
   FaFacebookF,
   FaTwitter,
@@ -9,20 +9,14 @@ import FooterTitle from "./FooterTitle";
 
 const FollwUs = () => {
   return (
-    <Box marginBottom={{ base: 6, sm: 6, lg: 0 }} >
+    <Box marginBottom={{ base: 6, sm: 6, lg: 0 }}>
       <FooterTitle head="Follow Us" />
-      <Box
-        display={"flex"}
-        flexDirection={"column"}
-        justifyContent={"space-between"}
-        bg={""}
-        height={40}
-      >
+      <HStack maxWidth={'250px'} justifyContent={'space-between'}>
         <FaFacebookF />
         <FaTwitter />
         <FaInstagram />
         <FaLinkedinIn />
-      </Box>
+      </HStack>
     </Box>
   );
 };
