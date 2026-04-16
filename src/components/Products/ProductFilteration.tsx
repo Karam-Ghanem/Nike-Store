@@ -86,6 +86,8 @@ const ProductFilteration = ({isAnimating}:Props) => {
             </Portal>
           </Menu.Root>
         </Box>
+
+        
         <Box className="bg-linear-30 from-purple-50 to-pink-200">
           <Menu.Root>
             <Menu.Trigger asChild>

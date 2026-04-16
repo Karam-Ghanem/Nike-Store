@@ -3,13 +3,15 @@ import { Box } from "@chakra-ui/react";
 import type { Product } from "../Products/Products Data/productsList";
 import { Toaster, toaster } from "@/components/ui/toaster";
 import useCartStore from "@/Pages/Cart/cartStore";
+
 interface Props {
   product?: Product;
   currentShoeseSize: string;
+  currentShoeseQuantity: number;
   isSelectSize: boolean;
   currentShoeseID:string;
 }
-const AddToCartButton = ({ product,currentShoeseSize,currentShoeseID,isSelectSize }: Props) => {
+const AddToCartButton = ({ product,currentShoeseSize,currentShoeseQuantity,currentShoeseID,isSelectSize }: Props) => {
   const { addProductToCart, cartItems } = useCartStore();
 
   return (
@@ -45,7 +47,7 @@ const AddToCartButton = ({ product,currentShoeseSize,currentShoeseID,isSelectSiz
                 .map((item) => item.currentShoeseID)
                 .includes(currentShoeseID)
             ) {
-              addProductToCart(product!, currentShoeseSize, currentShoeseID);
+              addProductToCart(product!, currentShoeseSize,currentShoeseQuantity, currentShoeseID);
               toaster.create({
                 title: "Product added to your cart successfully!",
                 type: "success",
@@ -67,13 +69,11 @@ const AddToCartButton = ({ product,currentShoeseSize,currentShoeseID,isSelectSiz
           fontSize={{ base: 12, sm: 14, lg: 15, xl: 16 }}
         >
           {/* Add to cart */}
-          {/* {cartItems.map((item) => item.product.id).includes(product!.id) */}
           {cartItems
             .map((item) => item.currentShoeseID)
             .includes(currentShoeseID)
             ? "Added"
             : "Add To Cart"}
-          {/* {currentShoeseID} */}
         </Button>
       </Box>
     </>

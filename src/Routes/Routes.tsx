@@ -9,6 +9,7 @@ import HomePage from "@/Pages/HomePage";
 import Layout from "@/Pages/Layout";
 import { createBrowserRouter } from "react-router-dom";
 import CheckOut from "@/Pages/CheckOut/CheckOut";
+import Pay from "@/Pages/CheckOut/Pay";
 
 import AdminApp from "@/Admin/AdminApp";
 // import Team from "@/Admin/page/team/Team";
@@ -23,6 +24,8 @@ import AdminApp from "@/Admin/AdminApp";
 // import LineChart from "@/Admin/page/lineChart/LineChart";
 // import Geography from "@/Admin/page/geography/Geography";
 import NotFound from "@/Admin/page/notFound/NotFound";
+import Wallet from "@/Pages/CheckOut/Wallet";
+import MyPurchases from "@/Pages/purchases/MyPurchases";
 // import AddProduct from "@/Admin/page/addProduct/AddProduct";
 const router = createBrowserRouter([
   {
@@ -37,7 +40,10 @@ const router = createBrowserRouter([
       { path: "product/:id/:category", element: <SingleProduct /> },
       { path: "cart", element: <Cart /> },
       { path: "favorites", element: <Favorites /> },
-      { path: "checkout", element: <CheckOut /> },
+      { path: "checkout", element: <CheckOut />},
+      { path: "checkout/pay", element: <Pay />},
+      { path: "checkout/pay/wallet/:type", element: <Wallet />},
+      { path: "mypurchases", element: <MyPurchases />},
     ],
   },
   {

@@ -223,7 +223,6 @@ const Products = ({ homePage,edit_delete }: Props) => {
                       parameter={item.id}
                       completeTheProcess={(id) => deleteProduct(id)}
                       theProces="delete"
-                      btnName="Dlete"
                     >
                       <Button bg={"red"}>Delete</Button>
                     </MainDialog>

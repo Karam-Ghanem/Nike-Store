@@ -21,7 +21,7 @@ import { Link } from "react-router-dom";
 import { Toaster, toaster } from "@/components/ui/toaster";
 import ColumnsHeader from "./CartData";
 const Cart = () => {
-  const { deleteProductFromCart, cartItems, setCartItems } = useCartStore();
+  const { deleteProductFromCart, cartItems,setCurrentChoseQuantity } = useCartStore();
   
   if (cartItems.length < 1) {
     return <MainHead head="No Items To Show" />;
@@ -39,7 +39,7 @@ const Cart = () => {
           mx="auto"
           bg="white"
           borderRadius="lg"
-          boxShadow={{base:"none",sm:"lg"}}
+          boxShadow={{ base: "none", sm: "lg" }}
           p={{ base: 0, md: 8 }}
         >
           <Grid
@@ -56,10 +56,14 @@ const Cart = () => {
                     <Table.Header bg="#f6f6f6">
                       <Table.Row>
                         {ColumnsHeader.map((item) => (
-                          <Table.ColumnHeader key={item.label} color="#7008e7" fontSize={{base:"7px",sm:"12px",md:"15px",}}>
+                          <Table.ColumnHeader
+                            key={item.label}
+                            color="#7008e7"
+                            fontSize={{ base: "7px", sm: "12px", md: "15px" }}
+                          >
                             {item.label}
                           </Table.ColumnHeader>
-                        ))}  
+                        ))}
                         <Table.ColumnHeader textAlign="center"></Table.ColumnHeader>
                       </Table.Row>
                     </Table.Header>
@@ -84,46 +88,34 @@ const Cart = () => {
                             </Text>
                           </Table.Cell>
 
-
                           <Table.Cell fontSize={{ base: "xs", md: "sm" }}>
                             {product.product.productPrice}
                           </Table.Cell>
-
-
-
 
                           <Table.Cell fontSize={{ base: "xs", md: "sm" }}>
                             {product.currentShoseSize}
                           </Table.Cell>
 
-
-
-
-
                           <Table.Cell>
                             <Input
                               type="number"
-                              defaultValue={1}
+                              value={product.currentShoseQuantity}
                               width={{ base: "55px", md: "70px" }}
                               size="sm"
                               borderRadius="full"
                               min={1}
                               fontSize="xs"
-                              onChange={(e) => {
-                                e.target.value =
-                                  Number(e.target.value) < 1
-                                    ? (Number(e.target.value) * -1).toString()
-                                    : e.target.value;
-                                setCartItems(
-                                  product.product.id,
-                                  Number(e.target.value)
-                                );
-                              }}
+                              onChange={(e) =>
+                                setCurrentChoseQuantity(
+                                  product.currentShoeseID,
+                                  parseInt(e.target.value)
+                                )
+                              }
                             />
                           </Table.Cell>
 
                           <Table.Cell textAlign="right" fontSize="xs">
-                            {product.product.quantity! *
+                            {product.currentShoseQuantity *
                               parseFloat(product.product.productPrice)}{" "}
                             $
                           </Table.Cell>
@@ -144,7 +136,10 @@ const Cart = () => {
                                 border={"1px solid #333"}
                                 fontSize="sm"
                                 onClick={() => {
-                                  deleteProductFromCart(product.product.id+product.currentShoseSize);
+                                  deleteProductFromCart(
+                                    product.product.id +
+                                      product.currentShoseSize
+                                  );
                                   toaster.create({
                                     title:
                                       "Product Deleted From your cart successfully!",
@@ -190,9 +185,11 @@ const Cart = () => {
                         fontWeight="semibold"
                         fontSize={{ base: "xs", md: "sm" }}
                       >
-                        {cartItems.reduce(
+                        { cartItems.reduce(
                           (acc, item) =>
-                            acc + item.product.quantity! * parseFloat(item.product.productPrice),
+                            acc +
+                            item.currentShoseQuantity *
+                              parseFloat(item.product.productPrice),
                           0
                         )}{" "}
                         $
@@ -204,13 +201,13 @@ const Cart = () => {
                         color="gray.600"
                         fontSize={{ base: "xs", md: "sm" }}
                       >
-                        Shipping
+                        others
                       </Text>
                       <Text
                         fontWeight="semibold"
                         fontSize={{ base: "xs", md: "sm" }}
                       >
-                        45 $
+                        0 $
                       </Text>
                     </Flex>
 
@@ -230,37 +227,27 @@ const Cart = () => {
                       >
                         {cartItems.reduce(
                           (acc, item) =>
-                            acc + item.product.quantity! * parseFloat(item.product.productPrice),
+                            acc +
+                            item.currentShoseQuantity *
+                              parseFloat(item.product.productPrice),
                           0
-                        ) + 45}{" "}
+                        )}{" "}
                         $
                       </Text>
                     </Flex>
                   </VStack>
 
-                  <VStack mt={6} gap={3}>
-                    <Button
-                      w="100%"
-                      bg="#ba1e9a"
-                      color="white"
-                      borderRadius="full"
-                      _hover={{ bg: "#7008e7" }}
-                      size={{ base: "sm", md: "md" }}
-                    >
-                      Update Cart
-                    </Button>
-
-                    <Button
-                      w="100%"
-                      bg="#ba1e9a"
-                      color="white"
-                      borderRadius="full"
-                      _hover={{ bg: "#7008e7" }}
-                      size={{ base: "sm", md: "md" }}
-                    >
-                      <Link to={"/checkout"}>Check Out</Link>
-                    </Button>
-                  </VStack>
+                  <Button
+                    mt={6}
+                    w="100%"
+                    bg="#ba1e9a"
+                    color="white"
+                    borderRadius="full"
+                    _hover={{ bg: "#7008e7" }}
+                    size={{ base: "sm", md: "md" }}
+                  >
+                    <Link to={"/checkout"}>Check Out</Link>
+                  </Button>
                 </Card.Root>
 
                 {/* COUPON CARD */}

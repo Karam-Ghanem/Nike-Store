@@ -1,26 +1,26 @@
 import type { Product } from "@/components/Products/Products Data/productsList";
 import { Button, CloseButton, Dialog, Portal, Text } from "@chakra-ui/react";
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { Toaster,toaster } from "@/components/ui/toaster";
+import { Field, Input } from "@chakra-ui/react";
 
 interface Props {
-  btnName: string;
   theProces: string;
   completeTheProcess: (parameter: string|Product) => void;
   parameter: string | Product;
   children:ReactNode;
 }
 const MainDialog = ({theProces,completeTheProcess,parameter,children}:Props) => {
+
+const url = window.location.href;
+const isInMyPurchase = url.includes('mypurchase') ? true : false;
+
+  const [returnCause,setReturnCause] = useState('')
   return (
     <>
       <Toaster />
       <Dialog.Root>
-        <Dialog.Trigger asChild>
-          {/* <Button bg={'transparent'} size="sm">
-          {btnName}
-        </Button> */}
-          {children}
-        </Dialog.Trigger>
+        <Dialog.Trigger asChild>{children}</Dialog.Trigger>
         <Portal>
           <Dialog.Backdrop />
           <Dialog.Positioner>
@@ -34,19 +34,34 @@ const MainDialog = ({theProces,completeTheProcess,parameter,children}:Props) => 
                 <Text color={"black"}>
                   {`Are You Sure To ${theProces} This Shoese ?`}
                 </Text>
+
+                {isInMyPurchase && (
+                  <Field.Root marginTop={2}>
+                    <Input
+                      placeholder="Please tell us why you returned the shoese"
+                      value={returnCause}
+                      onChange={(e) => {
+                        setReturnCause(e.target.value);
+                      }}
+                      border={"1px solid #a800b7"}
+                    />
+
+                    <Field.ErrorText></Field.ErrorText>
+                  </Field.Root>
+                )}
               </Dialog.Body>
               <Dialog.Footer>
                 <Dialog.ActionTrigger asChild>
-                  <Button onClick={() => {}} variant="outline">
+                  <Button bg={"#E53935"} color={"white"}>
                     No
                   </Button>
                 </Dialog.ActionTrigger>
                 <Button
-                  bg={"green.500"}
+                  bg={"#7008e7"}
                   onClick={() => {
                     completeTheProcess(parameter);
                     toaster.create({
-                      title: `One Shoese Deleted successfully!`,
+                      title: `One Shoese ${isInMyPurchase? 'Returned' : 'Deleted'} successfully!`,
                       type: "success",
                       duration: 5000,
                     });

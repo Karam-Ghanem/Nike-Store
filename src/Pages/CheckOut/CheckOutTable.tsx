@@ -3,7 +3,7 @@ import { Table } from "@chakra-ui/react";
 import useCartStore from "../Cart/cartStore";
 
 const CheckOutTable = () => {
-      const { cartItems } = useCartStore();
+      const { cartItems,getTotalPrice } = useCartStore();
 
   return (
     <Table.Root size="sm" variant="outline">
@@ -32,11 +32,7 @@ const CheckOutTable = () => {
         <Table.Row>
           <Table.Cell>Total</Table.Cell>
           <Table.Cell>
-            {cartItems.reduce(
-              (acc, item) =>
-                acc + item.product.quantity! * parseFloat(item.product.productPrice),
-              0
-            )}
+            {getTotalPrice(cartItems)}
             $
           </Table.Cell>
         </Table.Row>

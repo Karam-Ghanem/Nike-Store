@@ -1,4 +1,4 @@
-import { Box, Button, Heading, HStack, Image, SimpleGrid, Text } from "@chakra-ui/react";
+import { Box, Button, Field, Heading, HStack, Image, Input, SimpleGrid, Text } from "@chakra-ui/react";
 import AddToCartButton from "../PublicCompontents/AddToCartButton";
 import MainHead from "../PublicCompontents/MainHead";
 import RelatedProducts from "./RelatedProducts";
@@ -10,7 +10,10 @@ import useCartStore from "@/Pages/Cart/cartStore";
 import { Toaster, toaster } from "@/components/ui/toaster";
 import useProductStore from "./ProductStore";
 
-
+interface UserChosen {
+  shoseSize: string;
+  choseQuantity: number;
+}
 
 const SingleProduct = () => {
   
@@ -24,7 +27,11 @@ const SingleProduct = () => {
       const {products} = useProductStore()
 
    const currentProduct = products.find((product2) => product2.id === id);
-   const [shoseSize,setShoeseSize] = useState<string>('')
+
+   const [userChosen,setUserChosen] = useState<UserChosen>({
+    shoseSize:'',
+    choseQuantity:1,
+   })
    
 
   return (
@@ -37,7 +44,7 @@ const SingleProduct = () => {
         marginBottom={35}
       >
         <Box className="shadow-xl flex justify-center">
-          <Image src={currentProduct?.productImg} width={"96"} height={'96'} />
+          <Image src={currentProduct?.productImg} width={"96"} height={"96"} />
         </Box>
         <Box>
           <Heading size={"3xl"} marginBottom={2}>
@@ -56,9 +63,11 @@ const SingleProduct = () => {
           <Box marginY={5}>
             {currentProduct?.sizes.map((size) => (
               <Button
-                onClick={() => setShoeseSize(size)}
-                bg={shoseSize === size ? "#7008e7" : "#7777"}
-                color={shoseSize === size ? "white" : "black"}
+                onClick={() =>
+                  setUserChosen({ ...userChosen, shoseSize: size })
+                }
+                bg={userChosen.shoseSize === size ? "#7008e7" : "#7777"}
+                color={userChosen.shoseSize === size ? "white" : "black"}
                 fontSize={12}
                 size={"sm"}
                 marginEnd={1}
@@ -69,16 +78,40 @@ const SingleProduct = () => {
               </Button>
             ))}
           </Box>
+          <Box marginBottom={4}>
+            <Field.Root marginTop={3}>
+              <Field.Label fontSize={"15px"}>Chose quantity :</Field.Label>
+              <Input
+                value={userChosen.choseQuantity}
+                onChange={(e) =>{
+                  setUserChosen({
+                    ...userChosen,
+                    choseQuantity: parseInt(e.target.value),
+                  });
+                }
+                }
+                min={1}
+                width={"100px"}
+                type="number"
+                required
+                border={"1px solid #a800b7"}
+              />
+              <Field.ErrorText></Field.ErrorText>
+            </Field.Root>
+          </Box>
           <HStack>
             <AddToCartButton
-              currentShoeseID={currentProduct?.id + shoseSize}
-              isSelectSize={shoseSize ? false : true}
-              currentShoeseSize={shoseSize}
+              currentShoeseID={currentProduct?.id + userChosen.shoseSize}
+              isSelectSize={userChosen.shoseSize ? false : true}
+              currentShoeseSize={userChosen.shoseSize}
+              currentShoeseQuantity={userChosen.choseQuantity}
               product={currentProduct}
             />
             <Button
               onClick={() => {
-                deleteProductFromCart(currentProduct?.id + shoseSize);
+                deleteProductFromCart(
+                  currentProduct?.id + userChosen.shoseSize
+                );
                 toaster.create({
                   title: "Product Deleted From your Cart Successfully!",
                   type: "success",
@@ -88,7 +121,7 @@ const SingleProduct = () => {
               display={
                 cartItems
                   .map((item) => item.currentShoeseID)
-                  .includes(currentProduct?.id+shoseSize)
+                  .includes(currentProduct?.id + userChosen.shoseSize)
                   ? "block"
                   : "none"
               }

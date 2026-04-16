@@ -267,19 +267,25 @@ const AddProduct = ({head}:Props) => {
                 productImg: undefined,
               });
               if(id){
-                editProduct(id,newProduct)
+                editProduct(id,newProduct);
+                 toaster.create({
+                title: "One Shoese Edited  successfully!",
+                type: "success",
+                duration: 5000,
+              });
               }
               else{
               addProduct(newProduct);
-
-              }
-              toaster.create({
+                 toaster.create({
                 title: "One Shoese Added To Products successfully!",
                 type: "success",
                 duration: 5000,
               });
-              console.log(newProduct);
+
+              }
+
             }}
+
             type="submit"
             bg={"#7008e7"}
             marginTop={4}

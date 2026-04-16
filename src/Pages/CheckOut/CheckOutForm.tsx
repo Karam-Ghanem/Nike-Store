@@ -1,7 +1,35 @@
-import { Textarea } from "@chakra-ui/react";
+import {Button, Textarea} from "@chakra-ui/react";
 import { Accordion, Span } from "@chakra-ui/react";
 import { Field, Input, Stack } from "@chakra-ui/react";
-const CheckOutForm = () => {
+import { useState } from "react";
+
+
+
+interface Props{
+  sendAdressForm:(adress:AdressForm)=>void;
+}
+export interface AdressForm{
+  name:string;
+  email:string;
+  phone:string;
+  saySomething:string;
+}
+const CheckOutForm = ({sendAdressForm}:Props) => {
+
+  const [adress,setAdress] = useState<AdressForm>({
+    name:"",
+    email:"",
+    phone:"",
+    saySomething:"",
+  });
+  
+  const [adressValue,setAdressValue] = useState<AdressForm>({
+    name:"",
+    email:"",
+    phone:"",
+    saySomething:"",
+  });
+  
   return (
     <Accordion.Root collapsible>
       <Accordion.Item value="form" bg="#f3f1f1" padding={3}>
@@ -17,19 +45,49 @@ const CheckOutForm = () => {
               <Stack gap="4" align="flex-start" maxW="xl">
                 <Field.Root>
                   {/* <Field.Label fontSize={"20px"}> Name</Field.Label> */}
-                  <Input border={"1px solid #a800b7"} placeholder="Name" />
+                  <Input
+                    value={adressValue.name}
+                    onChange={(e) =>{
+                      setAdress({ ...adress, name: e.target.value });
+                      setAdressValue({ ...adressValue, name: e.target.value });
+
+                    }
+                    }
+                    border={"1px solid #a800b7"}
+                    placeholder="Name"
+                  />
                   <Field.ErrorText></Field.ErrorText>
                 </Field.Root>
 
                 <Field.Root>
                   {/* <Field.Label fontSize={"20px"}>Email</Field.Label> */}
-                  <Input border={"1px solid #a800b7"} placeholder="Email" />
+                  <Input
+                    value={adressValue.email}
+                    onChange={(e) =>{
+                      setAdress({ ...adress, email: e.target.value });
+                      setAdressValue({ ...adressValue, email: e.target.value });
+
+                    }
+                    }
+                    border={"1px solid #a800b7"}
+                    placeholder="Email"
+                  />
                   <Field.ErrorText></Field.ErrorText>
                 </Field.Root>
 
                 <Field.Root>
                   {/* <Field.Label fontSize={"20px"}>Phone</Field.Label> */}
-                  <Input border={"1px solid #a800b7"} placeholder="Phone" />
+                  <Input
+                    value={adressValue.phone}
+                    onChange={(e) =>{
+                      setAdress({ ...adress, phone: e.target.value });
+                      setAdressValue({ ...adressValue, phone: e.target.value });
+
+                    }
+                    }
+                    border={"1px solid #a800b7"}
+                    placeholder="Phone"
+                  />
                   <Field.ErrorText></Field.ErrorText>
                 </Field.Root>
 
@@ -39,9 +97,31 @@ const CheckOutForm = () => {
                   <Textarea
                     placeholder="Say Something"
                     outline="1px solid #a800b7"
+                    value={adressValue.saySomething}
+                    onChange={(e) =>{
+                      setAdress({ ...adress, saySomething: e.target.value });
+                      setAdressValue({ ...adressValue, saySomething: e.target.value });
+                    }
+                    }
                   ></Textarea>
                   <Field.ErrorText></Field.ErrorText>
                 </Field.Root>
+                <Button
+                  type="submit"
+                  bg={"#7008e7"}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    sendAdressForm(adress);
+                    setAdressValue({
+                      email:"",
+                      name:"",
+                      phone:"",
+                      saySomething:"",
+                    })
+                  }}
+                >
+                  Ok
+                </Button>
               </Stack>
             </form>
           </Accordion.ItemBody>

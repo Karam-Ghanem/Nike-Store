@@ -5,6 +5,7 @@ const Links = [
     {id:3,label:"About",href:"about"},
     {id:4,label:"Review",href:"review"},
     {id:5,label:"Servises",href:"services"},
+    {id:6,label:"My Purchases",href:"mypurchases"},
 ]
 
 export default Links

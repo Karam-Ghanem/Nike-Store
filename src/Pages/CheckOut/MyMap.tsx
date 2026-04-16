@@ -9,16 +9,16 @@ async function getAddress(lat: number, lng: number) {
   const data = await res.json();
   return data.display_name;
 }
-
-const MyMap = () => {
-  const [location, setLocation] = useState<{ lat: number; lng: number } | null>(
-    null
-  );
+interface Props{
+  sendAddress:(address:string)=>void
+}
+const MyMap = ({sendAddress}:Props) => {
+  const [location, setLocation] = useState<{ lat: number; lng: number } | null>(null);
   const [address, setAddress] = useState<string>("");
 
   return (
     <Accordion.Root collapsible>
-      <Accordion.Item value="address" marginTop={20} bg="#f3f1f1" padding={3}>
+      <Accordion.Item value="address" marginTop={20} bg="#f3f1f1" padding={3} >
         <Accordion.ItemTrigger>
           <Span flex="1">Set Your Delivery Point</Span>
           <Accordion.ItemIndicator />
@@ -33,18 +33,19 @@ const MyMap = () => {
                 // تحويل الإحداثيات لعنوان
                 const addr = await getAddress(coords.lat, coords.lng);
                 setAddress(addr);
+                sendAddress(address)
               }}
             />
 
             {location && (
               <Box mt={4} p={3} bg="white" borderRadius="md" boxShadow="sm">
                 <Text fontWeight="bold">Selected Location:</Text>
-                {/* <Text>Latitude: {location.lat}</Text>
-                <Text>Longitude: {location.lng}</Text> */}
                 {address && (
-                  <Text mt={2} color="purple.600" fontWeight="bold">
-                    Address: {address}
-                  </Text>
+                  <>
+                    <Text mt={2} color="purple.600" fontWeight="bold">
+                      Address: {address}
+                    </Text>
+                  </>
                 )}
               </Box>
             )}
