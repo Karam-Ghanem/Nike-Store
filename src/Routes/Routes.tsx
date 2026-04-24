@@ -37,7 +37,7 @@ const router = createBrowserRouter([
       { path: "review", element: <Review /> },
       { path: "services", element: <Services /> },
       { path: "products", element: <Products edit_delete={false} homePage={false} /> },
-      { path: "product/:id/:category", element: <SingleProduct /> },
+      { path: "product/:id/:category", element: <SingleProduct isAdmin={false}/> },
       { path: "cart", element: <Cart /> },
       { path: "favorites", element: <Favorites /> },
       { path: "checkout", element: <CheckOut />},

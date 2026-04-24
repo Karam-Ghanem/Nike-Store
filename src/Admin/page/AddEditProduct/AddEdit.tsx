@@ -110,25 +110,6 @@ const AddProduct = ({head}:Props) => {
               </Field.Root>
             </Box>
             <Box>
-              <Field.Root>
-                <Input
-                  required
-                  value={newProduct.quantity ||""}
-                  marginBottom={4}
-                  min={1}
-                  type="number"
-                  border={"1px solid #a800b7"}
-                  placeholder="Quantity"
-                  onInput={(e: React.ChangeEvent<HTMLInputElement>) => {
-                    setNewProduct({
-                      ...newProduct,
-                      quantity: parseInt(e.target.value),
-                    });
-                  }}
-                />
-                <Field.ErrorText></Field.ErrorText>
-              </Field.Root>
-
               <Text>Sizes :</Text>
               <Box
                 padding={2}
@@ -138,20 +119,26 @@ const AddProduct = ({head}:Props) => {
               >
                 {Sizes.map((size) => (
                   <Checkbox.Root
-                    checked={newProduct.sizes.includes(size)}
-                    onCheckedChange={() => {
-
-                      if (!newProduct.sizes.includes(size)) {
+                    checked={newProduct.sizesAndQuantities.map((s) => s.Size).includes(size)}
+                    onCheckedChange={()=>{
+                      if (!newProduct.sizesAndQuantities.map((s) =>s.Size).includes(size) ){
                         setNewProduct({
                           ...newProduct,
-                          sizes: [...newProduct.sizes, size],
+                          sizesAndQuantities: [
+                            ...newProduct.sizesAndQuantities,
+                            { Size: size, quantity: 1 },
+                          ],
                         });
-                      }
-                      else{
-                            setNewProduct({
-                              ...newProduct,
-                              sizes: [...newProduct.sizes.filter((s)=>s!==size)]
-                            });
+                        
+                      } else {
+                        setNewProduct({
+                          ...newProduct,
+                          sizesAndQuantities: [
+                            ...newProduct.sizesAndQuantities.filter(
+                              (s) => s.Size !== size
+                            ),
+                          ],
+                        });
                       }
                     }}
                     key={size}
@@ -164,6 +151,36 @@ const AddProduct = ({head}:Props) => {
                   </Checkbox.Root>
                 ))}
               </Box>
+              <SimpleGrid columns={2} gap={1}>
+                {newProduct.sizesAndQuantities.map((s) => (
+                  <Field.Root key={s.Size}>
+                    <Text>quantity for Size : {s.Size}</Text>
+                    <Input
+                      required
+                      width={"30%"}
+                      value={s.quantity}
+                      type="number"
+                      min={1}
+                      marginBottom={4}
+                      border={"1px solid #a800b7"}
+                      onChange={(e) => {
+                        setNewProduct({
+                          ...newProduct,
+                          sizesAndQuantities:[
+                            ...newProduct.sizesAndQuantities.map((si) =>
+                              si.Size == s.Size
+                                ? {...si,quantity:parseInt(e.target.value)}
+                                : 
+                                {...si}
+                            ),
+                          ],
+                        });
+                      }}
+                    />
+                    <Field.ErrorText></Field.ErrorText>
+                  </Field.Root>
+                ))}
+              </SimpleGrid>
 
               <Field.Root>
                 <Textarea
@@ -261,31 +278,29 @@ const AddProduct = ({head}:Props) => {
                 productDescription: "",
                 productPrice: "",
                 productName: "",
-                quantity: null,
-                sizes: [],
+                isDiscounted:false,
+                isArchived:false,
+                oldProductPrice:'',
+                sizesAndQuantities: [],
                 href: "product/",
                 productImg: undefined,
               });
-              if(id){
-                editProduct(id,newProduct);
-                 toaster.create({
-                title: "One Shoese Edited  successfully!",
-                type: "success",
-                duration: 5000,
-              });
+              if (id) {
+                editProduct(id, newProduct);
+                toaster.create({
+                  title: "One Shoese Edited  successfully!",
+                  type: "success",
+                  duration: 5000,
+                });
+              } else {
+                addProduct(newProduct);
+                toaster.create({
+                  title: "One Shoese Added To Products successfully!",
+                  type: "success",
+                  duration: 5000,
+                });
               }
-              else{
-              addProduct(newProduct);
-                 toaster.create({
-                title: "One Shoese Added To Products successfully!",
-                type: "success",
-                duration: 5000,
-              });
-
-              }
-
             }}
-
             type="submit"
             bg={"#7008e7"}
             marginTop={4}

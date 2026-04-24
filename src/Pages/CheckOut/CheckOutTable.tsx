@@ -15,6 +15,8 @@ const CheckOutTable = () => {
       <Table.Header>
         <Table.Row>
           <Table.ColumnHeader>Order</Table.ColumnHeader>
+          <Table.ColumnHeader>Size</Table.ColumnHeader>
+          <Table.ColumnHeader>Quantity</Table.ColumnHeader>
           <Table.ColumnHeader>Price</Table.ColumnHeader>
         </Table.Row>
       </Table.Header>
@@ -22,8 +24,10 @@ const CheckOutTable = () => {
         {cartItems.map((item) => (
           <Table.Row key={item.product.id}>
             <Table.Cell>
-              {item.product.productName} <Span color="#a800b7">({item.product.quantity})</Span>
+              {item.product.productName} <Span color="#a800b7"></Span>
             </Table.Cell>
+            <Table.Cell>{item.product.productName}</Table.Cell>
+            <Table.Cell>{item.currentShoseQuantity}</Table.Cell>
             <Table.Cell>{item.product.productPrice}</Table.Cell>
           </Table.Row>
         ))}
@@ -31,10 +35,9 @@ const CheckOutTable = () => {
       <Table.Footer height={"70px"} fontSize={20} bg={"#f3f1f1"}>
         <Table.Row>
           <Table.Cell>Total</Table.Cell>
-          <Table.Cell>
-            {getTotalPrice(cartItems)}
-            $
-          </Table.Cell>
+          <Table.Cell></Table.Cell>
+          <Table.Cell></Table.Cell>
+          <Table.Cell>{getTotalPrice(cartItems)}$</Table.Cell>
         </Table.Row>
       </Table.Footer>
     </Table.Root>

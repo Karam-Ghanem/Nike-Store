@@ -2,7 +2,7 @@
 
 
 
-import type { Product } from "@/components/Products/Products Data/productsList";
+import type { Product, SizeAndQuantity } from "@/components/Products/Products Data/productsList";
 import { useParams } from "react-router-dom";
 import useProductStore from "@/components/Products/ProductStore";
 import { v4 as uuidv4 } from "uuid";
@@ -16,8 +16,9 @@ const useProductAdmin = ()=>{
   const {addProduct,products,editProduct} = useProductStore();
   const {id} = useParams();
   const currenntProductData = products.find(product=>product.id==id);
-  const [ currentShoeseSizes, ] =useState((currenntProductData?.sizes.map((size) => size) || [])
-)
+  // const [ currentShoeseSizes, ] =useState((currenntProductData?.sizesAndQuantities.map((size) => size.Size) || [])
+  const [ currentShoeseSizesAndQuantity, ] =useState<SizeAndQuantity[]>((currenntProductData?.sizesAndQuantities.map((size) => size) ||[]))
+
 
 
 
@@ -25,10 +26,12 @@ const useProductAdmin = ()=>{
     productName: "",
     productDescription: "",
     productPrice: "",
+    oldProductPrice:'',
+    isDiscounted:false,
+    isArchived:false,
     category: "Category",
-    quantity: null,
+    sizesAndQuantities:currentShoeseSizesAndQuantity,
     gender: "Gender ",
-    sizes: currentShoeseSizes,
     href: "product/",
     id:uuidv4(),
     productImg:"",
@@ -49,6 +52,7 @@ const useProductAdmin = ()=>{
         setNewProduct,
         genders,
         id,
+        currentShoeseSizesAndQuantity,
     }
 }
 

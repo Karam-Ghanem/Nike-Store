@@ -138,6 +138,7 @@ const MyPurchases = () => {
                           size="sm"
                         >
                           <MainDialog
+                          id={product.product.id}
                             parameter={product.currentShoeseID}
                             completeTheProcess={(pro) => returnProduct(pro)}
                             theProces={"Return"}

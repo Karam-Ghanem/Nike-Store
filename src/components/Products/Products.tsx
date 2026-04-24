@@ -39,7 +39,7 @@ const Products = ({ homePage,edit_delete }: Props) => {
     setFavItems,
   } = useProduct(false);
 
-  const {deleteProduct} = useProductStore()
+  const {archiveProduct} = useProductStore()
 
 
 
@@ -120,6 +120,7 @@ const Products = ({ homePage,edit_delete }: Props) => {
           >
             {actualProductList.map((item) => (
               <Card.Root
+              display={item.isArchived? 'none' : 'block'}
                 height={edit_delete ? "" : 570}
                 scale={0.9}
                 cursor="pointer"
@@ -160,14 +161,31 @@ const Products = ({ homePage,edit_delete }: Props) => {
                     </Text>
                     {item.productDescription}
                   </Card.Description>
-                  <Text
-                    textStyle="2xl"
-                    fontWeight="medium"
-                    letterSpacing="tight"
-                    mt="4"
-                  >
-                    {item.productPrice}
-                  </Text>
+
+                  <HStack>
+                    {item.isDiscounted ? (
+                      <Text
+                        marginRight={2}
+                        as={"del"}
+                        textStyle="2xl"
+                        fontWeight="medium"
+                        letterSpacing="tight"
+                        mt="4"
+                      >
+                        {item.oldProductPrice}
+                      </Text>
+                    ) : (
+                      ""
+                    )}
+                    <Text
+                      textStyle="2xl"
+                      fontWeight="medium"
+                      letterSpacing="tight"
+                      mt="4"
+                    >
+                      {item.productPrice}
+                    </Text>
+                  </HStack>
                 </Card.Body>
                 <Card.Footer gap="0">
                   <PurchaseProcess item={item} />
@@ -215,16 +233,16 @@ const Products = ({ homePage,edit_delete }: Props) => {
                     borderTop={"1px solid #6c14d0"}
                   >
                     <Button bg={"blue"}>
-                      {/* <Link to={'/admin/editproduct'}>Edit</Link> */}
                       <Link to={`/admin/editproduct/${item.id}`}>Edit</Link>
                     </Button>
 
                     <MainDialog
-                      parameter={item.id}
-                      completeTheProcess={(id) => deleteProduct(id)}
-                      theProces="delete"
+                    id={item.id}
+                      parameter={item}
+                      completeTheProcess={(item) => archiveProduct(item)}
+                      theProces="Archive"
                     >
-                      <Button bg={"red"}>Delete</Button>
+                      <Button bg={"red"}>Archive</Button>
                     </MainDialog>
                   </HStack>
                 )}

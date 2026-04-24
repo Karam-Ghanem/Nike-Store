@@ -20,9 +20,12 @@ import useCartStore from "@/Pages/Cart/cartStore";
 import { Link } from "react-router-dom";
 import { Toaster, toaster } from "@/components/ui/toaster";
 import ColumnsHeader from "./CartData";
+import { useState } from "react";
+
 const Cart = () => {
-  const { deleteProductFromCart, cartItems,setCurrentChoseQuantity } = useCartStore();
-  
+  const { deleteProductFromCart, cartItems, setCurrentChoseQuantity } =useCartStore();
+  const [quantityErrors, setQuantityErrors] = useState<{[key: string]: boolean;}>({});
+
   if (cartItems.length < 1) {
     return <MainHead head="No Items To Show" />;
   }
@@ -97,6 +100,11 @@ const Cart = () => {
                           </Table.Cell>
 
                           <Table.Cell>
+                            {quantityErrors[product.currentShoeseID] && (
+                              <Text color={"red"} fontSize={"10px"} mb={1}>
+                                There is not enough quantity
+                              </Text>
+                            )}
                             <Input
                               type="number"
                               value={product.currentShoseQuantity}
@@ -104,13 +112,38 @@ const Cart = () => {
                               size="sm"
                               borderRadius="full"
                               min={1}
+                              max={
+                                product.product.sizesAndQuantities.find(
+                                  (q) => q.Size == product.currentShoseSize
+                                )?.quantity
+                              }
                               fontSize="xs"
-                              onChange={(e) =>
+                              onChange={(e) => {
+                                const maxQuantity =
+                                  product.product.sizesAndQuantities.find(
+                                    (q) => q.Size == product.currentShoseSize
+                                  )?.quantity || 0;
+
+                                const newQuantity = parseInt(e.target.value);
+
                                 setCurrentChoseQuantity(
                                   product.currentShoeseID,
-                                  parseInt(e.target.value)
-                                )
-                              }
+                                  newQuantity
+                                );
+
+                                // التحقق من الكمية لهذا المنتج فقط
+                                if (newQuantity > maxQuantity) {
+                                  setQuantityErrors((prev) => ({
+                                    ...prev,
+                                    [product.currentShoeseID]: true,
+                                  }));
+                                } else {
+                                  setQuantityErrors((prev) => ({
+                                    ...prev,
+                                    [product.currentShoeseID]: false,
+                                  }));
+                                }
+                              }}
                             />
                           </Table.Cell>
 
@@ -185,7 +218,7 @@ const Cart = () => {
                         fontWeight="semibold"
                         fontSize={{ base: "xs", md: "sm" }}
                       >
-                        { cartItems.reduce(
+                        {cartItems.reduce(
                           (acc, item) =>
                             acc +
                             item.currentShoseQuantity *
