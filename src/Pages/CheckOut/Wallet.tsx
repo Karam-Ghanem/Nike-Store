@@ -19,6 +19,7 @@ import { useState } from "react";
 import { FiCopy } from "react-icons/fi";
 import { Toaster, toaster } from "@/components/ui/toaster";
 import useCartStore from "../Cart/cartStore";
+import useProductStore from "@/components/Products/ProductStore";
 
 interface Transaction {
   walletAddress: string;
@@ -26,6 +27,10 @@ interface Transaction {
 }
 
 const Wallet = () => {
+
+
+
+
   const { type } = useParams();
   const navigate = useNavigate()
   const [transactionData, setTransactionData] = useState<Transaction>({
@@ -71,7 +76,7 @@ const Wallet = () => {
 
   const data = paymentData[type as PaymentKey];
   const { getTotalPrice, cartItems,addProductsToMyPurchases } = useCartStore();
-
+  const { decreaseStock } = useProductStore();
 
   return (
     <>
@@ -167,8 +172,8 @@ const Wallet = () => {
                 onClick={(e) => {
                   e.preventDefault();
                   setTransactionData({...transactionData,transactionID:""});
-                  // addProductsToMyPurchases(cartItems,new Date().toISOString().split("T")[0]);
-                  addProductsToMyPurchases(cartItems,new Date());
+                  decreaseStock(cartItems);
+                  addProductsToMyPurchases(cartItems, new Date());
                   navigate('/mypurchases')
                 }}
                 marginTop={4}

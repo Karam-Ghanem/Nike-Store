@@ -174,7 +174,7 @@ const SingleProduct = ({isAdmin}:Props) => {
           <HStack display={isAdmin ? "none" : "flex"}>
             <AddToCartButton
               isEnoughQuantity={isEnoughQuantity}
-              currentShoeseID={currentProduct?.id + chosenSize}
+              currentShoeseID={currentProduct?.id+"-"+chosenSize}
               isSelectSize={chosenSize ? false : true}
               currentShoeseSize={chosenSize}
               currentShoeseQuantity={getQuantityForSize(chosenSize)}

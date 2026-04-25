@@ -3,6 +3,7 @@ import type { Product } from "./Products Data/productsList";
 import ProductsList from "./Products Data/productsList";
 import type { Query } from "./ProductControls";
 import  { type Archive } from "@/Admin/page/archive/archiveList";
+import type { CatrtItem } from "@/Pages/Cart/cartStore";
 
 
 interface ProductStore{
@@ -17,6 +18,7 @@ interface ProductStore{
     editProduct:(productID:string,product:Product)=>void,
     applyDiscount:(on:string,percent:number)=>void;
     applyDiscountOnShoese:(productId:string,percent:number)=>void;
+    decreaseStock:(cartItem:CatrtItem[])=>void;
 }
 
 
@@ -127,10 +129,81 @@ removeFromArchive:(productID)=>set((store)=>({
         }
     : { ...product } )
          })),
-        }
-        
 
 
-))
+
+
+
+
+
+
+
+
+
+
+decreaseStock: (cartItems) =>
+  set((store) => {
+    // 1) تحويل cartItems إلى بيانات واضحة
+    const purchased = cartItems.map(ci => {
+      const [productId, size] = ci.currentShoeseID.split("-");
+      return {
+        productId,
+        size,
+        quantity: ci.currentShoseQuantity
+      };
+    });
+
+    // 2) تعديل المنتجات
+    const updatedProducts = store.products.map(prod =>{
+      // كل عمليات الشراء لهذا المنتج
+      const purchasesForThisProduct = purchased.filter(
+        p => p.productId === prod.id
+      );
+
+      if (purchasesForThisProduct.length === 0)
+        return prod; // المنتج لم يُشترى
+
+      // تعديل المقاسات
+      const updatedSizes = prod.sizesAndQuantities.map(sizeObj => {
+        // هل تم شراء هذا المقاس؟
+        const purchase = purchasesForThisProduct.find(
+          p => p.size === sizeObj.Size
+        );
+
+        if (!purchase)
+          return sizeObj; // هذا المقاس لم يُشترى
+
+        return {
+          ...sizeObj,
+          quantity: sizeObj.quantity - purchase.quantity
+        };
+      });
+
+      return {
+        ...prod,
+        sizesAndQuantities: updatedSizes
+      };
+    });
+
+    return { products: updatedProducts };
+  }),
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        }))
 
 export default useProductStore;

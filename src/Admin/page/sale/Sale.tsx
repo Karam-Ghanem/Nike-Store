@@ -37,39 +37,41 @@ const Sale = () => {
       <Box marginTop={-10}>
         <MainHead head="Sales" />
       </Box>
-      {!id && (
-        <Menu.Root>
-          <Menu.Trigger asChild width={"100%"} marginBottom={10}>
-            <Button
-              variant="outline"
-              size="sm"
-              bg={"#a800b7"}
-              fontSize={"18px"}
-            >
-              {selectedType == ""
-                ? "Choose the type of products you want to apply the discount to ▼"
-                : selectedType}
-            </Button>
-          </Menu.Trigger>
-          <Portal>
-            <Menu.Positioner width={"90%"}>
-              <Menu.Content>
-                {categoriesAndGenders.map((catgen) => (
-                  <Menu.Item
-                    onClick={() => {
-                      setSelectedType(catgen.label);
-                    }}
-                    key={catgen.value}
-                    value="new-txt"
-                  >
-                    {catgen.label}
-                  </Menu.Item>
-                ))}
-              </Menu.Content>
-            </Menu.Positioner>
-          </Portal>
-        </Menu.Root>
-      )}
+
+
+        {!id && (
+          <Menu.Root>
+            <Menu.Trigger asChild width={"50%"} marginBottom={10}>
+              <Button
+                variant="outline"
+                size="sm"
+                bg={"#a800b7"}
+                fontSize={"18px"}
+              >
+                {selectedType == ""
+                  ? "Choose the type of products you want to apply the discount to ▼"
+                  : selectedType}
+              </Button>
+            </Menu.Trigger>
+            <Portal>
+              <Menu.Positioner width={"50%"}>
+                <Menu.Content>
+                  {categoriesAndGenders.map((catgen) => (
+                    <Menu.Item
+                      onClick={() => {
+                        setSelectedType(catgen.label);
+                      }}
+                      key={catgen.value}
+                      value="new-txt"
+                    >
+                      {catgen.label}
+                    </Menu.Item>
+                  ))}
+                </Menu.Content>
+              </Menu.Positioner>
+            </Portal>
+          </Menu.Root>
+        )}
       <Field.Root>
         <HStack width={"40%"} marginBottom={20}>
           <Field.Label>Make percentage discounts</Field.Label>
@@ -162,6 +164,9 @@ const Sale = () => {
           </Button>
         </HStack>
       </Box>
+
+
+
     </Box>
   );
 };
