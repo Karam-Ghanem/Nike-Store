@@ -1,8 +1,8 @@
 import MainHead from "../../components/PublicCompontents/MainHead";
-import ReviewWithStars from "./ReviewWithStars";
+// import ReviewWithStars from "./ReviewWithStars";
 import TextReview from "./TextReview";
 import TextReviewForm from "./TextReviewForm";
-
+import ReviewWithSelect from "./ReviewWithSelect";
 export interface ReviewType {
   name: string;
   img: string | undefined;
@@ -15,7 +15,9 @@ const Review = () => {
     <>
       <MainHead head="CUSTOMER'S REVIEW" />
 
-      <ReviewWithStars />
+      <ReviewWithSelect/>
+
+      {/* <ReviewWithStars /> */}
 
       <TextReviewForm />
 

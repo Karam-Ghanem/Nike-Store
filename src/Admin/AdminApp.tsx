@@ -30,6 +30,7 @@ import Products from "@/components/Products/Products";
 import Sale from "./page/sale/Sale";
 import Archive from "./page/archive/Archive";
 import SingleProduct from "@/components/Products/SingleProduct";
+import UsersReview from "./page/usersReviews/UsersReview";
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
@@ -68,6 +69,7 @@ export default function AdminApp() {
             <Route path="sale/:id?" element={<Sale/>} />
             <Route path="archive" element={<Archive/>} />
             <Route path= "/archive/:id/:category" element= {<SingleProduct isAdmin={true}/>} />
+            <Route path="usersReview" element={<UsersReview/>} />
             <Route path="team" element={<Team/>} />
             <Route path="contacts" element={<Contacts />} />
             <Route path="invoices" element={<Invoices />} />

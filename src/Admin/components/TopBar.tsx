@@ -119,7 +119,7 @@ const TopBar = ({ open, handleDrawerOpen, setMode }:Props) => {
           />
         </Search> */}
 
-        <SimpleGrid columns={6} gap={5} justifyContent={"space-evenly"}>
+        <SimpleGrid columns={7} gap={5} justifyContent={"space-evenly"}>
           <Box>
             <Link to="/">User Page Home</Link>
           </Box>
@@ -137,6 +137,9 @@ const TopBar = ({ open, handleDrawerOpen, setMode }:Props) => {
           </Box>
           <Box>
             <Link to="archive">Archive</Link>
+          </Box>
+          <Box>
+            <Link to="usersReview">Review</Link>
           </Box>
         </SimpleGrid>
 
