@@ -12,12 +12,11 @@ import {
 import AddToCartButton from "../PublicCompontents/AddToCartButton";
 import MainHead from "../PublicCompontents/MainHead";
 import RelatedProducts from "./RelatedProducts";
-import { useParams } from "react-router-dom";
 import View360 from "../About/View360";
-import { useState, useEffect } from "react";
-import useCartStore from "@/Pages/Cart/cartStore";
 import { Toaster, toaster } from "@/components/ui/toaster";
-import useProductStore from "./ProductStore";
+
+import { useEffect } from "react";
+import useSingleProduct from "./Hooks/useSingleProduct";
 
 
 interface Props{
@@ -28,38 +27,8 @@ const SingleProduct = ({isAdmin}:Props) => {
     window.scrollTo(0, 0);
   }, []);
 
-  const { id } = useParams();
-  const { cartItems, deleteProductFromCart } = useCartStore();
-  const { products } = useProductStore();
 
-  const currentProduct = products.find((product2) => product2.id === id);
-
-
-    const [isEnoughQuantity, setIsEnoughQuantity] = useState(true);
-
-
-
-  // -----------------------------
-  // 1) userChosen: quantity لكل نمرة
-  // -----------------------------
-  const [userChosen, setUserChosen] = useState(
-    currentProduct?.sizesAndQuantities.map((sq) => ({
-      Size: sq.Size,
-      quantity: 1,
-    })) || []
-  );
-
-  // -----------------------------
-  // 2) النمرة المختارة
-  // -----------------------------
-  const [chosenSize, setChosenSize] = useState("");
-
-  // -----------------------------
-  // 3) جلب الكمية الحالية للنمرة المختارة
-  // -----------------------------
-  const getQuantityForSize = (size: string) => {
-    return userChosen.find((uc) => uc.Size === size)?.quantity || 1;
-  };
+  const {cartItems,userChosen,chosenSize,currentProduct,deleteProductFromCart,getQuantityForSize,isEnoughQuantity,setChosenSize,setIsEnoughQuantity,setUserChosen} = useSingleProduct()
 
 
   return (

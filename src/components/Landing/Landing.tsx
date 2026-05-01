@@ -4,7 +4,7 @@ import ShoeseIMG from "@/assets/shoese/shoes.png";
 import Products from "../Products/Products";
 import About from "../About/About";
 import TextReview from "../../Pages/Review/TextReview";
-import Services from "../Services/Services";
+import Services from "@/Pages/Services/Services";
 import WelcomeBack from "../WelcomeBack/WelcomeBack";
 import MainHead from "../PublicCompontents/MainHead";
 

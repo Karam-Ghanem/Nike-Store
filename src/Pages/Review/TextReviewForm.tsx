@@ -12,7 +12,7 @@ import {
 
 import { Textarea } from "@chakra-ui/react";
 import { Toaster, toaster } from "@/components/ui/toaster";
-import useTextReview from "@/Hooks/ReviewHook/useTextReview";
+import useTextReview from "@/Pages/Review/Hook/useTextReview";
 
 
 const TextReviewForm = () => {

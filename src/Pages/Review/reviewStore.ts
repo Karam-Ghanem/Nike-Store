@@ -1,7 +1,7 @@
 import { create } from "zustand";
-import type { ReviewType } from "./Review";
-import ReviewList from "./ReviewList";
-import type { CheckBoxItem, RadioItem } from "./ReviewWithSelect";
+import type { ReviewType } from "./Data/ReviewList";
+import ReviewList from "./Data/ReviewList";
+import type { CheckBoxItem,RadioItem } from "./Data/Qustions";
 
 interface ReviewStore {
   reviews: ReviewType[];

@@ -18,7 +18,6 @@ const Archive = () => {
 
     const {archivedProducts,removeFromArchive} = useProductStore();
 
-    console.log(archivedProducts.map(a=>a.product.id))
   if (archivedProducts.length < 1) {
     return <MainHead head="No Products To Show" />;
   }

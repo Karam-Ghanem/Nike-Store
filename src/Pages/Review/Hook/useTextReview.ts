@@ -1,5 +1,5 @@
 
-import { type ReviewType } from "@/Pages/Review/Review";
+import { type ReviewType } from "../Data/ReviewList";
 import { useState, type ChangeEvent } from "react";
 import useReviewStore from "@/Pages/Review/reviewStore";
 

@@ -6,9 +6,9 @@ import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { Toaster, toaster } from "@/components/ui/toaster";
 import ProductControls from "./ProductControls";
-import useProduct from "@/Hooks/ProductsHook/useProduct";
+import useProduct from "@/components/Products/Hooks/useProduct";
 import PurchaseProcess from "./PurchaseProcess";
-import useProductPagentaion from "@/Hooks/ProductsHook/useProductsPagentation";
+import useProductPagentaion from "./Hooks/useProductsPagentation";
 import useProductStore from "./ProductStore";
 import MainDialog from "@/Admin/components/MainDialog";
 interface Props {
@@ -16,11 +16,6 @@ interface Props {
   edit_delete:boolean;
 }
 const Products = ({ homePage,edit_delete }: Props) => {
-
-
-
-
-
 
   const {
     actualProductList,

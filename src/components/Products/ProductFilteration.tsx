@@ -4,7 +4,7 @@ import Categories from "./Products Data/ProductCategories";
 import Genders from "./Products Data/ProductsGender";
 import { Button,Box, Menu, Portal } from "@chakra-ui/react";
 import {  HStack } from "@chakra-ui/react";
-import useFilterAndSearch from "@/Hooks/ProductsHook/useFilterAndSearch";
+import useFilterAndSearch from "@/components/Products/Hooks/useFilterAndSearch";
 
 
 interface Props {

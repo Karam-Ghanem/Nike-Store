@@ -4,17 +4,15 @@ import { Card, Image } from "@chakra-ui/react";
 import { FaHeart } from "react-icons/fa";
 import ProductsList from "./Products Data/productsList";
 import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom";
 import PurchaseProcess from "./PurchaseProcess";
-import useFavoriteStore from "@/Pages/Favorites/FavoritesStore";
-import useProduct from "@/Hooks/ProductsHook/useProduct";
+
+
 import { Toaster,toaster } from "../ui/toaster";
+import useRelatedProducts from "./Hooks/useRelatedProducts";
 
 const RelatedProducts = () => {
 
- const { category } = useParams();
- const {addProductToFavList,deleteProductFromFav} = useFavoriteStore();
- const {favItems,setFavItems} = useProduct(false)
+  const {addProductToFavList,category,deleteProductFromFav,favItems,setFavItems} = useRelatedProducts()
 
   return (
     <>

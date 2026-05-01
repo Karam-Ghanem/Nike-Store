@@ -1,41 +1,11 @@
 import MainHead from "@/components/PublicCompontents/MainHead";
 import { Box, Button, Card, Center, Image, SimpleGrid } from "@chakra-ui/react";
-// import { useState } from "react";
-import Syriatel from '@/assets/Syriatel.jpg'
-import MTN from '@/assets/MTN.png'
-import ShamCash from '@/assets/ShamCash.jpg'
-import usdt from '@/assets/usdt.png'
+import paymentMethod from "./Data/PaymentMethod";
 import { Link } from "react-router-dom";
-const Pay  = () => {
-    const paymentMethod = [
-      {
-        label: "Syriatel Cash",
-        description: "Syriatel Cash",
-        value: "syriatelcash",
-        logo: Syriatel,
-      },
-      {
-        label: "MTN Cash",
-        description: "Mtn Cash",
-        value: "mtncash",
-        logo: MTN,
-      },
-      {
-        label: "Sham Cash",
-        description: "Sham Cash",
-        value: "shamcash",
-        logo: ShamCash,
-      },
-      {
-        label: "USDT",
-        description: "Crypto (USDT,BTC,LTC)",
-        value: "usdt",
-        logo: usdt,
-      },
-    ];
 
-    // const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("Choose payment method ▼");
-    // const [logo,setLogo] = useState('')
+
+const Pay  = () => {
+
   return (
     <>
       <MainHead head="PAYMENT" />

@@ -2,7 +2,7 @@ import About from "@/components/About/About";
 import Products from "@/components/Products/Products";
 import SingleProduct from "@/components/Products/SingleProduct";
 import Review from "@/Pages/Review/Review";
-import Services from "@/components/Services/Services";
+import Services from "@/Pages/Services/Services";
 import Cart from "@/Pages/Cart/Cart";
 import Favorites from "@/Pages/Favorites/Favorites";
 import HomePage from "@/Pages/HomePage";

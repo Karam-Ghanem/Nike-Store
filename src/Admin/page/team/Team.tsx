@@ -1,5 +1,5 @@
 import { DataGrid, type GridColDef } from "@mui/x-data-grid";
-import { rows } from "./data";
+import { rows } from "./Data/data";
 import { useTheme } from "@mui/material";
 import { Box, Typography } from "@mui/material";
 import {
@@ -54,6 +54,7 @@ const Team = () => {
       flex: 1,
       align: "center",
       headerAlign: "center",
+      
       renderCell: ({ row }) => {
         const access = row.access;
 

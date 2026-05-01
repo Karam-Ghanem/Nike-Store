@@ -1,14 +1,8 @@
-import useTextReview from "@/Hooks/ReviewHook/useTextReview";
+import useTextReview from "@/Pages/Review/Hook/useTextReview";
 import { SimpleGrid, Card, Avatar } from "@chakra-ui/react";
 
-
-
 const TextReview = () => {
-
-  const {reviews} = useTextReview()
-
-  
-
+  const { reviews } = useTextReview();
 
   return (
     <SimpleGrid
@@ -31,7 +25,7 @@ const TextReview = () => {
               size="lg"
               shape="rounded"
             >
-              <Avatar.Image src={item.img} alt="karam"/>
+              <Avatar.Image src={item.img} alt="karam" />
               <Avatar.Fallback name="person img" />
             </Avatar.Root>
             <Card.Title mb="2">{item.name}</Card.Title>

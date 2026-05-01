@@ -3,7 +3,7 @@ import { Table } from "@chakra-ui/react";
 import useCartStore from "../Cart/cartStore";
 
 const CheckOutTable = () => {
-      const { cartItems,getTotalPrice } = useCartStore();
+  const { cartItems,getTotalPrice } = useCartStore();
 
   return (
     <Table.Root size="sm" variant="outline">

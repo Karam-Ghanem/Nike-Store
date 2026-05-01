@@ -1,34 +1,19 @@
 import {Button, Textarea} from "@chakra-ui/react";
 import { Accordion, Span } from "@chakra-ui/react";
 import { Field, Input, Stack } from "@chakra-ui/react";
-import { useState } from "react";
-
+import type { AdressForm } from "./CheckOut";
+import useCheckOut from "./Hooks/useCheckOut";
 
 
 interface Props{
   sendAdressForm:(adress:AdressForm)=>void;
 }
-export interface AdressForm{
-  name:string;
-  email:string;
-  phone:string;
-  saySomething:string;
-}
+
+
 const CheckOutForm = ({sendAdressForm}:Props) => {
 
-  const [adress,setAdress] = useState<AdressForm>({
-    name:"",
-    email:"",
-    phone:"",
-    saySomething:"",
-  });
-  
-  const [adressValue,setAdressValue] = useState<AdressForm>({
-    name:"",
-    email:"",
-    phone:"",
-    saySomething:"",
-  });
+
+  const {adress,setAdress,adressValue,setAdressValue,} = useCheckOut();
   
   return (
     <Accordion.Root collapsible>

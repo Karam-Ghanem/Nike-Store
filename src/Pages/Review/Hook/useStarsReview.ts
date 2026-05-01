@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import Stars from "@/Pages/Review/StarsList";
+import Stars from "@/Pages/Review/Data/StarsList";
 
 const useStarsReview = ()=>{
 

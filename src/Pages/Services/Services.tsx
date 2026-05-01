@@ -1,5 +1,5 @@
 import { Heading, SimpleGrid, Box, Text } from "@chakra-ui/react";
-import MainHead from "../PublicCompontents/MainHead";
+import MainHead from "@/components/PublicCompontents/MainHead";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ServicesData from "./ServicesData";
 import {components} from "./ServicesData";

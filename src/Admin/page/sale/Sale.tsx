@@ -10,27 +10,16 @@ import {
   Span,
   Text,
 } from "@chakra-ui/react";
-import { useState } from "react";
-import Categories from "@/components/Products/Products Data/ProductCategories";
-import Genders from "@/components/Products/Products Data/ProductsGender";
-import useProductStore from "@/components/Products/ProductStore";
-import { Toaster,toaster } from "@/components/ui/toaster";
-import { useParams } from "react-router-dom";
+
+import { Toaster, toaster } from "@/components/ui/toaster";
+import useSalesAdmin from "./Hook/useSalesAdmin";
+
+
+
 const Sale = () => {
-  const [selectedType, setSelectedType] = useState("");
-  const [selectedPercentage, setSelectedPercentage] = useState(1);
-  const {products} = useProductStore()
-  const {id} = useParams()
-  const shoeseName =id? products.find(prod=>prod.id==id)?.productName : ''
-  
+const {id,applyDiscount,applyDiscountOnShoese,categoriesAndGenders,selectedPercentage,selectedType,setSelectedPercentage,setSelectedType,shoeseName} = useSalesAdmin();
 
-  const {applyDiscount,applyDiscountOnShoese} = useProductStore()
-  const categoriesAndGenders = [
-    ...Categories,
-    ...Genders.filter((gender) => gender.label != "All"),
-  ];
 
-  console.log(categoriesAndGenders);
   return (
     <Box>
       <Toaster />

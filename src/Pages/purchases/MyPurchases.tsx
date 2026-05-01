@@ -14,16 +14,13 @@ import {
   Portal,
 } from "@chakra-ui/react";
 import { Alert } from "@chakra-ui/react";
-import useCartStore from "../Cart/cartStore";
 import MainDialog from "@/Admin/components/MainDialog";
-import { useState } from "react";
+import useMyPurchase from "./Hook/useMyPrchase";
+
 
 const MyPurchases = () => {
-  const { myPurchases, purchaseDate, returnProduct } = useCartStore();
-  const [returnPeriod,] = useState(10)
-  const [openAlert,setOpenAlert] = useState(false);
 
-
+const {myPurchases,openAlert,purchaseDate,returnPeriod,returnProduct,setOpenAlert} = useMyPurchase()
 
   if (myPurchases.length < 1) {
     return <MainHead head="No Products To Show" />;

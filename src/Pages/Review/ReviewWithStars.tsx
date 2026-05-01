@@ -1,16 +1,10 @@
-import useStarsReview from "@/Hooks/ReviewHook/useStarsReview";
+import useStarsReview from "@/Pages/Review/Hook/useStarsReview";
 import { Box, Button, HStack, Text } from "@chakra-ui/react";
 import { AiFillStar } from "react-icons/ai";
 
-
-
 const ReviewWithStars = () => {
+  const { FillStars, ResetStars, currentStars, hiddenBtn, setHiddenBtn } = useStarsReview();
 
-  
-  const { FillStars, ResetStars, currentStars,hiddenBtn,setHiddenBtn } = useStarsReview();
-
-
-  
   return (
     <Box
       display={"flex"}
@@ -34,20 +28,19 @@ const ReviewWithStars = () => {
               cursor={star.cursor}
               onClick={() => {
                 FillStars(star.id);
-                setHiddenBtn(false)
+                setHiddenBtn(false);
               }}
             />
           ))}
         </HStack>
-        <Box textAlign={"center"} display={hiddenBtn? 'none' : 'block'}>
+        <Box textAlign={"center"} display={hiddenBtn ? "none" : "block"}>
           <Button
             marginTop={6}
             bg={"#a353e9"}
             color={"white"}
-            onClick={() =>{
+            onClick={() => {
               setHiddenBtn(true);
             }}
-
             transition={"0.5s"}
             _hover={{ bg: "green", color: "white", fontSize: "17px" }}
           >
@@ -58,9 +51,9 @@ const ReviewWithStars = () => {
             marginStart={6}
             bg={"#a353e9"}
             color={"white"}
-            onClick={() =>{
-               ResetStars();
-               setHiddenBtn(true)
+            onClick={() => {
+              ResetStars();
+              setHiddenBtn(true);
             }}
             transition={"0.5s"}
             _hover={{ bg: "transparent", color: "red", fontSize: "17px" }}

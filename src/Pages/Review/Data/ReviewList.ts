@@ -1,11 +1,16 @@
   
-import Mekdad from "../../assets/Mekdad.jpg";
-import AlAbbas from "../../assets/Al-Abbas.jpg";
-import Zein from "../../assets/Zein.jpg";
-import Hadi from "../../assets/Hadi.jpg";
-import Soliman from "../../assets/Soliman.jpg";
-import Mayyas from "../../assets/Mayas.jpg";
-  
+import Mekdad from "@/assets/Mekdad.jpg";
+import AlAbbas from "@/assets/Al-Abbas.jpg";
+import Zein from "@/assets/Zein.jpg";
+import Hadi from "@/assets/Hadi.jpg";
+import Soliman from "@/assets/Soliman.jpg";
+import Mayyas from "@/assets//Mayas.jpg";
+  export interface ReviewType {
+  name: string;
+  img: string | undefined;
+  description: string;
+}
+
   const ReviewList = [
     {
       name: " Mekdad Ahmad ",

@@ -1,24 +1,26 @@
-import useFilterAndSearch from "@/Hooks/ProductsHook/useFilterAndSearch";
+import useFilterAndSearch from "@/components/Products/Hooks/useFilterAndSearch";
 import { Button, HStack, Input, Span } from "@chakra-ui/react";
 import { FiSearch } from "react-icons/fi";
-
 
 interface Props {
   isAnimating: (animate: boolean) => void;
 }
 
-
 const ProductSearching = ({ isAnimating }: Props) => {
+  const {
+    startSearching,
+    ResetSearching,
+    setSearchText,
+    searchText,
+    setQuery,
+  } = useFilterAndSearch(isAnimating);
 
-  const { startSearching, ResetSearching, setSearchText,searchText,setQuery } =useFilterAndSearch(isAnimating);
-
-    
   return (
     <>
       <HStack
         width={{ base: "100%", md: "100%", lg: "40%" }}
         position={"relative"}
-        marginBottom={{ base: "30px", md: "30px",lg:"0" }}
+        marginBottom={{ base: "30px", md: "30px", lg: "0" }}
         className="bg-linear-30 from-purple-50 to-pink-200"
       >
         <Button
@@ -52,7 +54,7 @@ const ProductSearching = ({ isAnimating }: Props) => {
             color="#7008e7"
             onClick={() => {
               startSearching();
-              setQuery({selectedCategory:"",selectedGender:""})
+              setQuery({ selectedCategory: "", selectedGender: "" });
             }}
           />
         </Span>

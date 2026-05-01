@@ -2,7 +2,7 @@ import MainHead from "@/components/PublicCompontents/MainHead";
 import useReviewStore from "@/Pages/Review/reviewStore";
 import { Box, Text, SimpleGrid, Badge } from "@chakra-ui/react";
 import { Accordion, Span } from "@chakra-ui/react";
-import type { CheckBoxItem, RadioItem } from "@/Pages/Review/ReviewWithSelect";
+import type { CheckBoxItem,RadioItem } from "@/Pages/Review/Data/Qustions";
 
 const UsersReview = () => {
   const { checkEvalutes, radioEvalutes } = useReviewStore();
@@ -17,7 +17,7 @@ const UsersReview = () => {
             key={index}
             collapsible
             defaultValue={[]}
-            padding={0} // ⬅️ شيلنا البوردر من الـ Root
+            padding={0} 
           >
             <Accordion.Item value={`review-${index}`}>
               <Accordion.ItemTrigger
