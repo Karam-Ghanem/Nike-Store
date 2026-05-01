@@ -7,15 +7,16 @@ const useMyPurchase = ()=>{
     
   const { myPurchases, purchaseDate, returnProduct } = useCartStore();
   const [returnPeriod,] = useState(10)
-  const [openAlert,setOpenAlert] = useState(false);
+  const [allowed,setAllowed] = useState(false)
 
     return{
         myPurchases,
         purchaseDate,
         returnProduct,
         returnPeriod,
-        openAlert,
-        setOpenAlert
+        allowed,
+        setAllowed
+
     }
 }
 

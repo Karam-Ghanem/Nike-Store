@@ -13,14 +13,15 @@ import {
   Popover,
   Portal,
 } from "@chakra-ui/react";
-import { Alert } from "@chakra-ui/react";
+
+import { MdInfoOutline } from "react-icons/md";
 import MainDialog from "@/Admin/components/MainDialog";
 import useMyPurchase from "./Hook/useMyPrchase";
 
 
 const MyPurchases = () => {
 
-const {myPurchases,openAlert,purchaseDate,returnPeriod,returnProduct,setOpenAlert} = useMyPurchase()
+const {myPurchases,purchaseDate,returnPeriod,returnProduct,allowed,setAllowed} = useMyPurchase()
 
   if (myPurchases.length < 1) {
     return <MainHead head="No Products To Show" />;
@@ -30,14 +31,7 @@ const {myPurchases,openAlert,purchaseDate,returnPeriod,returnProduct,setOpenAler
     <>
       <MainHead head="MY PURCHASES" />
       <Box margin={4}>
-        {openAlert && (
-          <Alert.Root status="error" title="This is the alert title">
-            <Alert.Indicator />
-            <Alert.Title>
-              There was an error processing your request
-            </Alert.Title>
-          </Alert.Root>
-        )}
+
       </Box>
       <Box maxW="1100px" mx="auto" bg="white">
         <Grid templateColumns="1fr" gap={8}>
@@ -130,48 +124,63 @@ const {myPurchases,openAlert,purchaseDate,returnPeriod,returnProduct,setOpenAler
 
                       <Table.Cell textAlign="center">
                         <IconButton
+                          bg={"none"}
                           aria-label="Return item"
                           variant="ghost"
                           size="sm"
                         >
-                          <MainDialog
-                          id={product.product.id}
-                            parameter={product.currentShoeseID}
-                            completeTheProcess={(pro) => returnProduct(pro)}
-                            theProces={"Return"}
-                          >
-                            <Button
-                              onMouseOver={()=>
-                                purchaseDate.getTime() / 1000 > returnPeriod
-                                  ? setOpenAlert(true)
-                                  : setOpenAlert(false)
-                              }
-                              title={
-                                (new Date().getTime() -
-                                  purchaseDate.getTime()) /
-                                  1000 >
-                                returnPeriod
-                                  ? "Sorry"
-                                  : ""
-                              }
-                              disabled={
-                                (new Date().getTime() -
-                                  purchaseDate.getTime()) /
-                                  1000 >
-                                returnPeriod
-                                  ? true
-                                  : false
-                              }
-                              fontSize={16}
-                              bg={"#7008e7"}
-                              _hover={{
-                                backgroundColor: "#E53935",
-                                color: "#333",
-                              }}
+                          {(new Date().getTime() - purchaseDate.getTime()) /
+                            1000 >
+                          returnPeriod ? (
+                            allowed && (
+                              <Text
+                                color={"red"}
+                                fontSize={13}
+                              >{`Sorry You Can Not Replce After ${returnPeriod} Seconds`}</Text>
+                            )
+                          ) : (
+                            <MainDialog
+                              id={product.product.id}
+                              parameter={product.currentShoeseID}
+                              completeTheProcess={(pro) => returnProduct(pro)}
+                              theProces={"Return"}
                             >
-                              Return
-                            </Button>
-                          </MainDialog>
+                              <Button
+                                title={
+                                  (new Date().getTime() -
+                                    purchaseDate.getTime()) /
+                                    1000 >
+                                  returnPeriod
+                                    ? "Sorry You Can Not Replce"
+                                    : ""
+                                }
+                                disabled={
+                                  (new Date().getTime() -
+                                    purchaseDate.getTime()) /
+                                    1000 >
+                                  returnPeriod
+                                    ? true
+                                    : false
+                                }
+                                fontSize={16}
+                                bg={"#7008e7"}
+                                _hover={{
+                                  backgroundColor: "#E53935",
+                                  color: "#333",
+                                }}
+                              >
+                                Return
+                              </Button>
+                            </MainDialog>
+                          )}
+
+                          {(new Date().getTime() - purchaseDate.getTime()) /
+                            1000 >
+                            returnPeriod && (
+                            <Text onClick={() => setAllowed(!allowed)}>
+                              <MdInfoOutline size={22} color="red" />
+                            </Text>
+                          )}
                         </IconButton>
                       </Table.Cell>
                     </Table.Row>
