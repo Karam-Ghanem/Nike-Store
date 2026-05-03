@@ -11,8 +11,8 @@ const HeaderIcons = () => {
   const isFavoritesPage = location.pathname === "/favorites";
   const isCartPage = location.pathname === "/cart";
   return (
-    <Box>
-      <Stack direction="row">
+    <Box className="hidden md:block" marginStart={{md:-5}}>
+      <Stack direction="row" scale={{md:0.6,lg:0.8,xl:1}}>
         <Link to="/favorites">
           <IconButton
             bg={isFavoritesPage ? "#7008e7 " : "inherit"}

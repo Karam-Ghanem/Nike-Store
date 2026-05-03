@@ -35,7 +35,6 @@ const CheckOutForm = ({sendAdressForm}:Props) => {
                     onChange={(e) =>{
                       setAdress({ ...adress, name: e.target.value });
                       setAdressValue({ ...adressValue, name: e.target.value });
-
                     }
                     }
                     border={"1px solid #a800b7"}
@@ -47,6 +46,7 @@ const CheckOutForm = ({sendAdressForm}:Props) => {
                 <Field.Root>
                   {/* <Field.Label fontSize={"20px"}>Email</Field.Label> */}
                   <Input
+                  type="email"
                     value={adressValue.email}
                     onChange={(e) =>{
                       setAdress({ ...adress, email: e.target.value });

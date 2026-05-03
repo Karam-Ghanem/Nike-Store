@@ -1,4 +1,4 @@
-import { Stack,Box } from "@chakra-ui/react";
+import { Stack, Container } from "@chakra-ui/react";
 
 import HeaderLogo from "./HeaderLogo";
 import HeaderLinks from "./HeaderLinks";
@@ -7,7 +7,7 @@ import MobileLinks from "../MobileLinks";
 
 const Header = () => {
   return (
-    <Box marginBottom={"10px"}>
+    <Container marginBottom={"10px"}>
       <Stack
         bg={"white"}
         padding="15px 25px"
@@ -28,7 +28,7 @@ const Header = () => {
         {/* Links on mobile */}
         <MobileLinks />
       </Stack>
-    </Box>
+    </Container>
   );
 };
 

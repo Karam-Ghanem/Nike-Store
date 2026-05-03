@@ -23,7 +23,7 @@ const ReviewWithSelect = () => {
           <Accordion.ItemTrigger>
             <Span
               padding={2}
-              fontSize={20}
+              fontSize={{base:11,sm:15,md:22,lg:30}}
               color={"blue"}
               flex="1"
               cursor={"pointer"}
@@ -39,17 +39,17 @@ const ReviewWithSelect = () => {
                 <Box
                   className="bg-linear-65 from-purple-200 to-pink-200"
                   marginBottom={4}
-                  padding={2}
+                  padding={4}
                 >
-                  <SimpleGrid columns={2} gap={10}>
+                  <SimpleGrid columns={{base:1,sm:1,md:2,lg:2}} gap={10}>
                     {/* CHECKBOX SECTION */}
                     <Box>
                       {checkBoxState.map((cba) => (
                         <Box marginBottom={4} key={cba.qustion}>
-                          <Text marginBlock={2}>{cba.qustion}</Text>
+                          <Text marginBottom={2} fontSize={{base:12,sm:15,md:16,lg:18}}>{cba.qustion}</Text>
 
                           {cba.answers.map((answer) => (
-                            <Box key={answer} marginLeft={5}>
+                            <Box key={answer} >
                               <Checkbox.Root
                                 colorPalette={"green"}
                                 variant={"solid"}
@@ -74,7 +74,7 @@ const ReviewWithSelect = () => {
                               >
                                 <Checkbox.HiddenInput />
                                 <Checkbox.Control bg={"#7f7fe9"} />
-                                <Checkbox.Label>{answer}</Checkbox.Label>
+                                <Checkbox.Label fontSize={{base:10,sm:12,md:13,lg:15}}>{answer}</Checkbox.Label>
                               </Checkbox.Root>
                               <br />
                             </Box>
@@ -87,7 +87,7 @@ const ReviewWithSelect = () => {
                     <Box>
                       {radioState.map((ra) => (
                         <Box marginBottom={4} key={ra.qustion}>
-                          <Text marginBottom={2}>{ra.qustion}</Text>
+                          <Text marginBottom={2} fontSize={{base:12,sm:15,md:16,lg:18}}>{ra.qustion}</Text>
 
                           <RadioGroup.Root
                             value={ra.selected}
@@ -107,11 +107,11 @@ const ReviewWithSelect = () => {
                             variant={"subtle"}
                           >
                             {ra.answers.map((answer) => (
-                              <Box key={answer} marginLeft={5}>
+                              <Box key={answer} >
                                 <RadioGroup.Item value={answer}>
                                   <RadioGroup.ItemHiddenInput />
                                   <RadioGroup.ItemIndicator bg={"#7f7fe9"} />
-                                  <RadioGroup.ItemText>
+                                  <RadioGroup.ItemText fontSize={{base:10,sm:12,md:13,lg:15}}>
                                     {answer}
                                   </RadioGroup.ItemText>
                                 </RadioGroup.Item>

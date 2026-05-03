@@ -11,7 +11,7 @@ interface Props {
 const Header = ({title, subTitle, isDashboard=false}:Props) => {
   const theme = useTheme();
   return (
-    <Box mb={ isDashboard? 2 :4}>
+    <Box mb={ isDashboard? 2 :4} > 
     <Typography
       sx={{
         color: theme.palette.info.light,

@@ -1,4 +1,4 @@
-import { SimpleGrid, Box, Heading, Image, HStack } from "@chakra-ui/react";
+import { SimpleGrid, Box, Heading, Image, HStack, Container } from "@chakra-ui/react";
 import backGroundImage from "@/assets/bg1.png";
 import ShoeseIMG from "@/assets/shoese/shoes.png";
 import Products from "../Products/Products";
@@ -11,14 +11,13 @@ import MainHead from "../PublicCompontents/MainHead";
 const Landing = () => {
 
   return (
-    <Box>
+    <Container>
       <SimpleGrid
         columns={{ base: 1, sm: 1, md: 2, lg: 2 }}
         gap="10px"
         marginTop={50}
-        bg={""}
       >
-        <Box padding={2}>
+        <Box >
           <Heading
             size={{ lg: "4xl", xl: "5xl" }}
             display={{ base: "none", sm: "none", md: "none", lg: "block" }}
@@ -27,7 +26,7 @@ const Landing = () => {
             <br />
             Collection
           </Heading>
-          <HStack justifyContent="center">
+          <HStack justifyContent="center" >
             <Heading
               size="4xl"
               backgroundColor=""
@@ -37,8 +36,8 @@ const Landing = () => {
             </Heading>
           </HStack>
           <Box
-            padding={6}
-            lineHeight="2"
+            padding={{base:2,sm:2,md:5,lg:6}}
+            lineHeight={{ sm: 1.6, md: 2 }}
             bgImage={{
               md: `url(${backGroundImage})`,
               base: `url(${backGroundImage})`,
@@ -80,13 +79,13 @@ const Landing = () => {
       {/* Web About */}
       <About />
       {/* Review */}
-      <MainHead head="REVIEWS"/>
+      <MainHead head="REVIEWS" />
       <TextReview />
       {/* Services */}
       <Services />
       {/* Welcome Back */}
       <WelcomeBack />
-    </Box>
+    </Container>
   );
 };
 

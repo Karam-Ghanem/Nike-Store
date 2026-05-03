@@ -8,7 +8,6 @@ import {
   Button,
   Input,
   Heading,
-  HStack,
   VStack,
   Separator,
   Card,
@@ -23,58 +22,70 @@ import ColumnsHeader from "./Data/CartData";
 import { useState } from "react";
 
 const Cart = () => {
-  const { deleteProductFromCart, cartItems, setCurrentChoseQuantity } =useCartStore();
-  const [quantityErrors, setQuantityErrors] = useState<{[key: string]: boolean;}>({});
+  const { deleteProductFromCart, cartItems, setCurrentChoseQuantity } =
+    useCartStore();
+  const [quantityErrors, setQuantityErrors] = useState<{
+    [key: string]: boolean;
+  }>({});
 
   if (cartItems.length < 1) {
-    return <MainHead head="No Items To Show" />;
+    return (
+      <Box minHeight={{base:'auto',sm:'300px'}}>
+        <MainHead head="No Products To Show" />
+      </Box>
+    );
   }
 
   return (
     <>
       <Toaster />
-      <MainHead head="Cart" />
-
+        <MainHead head="Cart" />
       <Box px={{ base: 0, md: 0 }}>
         <Box
-          maxW="1100px"
-          minW={"40px"}
           mx="auto"
-          bg="white"
           borderRadius="lg"
           boxShadow={{ base: "none", sm: "lg" }}
           p={{ base: 0, md: 8 }}
         >
           <Grid
-            templateColumns={{ base: "1fr", md: "2fr 1fr" }}
+            templateColumns={{ base: "1fr", md: "3fr 1fr" }}
             gap={{ base: 4, md: 8 }}
             alignItems="flex-start"
           >
             {/* LEFT SIDE — PRODUCTS TABLE */}
             <GridItem>
               <Card.Root borderRadius="lg" overflow="hidden">
-                {/* Scrollable table on mobile */}
-                <Box overflowX="auto">
-                  <Table.Root>
-                    <Table.Header bg="#f6f6f6">
+                <Box>
+                  <Table.Root w="100%" tableLayout="fixed">
+                    <Table.Header>
                       <Table.Row>
                         {ColumnsHeader.map((item) => (
                           <Table.ColumnHeader
+                            textAlign={"center"}
                             key={item.label}
                             color="#7008e7"
-                            fontSize={{ base: "7px", sm: "12px", md: "15px" }}
+                            fontSize={{
+                              base: "7px",
+                              sm: "12px",
+                              md: "15px",
+                              lg: "19px",
+                            }}
+                            whiteSpace="nowrap"
                           >
                             {item.label}
                           </Table.ColumnHeader>
                         ))}
-                        <Table.ColumnHeader textAlign="center"></Table.ColumnHeader>
+                        <Table.ColumnHeader
+                          textAlign="start"
+                          whiteSpace="nowrap"
+                        ></Table.ColumnHeader>
                       </Table.Row>
                     </Table.Header>
 
                     <Table.Body>
                       {cartItems.map((product) => (
                         <Table.Row key={product.product.id}>
-                          <Table.Cell>
+                          <Table.Cell whiteSpace="nowrap" textAlign={"center"}>
                             <Link
                               to={`/${product.product.href}${product.product.id}/${product.product.category}`}
                             >
@@ -85,31 +96,56 @@ const Cart = () => {
                             </Link>
                           </Table.Cell>
 
-                          <Table.Cell>
-                            <Text fontSize={{ base: "5px", md: "sm" }}>
+                          <Table.Cell whiteSpace="nowrap" textAlign={"start"}>
+                            <Text
+                              fontSize={{
+                                base: "7px",
+                                sm: "12px",
+                                md: "9px",
+                                lg: "13px",
+                              }}
+                            >
                               {product.product.productName}
                             </Text>
                           </Table.Cell>
 
-                          <Table.Cell fontSize={{ base: "xs", md: "sm" }}>
+                          <Table.Cell
+                            textAlign={"center"}
+                            whiteSpace="nowrap"
+                            fontSize={{
+                              base: "7px",
+                              sm: "12px",
+                              md: "16px",
+                              lg: "20px",
+                            }}
+                          >
                             {product.product.productPrice}
                           </Table.Cell>
 
-                          <Table.Cell fontSize={{ base: "xs", md: "sm" }}>
+                          <Table.Cell
+                            textAlign={"center"}
+                            whiteSpace="nowrap"
+                            fontSize={{
+                              base: "7px",
+                              sm: "12px",
+                              md: "16px",
+                              lg: "20px",
+                            }}
+                          >
                             {product.currentShoseSize}
                           </Table.Cell>
 
-                          <Table.Cell>
+                          <Table.Cell textAlign={"start"} whiteSpace="nowrap">
                             {quantityErrors[product.currentShoeseID] && (
-                              <Text color={"red"} fontSize={"10px"} mb={1}>
+                              <Text color="red" fontSize="10px" mb={1}>
                                 There is not enough quantity
                               </Text>
                             )}
                             <Input
+                              maxWidth={"100%"}
+                              marginLeft={{ base: -2.5 }}
                               type="number"
                               value={product.currentShoseQuantity}
-                              width={{ base: "55px", md: "70px" }}
-                              size="sm"
                               borderRadius="full"
                               min={1}
                               max={
@@ -117,7 +153,12 @@ const Cart = () => {
                                   (q) => q.Size == product.currentShoseSize
                                 )?.quantity
                               }
-                              fontSize="xs"
+                              fontSize={{
+                                base: "7px",
+                                sm: "12px",
+                                md: "16px",
+                                lg: "18px",
+                              }}
                               onChange={(e) => {
                                 const maxQuantity =
                                   product.product.sizesAndQuantities.find(
@@ -131,7 +172,6 @@ const Cart = () => {
                                   newQuantity
                                 );
 
-                                // التحقق من الكمية لهذا المنتج فقط
                                 if (newQuantity > maxQuantity) {
                                   setQuantityErrors((prev) => ({
                                     ...prev,
@@ -147,13 +187,22 @@ const Cart = () => {
                             />
                           </Table.Cell>
 
-                          <Table.Cell textAlign="right" fontSize="xs">
+                          <Table.Cell
+                            whiteSpace="nowrap"
+                            textAlign="center"
+                            fontSize={{
+                              base: "7px",
+                              sm: "12px",
+                              md: "16px",
+                              lg: "20px",
+                            }}
+                          >
                             {product.currentShoseQuantity *
                               parseFloat(product.product.productPrice)}{" "}
                             $
                           </Table.Cell>
 
-                          <Table.Cell textAlign="center">
+                          <Table.Cell whiteSpace="nowrap" textAlign="start">
                             <IconButton
                               aria-label="Remove item"
                               variant="ghost"
@@ -164,13 +213,20 @@ const Cart = () => {
                                   color: "white",
                                   border: "none",
                                 }}
-                                transition={"0.3s"}
-                                paddingX={2}
-                                border={"1px solid #333"}
-                                fontSize="sm"
+                                transition="0.3s"
+                                px={2}
+                                marginLeft={{ base: -4 }}
+                                border="1px solid #333"
+                                fontSize={{
+                                  base: "7px",
+                                  sm: "12px",
+                                  md: "16px",
+                                  lg: "18px",
+                                }}
                                 onClick={() => {
                                   deleteProductFromCart(
                                     product.product.id +
+                                      "-" +
                                       product.currentShoseSize
                                   );
                                   toaster.create({
@@ -202,7 +258,15 @@ const Cart = () => {
                   p={{ base: 4, md: 5 }}
                   bg="#fafafa"
                 >
-                  <Heading size={{ base: "sm", md: "md" }} mb={4}>
+                  <Heading
+                    fontSize={{
+                      base: "7px",
+                      sm: "12px",
+                      md: "15px",
+                      lg: "19px",
+                    }}
+                    mb={4}
+                  >
                     Cart Totals
                   </Heading>
 
@@ -210,7 +274,12 @@ const Cart = () => {
                     <Flex justify="space-between">
                       <Text
                         color="gray.600"
-                        fontSize={{ base: "xs", md: "sm" }}
+                        fontSize={{
+                          base: "7px",
+                          sm: "12px",
+                          md: "16px",
+                          lg: "20px",
+                        }}
                       >
                         Subtotal
                       </Text>
@@ -277,7 +346,7 @@ const Cart = () => {
                     color="white"
                     borderRadius="full"
                     _hover={{ bg: "#7008e7" }}
-                    size={{ base: "sm", md: "md" }}
+                    fontSize={{ base: 13, sm: 14, md: 14, lg: 15 }}
                   >
                     <Link to={"/checkout"}>Check Out</Link>
                   </Button>
@@ -289,33 +358,42 @@ const Cart = () => {
                   p={{ base: 4, md: 5 }}
                   bg="#fafafa"
                 >
-                  <Heading size="sm" mb={3}>
+                  <Heading
+                    fontSize={{
+                      base: "7px",
+                      sm: "12px",
+                      md: "16px",
+                      lg: "20px",
+                    }}
+                    mb={3}
+                  >
                     Apply Coupon
                   </Heading>
-
-                  <Text fontSize="xs" color="gray.500" mb={3}>
+                  <Text
+                    fontSize={{ base: 8, sm: 10, md: 12, lg: 15 }}
+                    color="gray.500"
+                    mb={3}
+                  >
                     Enter your coupon code if you have one.
                   </Text>
-
-                  <HStack gap={3}>
+                  <VStack gap={3}>
                     <Input
                       placeholder="Coupon"
                       bg="white"
                       size="sm"
                       borderRadius="full"
                     />
-
                     <Button
                       bg="#ba1e9a"
                       color="white"
                       borderRadius="full"
                       px={6}
-                      size="sm"
+                      fontSize={{ base: 13, sm: 14, md: 14, lg: 15 }}
                       _hover={{ bg: "#7008e7" }}
                     >
                       APPLY
                     </Button>
-                  </HStack>
+                  </VStack>
                 </Card.Root>
               </VStack>
             </GridItem>

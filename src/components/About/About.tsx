@@ -9,7 +9,7 @@ const About = () => {
       <VStack>
         <View360/>
         <Box
-          width={{ base: "350px", sm: "450px", lg: "65%" }}
+        width={{lg:'50%'}}
           padding={4}
           boxShadow={"0 0 12px #c72092"}
           border={"1px solid #701ad1"}
@@ -17,10 +17,11 @@ const About = () => {
           textAlign="center"
         >
           <Text
+          
             textAlign="start"
             lineHeight="1.6"
             fontSize={{
-              base: "13px",
+              base: "12px",
               sm: "14px",
               md: "15px",
               lg: "15px",

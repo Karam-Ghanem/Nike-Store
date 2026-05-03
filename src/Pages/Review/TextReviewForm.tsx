@@ -38,7 +38,11 @@ const TextReviewForm = () => {
       <Toaster />
       <SimpleGrid columns={{ base: 1, sm: 1, md: 2 }} gap={"40px"}>
         <Box>
-          <Text marginBottom={10} color={"#7008e7"} fontSize={25}>
+          <Text
+            marginBottom={10}
+            color={"#7008e7"}
+            fontSize={{ base: 15, sm: 20, md: 25, lg: 30 }}
+          >
             To submit your comment, please provide a photo of your personal ID :
           </Text>
           <form action="">
@@ -83,9 +87,12 @@ const TextReviewForm = () => {
               width="100px"
               cursor="pointer"
               value="Submit"
-              fontSize={17}
+              fontSize={{ base: 15, sm: 20, md: 20, lg: 20 }}
               disabled={selectedIDImg ? false : true}
-              onClick={(e)=>{e.preventDefault();setOpenForm(true);}}
+              onClick={(e) => {
+                e.preventDefault();
+                setOpenForm(true);
+              }}
             />
           </form>
         </Box>
@@ -157,14 +164,20 @@ const TextReviewForm = () => {
                     border={"1px solid #a800b7"}
                     width={"20%"}
                     display={"none"}
-                    onChange={(e) =>{
+                    onChange={(e) => {
                       HandlePersonalImg(e);
                     }}
                   />
                 </Field.Root>
               </Stack>
               <Button
-              disabled={singleReview.description &&singleReview.name && singleReview.img ? false : true}
+                disabled={
+                  singleReview.description &&
+                  singleReview.name &&
+                  singleReview.img
+                    ? false
+                    : true
+                }
                 marginTop={4}
                 bg="#a353e9"
                 onClick={() => {
@@ -174,8 +187,8 @@ const TextReviewForm = () => {
                     img: undefined,
                     description: "",
                   });
-                  setSelectedPersonalImage(undefined)
-                  setSelectedIDImage("")
+                  setSelectedPersonalImage(undefined);
+                  setSelectedIDImage("");
                   toaster.create({
                     title: "One Comment Added ",
                     type: "success",

@@ -35,17 +35,29 @@ const Wallet = () => {
     <>
       <Toaster />
       <MainHead head={data.head} />
-      <Box padding={20} paddingTop={0}>
+      <Box paddingTop={0}>
         <Box bg={"#f3f4f6"} padding={10}>
           <VStack>
             <Image src={data.img} />
-            <Heading as={"h2"}>{data.title}</Heading>
+            <Heading
+              marginTop={{ base: 2, sm: 3, md: 4, lg: 5 }}
+              marginBottom={{ base: 2, sm: 3, md: 4, lg: 5 }}
+              fontSize={{ base: "17px", sm: "24px", md: "35px", lg: "50px" }}
+            >
+              {data.title}
+            </Heading>
           </VStack>
-          <Text marginTop={6} fontSize={14} color={"#777"}>
+          <Text
+            fontSize={{ base: "10px", sm: "14px", md: "18px", lg: "22px" }}
+            color={"#777"}
+          >
             {data.description}
           </Text>
           <Box marginTop={6}>
-            <Box fontWeight={"bold"}>
+            <Box
+              fontWeight={"bold"}
+              fontSize={{ base: "12px", sm: "14px", md: "18px", lg: "23px" }}
+            >
               <Text>
                 Total amount of purchases :
                 <Span color={"#957cd6"}>{getTotalPrice(cartItems)} $</Span>
@@ -59,13 +71,22 @@ const Wallet = () => {
               </Text>
             </Box>
 
-            <Box fontWeight={"bold"}>
+            <Box
+              fontWeight={"bold"}
+              fontSize={{ base: "12px", sm: "14px", md: "18px", lg: "23px" }}
+            >
               Minimum :<Span color={"#957cd6"}>No Minimum</Span>
             </Box>
-            <Box fontWeight={"bold"}>
+            <Box
+              fontWeight={"bold"}
+              fontSize={{ base: "12px", sm: "14px", md: "18px", lg: "23px" }}
+            >
               Fees : <Span color={"#957cd6"}>0% </Span>
             </Box>
-            <Box fontWeight={"bold"}>
+            <Box
+              fontWeight={"bold"}
+              fontSize={{ base: "12px", sm: "14px", md: "18px", lg: "23px" }}
+            >
               Rate 1 Credit =<Span color={"#957cd6"}>129 </Span>SYP
             </Box>
           </Box>
@@ -74,7 +95,16 @@ const Wallet = () => {
             <form>
               <HStack position={"relative"}>
                 <Field.Root>
-                  <Field.Label fontSize={"15px"}>Wallet Address:</Field.Label>
+                  <Field.Label
+                    fontSize={{
+                      base: "12px",
+                      sm: "14px",
+                      md: "18px",
+                      lg: "23px",
+                    }}
+                  >
+                    Wallet Address:
+                  </Field.Label>
                   <Input
                     disabled
                     value={transactionData.walletAddress}
@@ -104,7 +134,16 @@ const Wallet = () => {
                 </Button>
               </HStack>
               <Field.Root marginTop={3}>
-                <Field.Label fontSize={"15px"}>Transaction ID:</Field.Label>
+                <Field.Label
+                  fontSize={{
+                    base: "12px",
+                    sm: "14px",
+                    md: "18px",
+                    lg: "23px",
+                  }}
+                >
+                  Transaction ID:
+                </Field.Label>
                 <Input
                   type="number"
                   required
@@ -121,16 +160,16 @@ const Wallet = () => {
                 <Field.ErrorText></Field.ErrorText>
               </Field.Root>
               <Button
-              type="submit"
+                type="submit"
                 onClick={(e) => {
                   e.preventDefault();
-                  setTransactionData({...transactionData,transactionID:""});
+                  setTransactionData({ ...transactionData, transactionID: "" });
                   decreaseStock(cartItems);
                   addProductsToMyPurchases(cartItems, new Date());
-                  navigate('/mypurchases')
+                  navigate("/mypurchases");
                 }}
                 marginTop={4}
-                fontSize={18}
+                fontSize={{ base: "12px", sm: "14px", md: "18px", lg: "23px" }}
                 width={"100%"}
                 bg={"#7008e7"}
               >

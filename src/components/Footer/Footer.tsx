@@ -1,4 +1,4 @@
-import { Box, SimpleGrid } from "@chakra-ui/react";
+import {  Container, SimpleGrid } from "@chakra-ui/react";
 import FooterContact from "./FooterContact";
 import GetHelp from "./GetHelp";
 import OurStores from "./OurStores";
@@ -6,7 +6,8 @@ import FollwUs from "./FollwUs";
 
 const Footer = () => {
   return (
-    <Box marginTop={40}>
+    
+    <Container marginTop={40} className="mt-auto" >
       <SimpleGrid
         fontSize={{ base: 13, sm: 13,md:16, lg: 15, xl: 15 }}
         padding={10}
@@ -25,7 +26,7 @@ const Footer = () => {
         {/* Follw Us */}
         <FollwUs />
       </SimpleGrid>
-    </Box>
+    </Container>
   );
 };
 

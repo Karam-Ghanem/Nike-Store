@@ -1,5 +1,5 @@
 import MainHead from "@/components/PublicCompontents/MainHead";
-import { Box, Button, Card, Center, Image, SimpleGrid } from "@chakra-ui/react";
+import { Box, Button, Card, Container, Image, SimpleGrid } from "@chakra-ui/react";
 import paymentMethod from "./Data/PaymentMethod";
 import { Link } from "react-router-dom";
 
@@ -9,20 +9,18 @@ const Pay  = () => {
   return (
     <>
       <MainHead head="PAYMENT" />
-      <Center>
-        <SimpleGrid columns={2} gap={20}>
+      <Container>
+        <SimpleGrid columns={{base:1,sm:1,md:2,lg:2}} gap={20}>
           {paymentMethod.map((payment) => (
             <Card.Root
               key={payment.value}
               flexDirection="row"
               overflow="hidden"
-              maxW="96"
+              // maxW="96"
             >
               <Image
-                width={"180px"}
-                height={"170px"}
+                width={{base:'100px',sm:'200px',md:'130px',lg:'180px'}}
                 objectFit="cover"
-                maxW="200px"
                 src={payment.logo}
                 alt="Pay Method"
               />
@@ -40,7 +38,7 @@ const Pay  = () => {
             </Card.Root>
           ))}
         </SimpleGrid>
-      </Center>
+      </Container>
     </>
   );
 };

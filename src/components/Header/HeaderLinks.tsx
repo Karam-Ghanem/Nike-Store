@@ -14,9 +14,10 @@ const HeaderLinks = () => {
           {Links.map((link) => (
             <Link to={link.href} key={link.id}>
               <Text
+              
                 color="#a21caf"
-                marginEnd={{ sm: "0.5", md: "2", lg: "6" }}
-                fontSize={{ md: "16px", lg: "18px" }}
+                marginEnd={{md:'1', lg: "4" }}
+                fontSize={{ md: "9px", lg: "14px",xl:"21px" }}
                 _hover={{
                   color: "#4d06a3",
                   marginTop: "-8px",

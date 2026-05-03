@@ -5,7 +5,7 @@
     { label: "Size" },
     { label: "Qty" },
     { label: "Total" },
-    { label: "" },
+    // { label: "" },
   ];
 
 

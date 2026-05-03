@@ -8,7 +8,7 @@ const Services = () => {
 
 
   return (
-    <>
+    <Box>
       <MainHead head="OUR SERVICES" />
       <SimpleGrid
         columns={{ base: 1, sm: 1, md: 3, lg: 3, xl: 3 }}
@@ -47,7 +47,7 @@ const Services = () => {
           );
         })}
       </SimpleGrid>
-    </>
+    </Box>
   );
 };
 
