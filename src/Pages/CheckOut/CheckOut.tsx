@@ -36,24 +36,25 @@ const {addressForm,navigate,setAdressForm,setCheckOutForm,setSite,site} = useChe
         <Box>
           <CheckOutForm sendAdressForm={(adress) => setAdressForm(adress)} />
           <MyMap sendAddress={(address) => setSite(address)} />
-          <Box marginTop={10}>
-            <Button
-              bg={"#7008e7"}
-              onClick={() => {
-                setCheckOutForm({
-                  addressForm: addressForm,
-                  address: site,
-                });
-
-                navigate("pay");
-              }}
-            >
-              Submit
-            </Button>
-          </Box>
         </Box>
         <Box>
           <CheckOutTable />
+        </Box>
+        <Box marginTop={10}>
+          <Button
+            fontSize={{ base: "15px", sm: "22px", md: "25px", lg: "25px" }}
+            bg={"#7008e7"}
+            onClick={() => {
+              setCheckOutForm({
+                addressForm: addressForm,
+                address: site,
+              });
+
+              navigate("pay");
+            }}
+          >
+            Submit
+          </Button>
         </Box>
       </SimpleGrid>
     </>

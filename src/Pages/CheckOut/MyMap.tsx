@@ -18,9 +18,14 @@ const MyMap = ({sendAddress}:Props) => {
 
   return (
     <Accordion.Root collapsible>
-      <Accordion.Item value="address" marginTop={20} bg="#f3f1f1" padding={3} >
+      <Accordion.Item value="address" marginTop={20} bg="#f3f1f1" padding={3}>
         <Accordion.ItemTrigger>
-          <Span flex="1">Set Your Delivery Point</Span>
+          <Span
+            flex="1"
+            fontSize={{ base: "15px", sm: "22px", md: "25px", lg: "27px" }}
+          >
+            Set Your Delivery Point
+          </Span>
           <Accordion.ItemIndicator />
         </Accordion.ItemTrigger>
 
@@ -33,7 +38,7 @@ const MyMap = ({sendAddress}:Props) => {
                 // تحويل الإحداثيات لعنوان
                 const addr = await getAddress(coords.lat, coords.lng);
                 setAddress(addr);
-                sendAddress(address)
+                sendAddress(address);
               }}
             />
 

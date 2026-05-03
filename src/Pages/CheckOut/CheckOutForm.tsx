@@ -19,7 +19,13 @@ const CheckOutForm = ({sendAdressForm}:Props) => {
     <Accordion.Root collapsible>
       <Accordion.Item value="form" bg="#f3f1f1" padding={3}>
         <Accordion.ItemTrigger>
-          <Span flex="1" bg="#7008e7" color="white" padding={2}>
+          <Span
+            flex="1"
+            bg="#7008e7"
+            color="white"
+            padding={2}
+            fontSize={{ base: "15px", sm: "22px", md: "25px", lg: "27px" }}
+          >
             Billing Adress
           </Span>
           <Accordion.ItemIndicator />
@@ -32,11 +38,10 @@ const CheckOutForm = ({sendAdressForm}:Props) => {
                   {/* <Field.Label fontSize={"20px"}> Name</Field.Label> */}
                   <Input
                     value={adressValue.name}
-                    onChange={(e) =>{
+                    onChange={(e) => {
                       setAdress({ ...adress, name: e.target.value });
                       setAdressValue({ ...adressValue, name: e.target.value });
-                    }
-                    }
+                    }}
                     border={"1px solid #a800b7"}
                     placeholder="Name"
                   />
@@ -46,14 +51,12 @@ const CheckOutForm = ({sendAdressForm}:Props) => {
                 <Field.Root>
                   {/* <Field.Label fontSize={"20px"}>Email</Field.Label> */}
                   <Input
-                  type="email"
+                    type="email"
                     value={adressValue.email}
-                    onChange={(e) =>{
+                    onChange={(e) => {
                       setAdress({ ...adress, email: e.target.value });
                       setAdressValue({ ...adressValue, email: e.target.value });
-
-                    }
-                    }
+                    }}
                     border={"1px solid #a800b7"}
                     placeholder="Email"
                   />
@@ -64,12 +67,10 @@ const CheckOutForm = ({sendAdressForm}:Props) => {
                   {/* <Field.Label fontSize={"20px"}>Phone</Field.Label> */}
                   <Input
                     value={adressValue.phone}
-                    onChange={(e) =>{
+                    onChange={(e) => {
                       setAdress({ ...adress, phone: e.target.value });
                       setAdressValue({ ...adressValue, phone: e.target.value });
-
-                    }
-                    }
+                    }}
                     border={"1px solid #a800b7"}
                     placeholder="Phone"
                   />
@@ -83,11 +84,13 @@ const CheckOutForm = ({sendAdressForm}:Props) => {
                     placeholder="Say Something"
                     outline="1px solid #a800b7"
                     value={adressValue.saySomething}
-                    onChange={(e) =>{
+                    onChange={(e) => {
                       setAdress({ ...adress, saySomething: e.target.value });
-                      setAdressValue({ ...adressValue, saySomething: e.target.value });
-                    }
-                    }
+                      setAdressValue({
+                        ...adressValue,
+                        saySomething: e.target.value,
+                      });
+                    }}
                   ></Textarea>
                   <Field.ErrorText></Field.ErrorText>
                 </Field.Root>
@@ -98,11 +101,11 @@ const CheckOutForm = ({sendAdressForm}:Props) => {
                     e.preventDefault();
                     sendAdressForm(adress);
                     setAdressValue({
-                      email:"",
-                      name:"",
-                      phone:"",
-                      saySomething:"",
-                    })
+                      email: "",
+                      name: "",
+                      phone: "",
+                      saySomething: "",
+                    });
                   }}
                 >
                   Ok

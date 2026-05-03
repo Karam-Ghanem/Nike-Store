@@ -93,7 +93,7 @@ const MyPurchases = () => {
                       lg: "25px",
                     }}
                   >
-                    Purchase Date
+                    Date
                   </Table.ColumnHeader>
 
                   <Table.ColumnHeader
@@ -106,7 +106,7 @@ const MyPurchases = () => {
                       lg: "25px",
                     }}
                   >
-                    Return Shoes
+                    Return
                   </Table.ColumnHeader>
                 </Table.Row>
               </Table.Header>
@@ -118,18 +118,16 @@ const MyPurchases = () => {
                     <Table.Cell textAlign="center">
                       <Popover.Root>
                         <Popover.Trigger asChild>
-                          <Button
-                            width={{ base: '50px', sm: '80px',md:'100px',lg:'100px' }}
-                            // size="sm"
-                            variant="solid"
-                            bg="transparent"
-                            _hover={{ bg: "transparent" }}
-                          >
-                            <Image
-                              // width={{ base: "100px", md: 10 }}
-                              src={product.product.productImg}
-                            />
-                          </Button>
+
+                          <Image
+                            width={{
+                              base: "50px",
+                              sm: "80px",
+                              md: "100px",
+                              lg: "100px",
+                            }}
+                            src={product.product.productImg}
+                          />
                         </Popover.Trigger>
 
                         <Portal>
@@ -273,9 +271,11 @@ const MyPurchases = () => {
             </Table.Root>
           </Card.Root>
         </Flex>
-        {!(new Date().getTime() - purchaseDate.getTime() / 1000 >returnPeriod) && (
+
+        {(new Date().getTime() - purchaseDate.getTime()) / 1000 >
+          returnPeriod && (
           <HStack
-            display={{ base: "none", md: "flex" }}
+            display={{ base: "flex", md: "none" }}
             marginTop={4}
             color={"red"}
             fontSize={10}

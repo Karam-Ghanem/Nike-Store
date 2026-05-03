@@ -13,7 +13,14 @@ const CheckOutTable = () => {
         <Table.Column />
       </Table.ColumnGroup>
       <Table.Header>
-        <Table.Row>
+        <Table.Row
+          fontSize={{
+            base: "12px",
+            sm: "16px",
+            md: "18px",
+            lg: "22px",
+          }}
+        >
           <Table.ColumnHeader>Order</Table.ColumnHeader>
           <Table.ColumnHeader>Size</Table.ColumnHeader>
           <Table.ColumnHeader>Quantity</Table.ColumnHeader>
@@ -22,22 +29,48 @@ const CheckOutTable = () => {
       </Table.Header>
       <Table.Body>
         {cartItems.map((item) => (
-          <Table.Row key={item.product.id}>
+          <Table.Row
+            key={item.product.id}
+            fontSize={{
+              base: "8px",
+              sm: "14px",
+              md: "14px",
+              lg: "18px",
+            }}
+          >
             <Table.Cell>
               {item.product.productName} <Span color="#a800b7"></Span>
             </Table.Cell>
-            <Table.Cell>{item.product.productName}</Table.Cell>
+            <Table.Cell>{item.currentShoseSize}</Table.Cell>
             <Table.Cell>{item.currentShoseQuantity}</Table.Cell>
             <Table.Cell>{item.product.productPrice}</Table.Cell>
           </Table.Row>
         ))}
       </Table.Body>
-      <Table.Footer height={"70px"} fontSize={20} bg={"#f3f1f1"}>
+      <Table.Footer
+        height={"70px"}
+        fontSize={{
+          base: "12px",
+          sm: "16px",
+          md: "18px",
+          lg: "22px",
+        }}
+        bg={"#f3f1f1"}
+      >
         <Table.Row>
           <Table.Cell>Total</Table.Cell>
           <Table.Cell></Table.Cell>
           <Table.Cell></Table.Cell>
-          <Table.Cell>{getTotalPrice(cartItems)}$</Table.Cell>
+          <Table.Cell
+            fontSize={{
+              base: "12px",
+              sm: "16px",
+              md: "18px",
+              lg: "22px",
+            }}
+          >
+            {getTotalPrice(cartItems)}$
+          </Table.Cell>
         </Table.Row>
       </Table.Footer>
     </Table.Root>
