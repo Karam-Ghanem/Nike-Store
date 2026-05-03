@@ -99,7 +99,7 @@ const Cart = () => {
                           <Table.Cell whiteSpace="nowrap" textAlign={"start"}>
                             <Text
                               fontSize={{
-                                base: "7px",
+                                base: "5px",
                                 sm: "12px",
                                 md: "9px",
                                 lg: "13px",

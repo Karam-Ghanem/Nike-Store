@@ -147,7 +147,7 @@ const Products = ({ homePage,edit_delete }: Props) => {
                       backgroundColor="#f6f6f6"
                     />
                   </Link>
-                  <Card.Body gap="1">
+                  <Card.Body gap={{base:0,sm:1}} marginY={-4}>
                     <Card.Title fontSize={{ base: 17, sm: 18, lg: 20, xl: 20 }}>
                       {item.productName}
                     </Card.Title>
@@ -180,12 +180,12 @@ const Products = ({ homePage,edit_delete }: Props) => {
                         textStyle="2xl"
                         fontWeight="medium"
                         letterSpacing="tight"
-                        margin={{ base: 1, sm: 4 }}
+                        marginY={{ base: 1, sm: 4 }}
                       >
                         {item.productPrice}
                       </Text>
                     </HStack>
-                  </Card.Body>
+                  </Card.Body >
                   <Card.Footer gap="0">
                     <PurchaseProcess item={item} />
 

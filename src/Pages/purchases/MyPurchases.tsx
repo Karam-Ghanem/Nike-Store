@@ -231,8 +231,14 @@ const MyPurchases = () => {
                                   1000 >
                                 returnPeriod
                               }
+                              width={{
+                                base: "8px",
+                                sm: "60px",
+                                md: "80px",
+                                lg: "100px",
+                              }}
                               fontSize={{
-                                base: "10px",
+                                base: "7px",
                                 sm: "12px",
                                 md: "16px",
                                 lg: "20px",
@@ -269,8 +275,11 @@ const MyPurchases = () => {
         {new Date().getTime() - purchaseDate.getTime() / 1000 >
           returnPeriod && (
           <HStack
-          display={{base:'flex',md:'none'}}
-           marginTop={4} color={"red"} fontSize={10}>
+            display={{ base: "flex", md: "none" }}
+            marginTop={4}
+            color={"red"}
+            fontSize={10}
+          >
             <MdInfoOutline /> :
             {`Sorry You Can Not Replace After ${returnPeriod} Seconds`}
           </HStack>

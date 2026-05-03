@@ -30,7 +30,7 @@ const Pay  = () => {
                   <Card.Description>{payment.description}</Card.Description>
                 </Card.Body>
                 <Card.Footer>
-                  <Button bg={"#7008e7"}>
+                  <Button bg={"#7008e7"} width={{base:'120px',sm:"150px" ,md:"120px" ,lg:"160px" }} >
                     <Link to={`wallet/${payment.value}`}>Continue To Pay</Link>
                   </Button>
                 </Card.Footer>

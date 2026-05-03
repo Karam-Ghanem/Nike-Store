@@ -13,8 +13,8 @@ const PurchaseProcess = ({item}:Props) => {
     <>
       <Box>
         <Button
-        fontSize={{base:10,sm:10 ,md:12 ,lg:15 }}
-        width={{base:'60px',sm:"60px" ,md:"80px" ,lg:"100px" }}
+        fontSize={{base:6,sm:10 ,md:12 ,lg:15 }}
+        width={{base:'20px',sm:"60px" ,md:"80px" ,lg:"100px" }}
           bg={
             cartItems.map((item) => item.product.id).includes(item!.id)
               ? "green"

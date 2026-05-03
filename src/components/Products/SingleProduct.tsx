@@ -41,7 +41,7 @@ const SingleProduct = ({isAdmin}:Props) => {
         marginBottom={35}
       >
         <Box className="shadow-xl flex justify-center">
-          <Image src={currentProduct?.productImg} width={"96"} height={"96"} />
+          <Image src={currentProduct?.productImg} width={{base:'250px',sm:'350px',md:'450px',lg:'550'}} height={{base:'250px',sm:'100',md:'400px',lg:'400px'}} />
         </Box>
 
         <Box>
