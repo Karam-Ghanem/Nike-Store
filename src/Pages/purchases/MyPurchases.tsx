@@ -119,13 +119,14 @@ const MyPurchases = () => {
                       <Popover.Root>
                         <Popover.Trigger asChild>
                           <Button
-                            size="sm"
+                            width={{ base: '50px', sm: '80px',md:'100px',lg:'100px' }}
+                            // size="sm"
                             variant="solid"
                             bg="transparent"
                             _hover={{ bg: "transparent" }}
                           >
                             <Image
-                              width={{ base: 10, md: 10 }}
+                              // width={{ base: "100px", md: 10 }}
                               src={product.product.productImg}
                             />
                           </Button>
@@ -272,10 +273,9 @@ const MyPurchases = () => {
             </Table.Root>
           </Card.Root>
         </Flex>
-        {new Date().getTime() - purchaseDate.getTime() / 1000 >
-          returnPeriod && (
+        {!(new Date().getTime() - purchaseDate.getTime() / 1000 >returnPeriod) && (
           <HStack
-            display={{ base: "flex", md: "none" }}
+            display={{ base: "none", md: "flex" }}
             marginTop={4}
             color={"red"}
             fontSize={10}
