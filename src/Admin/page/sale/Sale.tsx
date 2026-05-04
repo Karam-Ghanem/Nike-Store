@@ -44,7 +44,7 @@ const Sale = () => {
             <Button
               variant="outline"
               size="sm"
-              bg="#7008e74f"
+              bg="white"
               width={'100%'}
               mt={4}
               fontSize={{ base: "12px", sm: "14px", md: "16px", lg: "18px" }}

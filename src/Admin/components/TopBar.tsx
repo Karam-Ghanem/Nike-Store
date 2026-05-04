@@ -68,7 +68,8 @@ const TopBar = ({ open, handleDrawerOpen, setMode }: Props) => {
           <Stack direction="row">
             {AdminLinks.map((link) => (
               <Link to={link.href} key={link.id}>
-                <Text>{link.label}</Text>
+                <Text marginEnd={{md:'4', lg: "6" }}
+                fontSize={{ md: "11px", lg: "16px",xl:"16px" }}>{link.label}</Text>
               </Link>
             ))}
           </Stack>
