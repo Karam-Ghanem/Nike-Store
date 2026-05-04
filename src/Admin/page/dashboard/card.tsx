@@ -24,55 +24,56 @@ const Card = ({ icon, title, subTitle, increase, data, scheme }: Props) => {
     <Paper
       sx={{
         flexGrow: 1,
-        // minWidth: "333px",
+        width: { xs: "100%", sm: "100%", md: "auto" },
         p: 1.5,
         display: "flex",
-        justifyContent: "space-between",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        gap: 1,
+        minWidth: { xs: "100%", sm: "160px", md: "180px" },
       }}
     >
-      <Stack gap={1}>
-        {icon}
-        <Typography variant="body2" sx={{ fontSize: "13px" }}>
-          {title}
-        </Typography>
-        <Typography variant="body2" sx={{ fontSize: "13px" }}>
-          {subTitle}
-        </Typography>
-      </Stack>
+      {/* ICON */}
+      <Box>{icon}</Box>
 
-      <Stack alignItems={"center"}>
-        <Box height={"70px"} width={"87px"}>
+      {/* TITLE */}
+      <Typography
+        sx={{
+          fontSize: { xs: "13px", sm: "14px", md: "15px" },
+          fontWeight: 600,
+        }}
+      >
+        {title}
+      </Typography>
+
+      {/* SUBTITLE */}
+      <Typography
+        sx={{
+          fontSize: { xs: "11px", sm: "12px", md: "13px" },
+          color: theme.palette.text.secondary,
+        }}
+      >
+        {subTitle}
+      </Typography>
+
+      {/* PIE + INCREASE */}
+      <Stack alignItems="center" width="100%" mt={1}>
+        <Box
+          sx={{
+            height: { xs: "55px", sm: "60px", md: "70px" },
+            width: { xs: "55px", sm: "60px", md: "70px" },
+          }}
+        >
           <ResponsivePie
             data={data}
-            margin={{ top: 10, right: 0, bottom: 10, left: 0 }}
+            margin={{ top: 5, right: 5, bottom: 5, left: 5 }}
             innerRadius={0.7}
-            theme={{
-              legends: {
-                text: {
-                  fill: theme.palette.text.primary,
-                  fontSize: 11,
-                },
-              },
-              labels: {
-                text: {
-                  fill: theme.palette.text.primary,
-                  fontSize: 11,
-                },
-              },
-              tooltip: {
-                container: {
-                  background: theme.palette.background.default,
-                  color: theme.palette.text.primary,
-                  fontSize: 12,
-                },
-              },
-            }}
-            colors={{ scheme }}
             enableArcLabels={false}
             enableArcLinkLabels={false}
+            colors={{ scheme }}
             padAngle={0.7}
             cornerRadius={3}
-            activeOuterRadiusOffset={8}
+            activeOuterRadiusOffset={6}
             borderWidth={1}
             borderColor={{
               from: "color",
@@ -81,7 +82,14 @@ const Card = ({ icon, title, subTitle, increase, data, scheme }: Props) => {
           />
         </Box>
 
-        <Typography variant="body2">{increase}</Typography>
+        <Typography
+          sx={{
+            fontSize: { xs: "11px", sm: "12px", md: "13px" },
+            mt: 0.5,
+          }}
+        >
+          {increase}
+        </Typography>
       </Stack>
     </Paper>
   );
