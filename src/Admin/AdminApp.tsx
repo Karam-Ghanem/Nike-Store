@@ -25,6 +25,12 @@ import LineChart from "./page/lineChart/LineChart";
 import Geography from "./page/geography/Geography";
 import NotFound from "./page/notFound/NotFound";
 import { useState, useMemo } from "react";
+import AddProduct from "./page/AddEditProduct/AddEdit";
+import Products from "@/components/Products/Products";
+import Sale from "./page/sale/Sale";
+import SingleProduct from "@/components/Products/SingleProduct";
+import { Archive } from "@mui/icons-material";
+import UsersReview from "./page/usersReviews/UsersReview";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   ...theme.mixins.toolbar,
@@ -60,6 +66,25 @@ export default function AdminApp() {
 
             <Routes>
               <Route path="dashboard" element={<Dashboard />} />
+              <Route
+                path="addproduct"
+                element={<AddProduct head="ADD PRODUCT" />}
+              />
+              <Route
+                path="editproduct/:id"
+                element={<AddProduct head="EDIT PRODUCT" />}
+              />
+              <Route
+                path="edit_delete_product"
+                element={<Products edit_delete={true} homePage={false} />}
+              />
+              <Route path="sale/:id?" element={<Sale />} />
+              <Route path="archive" element={<Archive />} />
+              <Route
+                path="/archive/:id/:category"
+                element={<SingleProduct isAdmin={true} />}
+              />
+              <Route path="usersReview" element={<UsersReview />} />
               <Route path="team" element={<Team />} />
               <Route path="contacts" element={<Contacts />} />
               <Route path="invoices" element={<Invoices />} />
