@@ -24,18 +24,9 @@ import PieChart from "./page/pieChart/PieChart";
 import LineChart from "./page/lineChart/LineChart";
 import Geography from "./page/geography/Geography";
 import NotFound from "./page/notFound/NotFound";
-import { useState,useMemo } from "react";
-import AddProduct from "./page/AddEditProduct/AddEdit";
-import Products from "@/components/Products/Products";
-import Sale from "./page/sale/Sale";
-import Archive from "./page/archive/Archive";
-import SingleProduct from "@/components/Products/SingleProduct";
-import UsersReview from "./page/usersReviews/UsersReview";
+import { useState, useMemo } from "react";
+
 const DrawerHeader = styled("div")(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "flex-end",
-  padding: theme.spacing(0, 1),
   ...theme.mixins.toolbar,
 }));
 
@@ -49,39 +40,39 @@ export default function AdminApp() {
 
   return (
     <ThemeProvider theme={theme}>
+      <CssBaseline />
+
+      {/* 🔥 كل شي لازم يكون داخل نفس الـ flex */}
       <Box sx={{ display: "flex" }}>
-        <CssBaseline />
-
-        <TopBar
-          open={open}
-          handleDrawerOpen={() => setOpen(true)}
-          setMode={setMode}
-        />
+        {/* السايدبار */}
         <SideBar open={open} handleDrawerClose={() => setOpen(false)} />
-        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-          <DrawerHeader />
 
-          <Routes>
-            <Route path="dashboard" element={<Dashboard />} />
-            <Route path="addproduct" element={<AddProduct head="ADD PRODUCT"/>} />
-            <Route path="editproduct/:id" element={<AddProduct head="EDIT PRODUCT"/>} />
-            <Route path="edit_delete_product" element={<Products edit_delete={true} homePage={false}/>}/>
-            <Route path="sale/:id?" element={<Sale/>} />
-            <Route path="archive" element={<Archive/>} />
-            <Route path= "/archive/:id/:category" element= {<SingleProduct isAdmin={true}/>} />
-            <Route path="usersReview" element={<UsersReview/>} />
-            <Route path="team" element={<Team/>} />
-            <Route path="contacts" element={<Contacts />} />
-            <Route path="invoices" element={<Invoices />} />
-            <Route path="form" element={<Form/>} />
-            <Route path="calendar" element={<Calendar />} />
-            <Route path="faq" element={<FAQ />} />
-            <Route path="bar" element={<BarChart />} />
-            <Route path="pie" element={<PieChart />} />
-            <Route path="line" element={<LineChart />} />
-            <Route path="geography" element={<Geography />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+        {/* المحتوى + التوب بار */}
+        <Box sx={{ flexGrow: 1 }}>
+          <TopBar
+            open={open}
+            handleDrawerOpen={() => setOpen(true)}
+            setMode={setMode}
+          />
+
+          <Box component="main" sx={{ p: 3 }}>
+            <DrawerHeader />
+
+            <Routes>
+              <Route path="dashboard" element={<Dashboard />} />
+              <Route path="team" element={<Team />} />
+              <Route path="contacts" element={<Contacts />} />
+              <Route path="invoices" element={<Invoices />} />
+              <Route path="form" element={<Form />} />
+              <Route path="calendar" element={<Calendar />} />
+              <Route path="faq" element={<FAQ />} />
+              <Route path="bar" element={<BarChart />} />
+              <Route path="pie" element={<PieChart />} />
+              <Route path="line" element={<LineChart />} />
+              <Route path="geography" element={<Geography />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Box>
         </Box>
       </Box>
     </ThemeProvider>

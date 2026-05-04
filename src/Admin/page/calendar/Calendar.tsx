@@ -12,7 +12,7 @@ import {
   type EventContentArg,
 } from "@fullcalendar/core";
 
-import { Paper, Stack } from "@mui/material";
+import { Paper, Stack, Box, useMediaQuery, useTheme } from "@mui/material";
 import "./calendar.css";
 
 // -----------------------------
@@ -46,9 +46,9 @@ function renderSidebarEvent(event: EventApi) {
 }
 
 const Calendar = () => {
-  // -----------------------------
-  // 3) useState types
-  // -----------------------------
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
   const [weekendsVisible] = useState<boolean>(true);
   const [currentEvents, setCurrentEvents] = useState<EventApi[]>([]);
 
@@ -57,9 +57,6 @@ const Calendar = () => {
     return String(eventGuid++);
   }
 
-  // -----------------------------
-  // 4) select date
-  // -----------------------------
   const handleDateSelect = (selectInfo: DateSelectArg) => {
     const title = prompt("Please enter a new title for your event");
     const calendarApi = selectInfo.view.calendar;
@@ -77,9 +74,6 @@ const Calendar = () => {
     }
   };
 
-  // -----------------------------
-  // 5) click event
-  // -----------------------------
   const handleEventClick = (clickInfo: EventClickArg) => {
     if (
       confirm(
@@ -90,30 +84,51 @@ const Calendar = () => {
     }
   };
 
-  // -----------------------------
-  // 6) events updated
-  // -----------------------------
   const handleEvents = (events: EventApi[]) => {
     setCurrentEvents(events);
   };
 
   return (
-    <Stack direction={"row"}>
-      <Paper className="demo-app-sidebar">
+    <Stack
+      direction={isMobile ? "column" : "row"}
+      spacing={2}
+      sx={{ width: "100%" }}
+    >
+      {/* Sidebar */}
+      <Paper
+        className="demo-app-sidebar"
+        sx={{
+          width: isMobile ? "100%" : "250px",
+          p: 2,
+          order: isMobile ? 2 : 1,
+        }}
+      >
         <h2 style={{ textAlign: "center" }}>
           All Events ({currentEvents.length})
         </h2>
         <ul>{currentEvents.map(renderSidebarEvent)}</ul>
       </Paper>
 
-      <div className="demo-app-main">
+      {/* Calendar */}
+      <Box
+        className="demo-app-main"
+        sx={{
+          flexGrow: 1,
+          order: isMobile ? 1 : 2,
+          width: "100%",
+          overflowX: "hidden",
+        }}
+      >
         <FullCalendar
           plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
           headerToolbar={{
             left: "prev,next today",
             center: "title",
-            right: "dayGridMonth,timeGridWeek,timeGridDay",
+            right: isMobile
+              ? "dayGridMonth,timeGridDay"
+              : "dayGridMonth,timeGridWeek,timeGridDay",
           }}
+          height={isMobile ? "auto" : "80vh"}
           initialView="dayGridMonth"
           editable={true}
           selectable={true}
@@ -125,7 +140,7 @@ const Calendar = () => {
           eventClick={handleEventClick}
           eventsSet={handleEvents}
         />
-      </div>
+      </Box>
     </Stack>
   );
 };
