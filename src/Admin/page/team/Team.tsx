@@ -7,7 +7,7 @@ import {
   LockOpenOutlined,
   SecurityOutlined,
 } from "@mui/icons-material";
-import Header from "../../components/Header";
+import Header from "../../components/Header/Header";
 
 const Team = () => {
   const theme = useTheme();

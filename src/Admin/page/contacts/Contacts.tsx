@@ -1,6 +1,6 @@
 import { DataGrid, GridToolbar, type GridColDef } from "@mui/x-data-grid";
 import { Box } from "@mui/material";
-import Header from "../../components/Header";
+import Header from "../../components/Header/Header";
 import { columns, rows } from "./data";
 
 const Contacts = () => {

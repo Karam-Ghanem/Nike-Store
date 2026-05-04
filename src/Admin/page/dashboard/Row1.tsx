@@ -10,7 +10,7 @@ const Row1 = () => {
   const theme = useTheme();
   return (
     <Stack
-      direction={"row"}
+      direction={"column"}
       flexWrap={"wrap"}
       gap={1}
       justifyContent={{ xs: "center", sm: "space-between" }}
@@ -60,6 +60,7 @@ const Row1 = () => {
         data={data4}
         scheme={"dark2"} 
       />
+      
     </Stack>
   );
 };

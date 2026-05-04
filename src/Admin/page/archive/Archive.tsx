@@ -1,146 +1,195 @@
 import MainHead from "@/components/PublicCompontents/MainHead";
 import {
   Box,
-  Grid,
-  GridItem,
+  Flex,
   Text,
   Card,
   Table,
   IconButton,
   Image,
-  Flex,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import useProductStore from "@/components/Products/ProductStore";
 import MainDialog from "@/Admin/components/MainDialog";
 
 const Archive = () => {
-
-    const {archivedProducts,removeFromArchive} = useProductStore();
+  const { archivedProducts, removeFromArchive } = useProductStore();
 
   if (archivedProducts.length < 1) {
-    return <MainHead head="No Products To Show" />;
+    return (
+      <Box minHeight={{ base: "auto", sm: "300px" }}>
+        <MainHead head="No Products To Show" />
+      </Box>
+    );
   }
 
   return (
     <>
       <MainHead head="Archive" />
-      <Box maxW="1100px" mx="auto" bg="white">
-        <Grid templateColumns="1fr" gap={8}>
-          <GridItem>
-            <Card.Root borderRadius="lg" overflow="hidden">
-              <Table.Root>
-                <Table.Header bg="#f6f6f6">
-                  <Table.Row>
-                    <Table.ColumnHeader color="#7008e7" fontSize={20}>
-                      Product Image
-                    </Table.ColumnHeader>
 
-                    <Table.ColumnHeader color="#7008e7" fontSize={20}>
-                      Product
-                    </Table.ColumnHeader>
-
-                    <Table.ColumnHeader color="#7008e7" fontSize={20}>
-                      Price
-                    </Table.ColumnHeader>
-                    <Table.ColumnHeader color="#7008e7" fontSize={20}>
-                      Archive Date
-                    </Table.ColumnHeader>
-
+      <Box mx="auto" p={{ base: 1, sm: 2, md: 4 }}>
+        <Flex direction="column" gap={4}>
+          <Card.Root borderRadius="lg" overflow="hidden" p={1}>
+            <Table.Root w="100%">
+              {/* HEADER */}
+              <Table.Header bg="#f6f6f6">
+                <Table.Row>
+                  {[
+                    "Product Image",
+                    "Product",
+                    "Price",
+                    "Archive Date",
+                    "More Information",
+                    "UnArchive",
+                  ].map((title) => (
                     <Table.ColumnHeader
-                      textAlign="center"
+                      key={title}
                       color="#7008e7"
-                      fontSize={20}
+                      textAlign="center"
+                      fontSize={{
+                        base: "7px",
+                        sm: "10px",
+                        md: "14px",
+                        lg: "20px",
+                      }}
+                      p={{ base: 1, sm: 2 }}
                     >
-                      More Information
+                      {title}
                     </Table.ColumnHeader>
-
-                    <Table.ColumnHeader textAlign="center" color="#7008e7">
-                      UnArchived
-                    </Table.ColumnHeader>
-                  </Table.Row>
-                </Table.Header>
-
-                <Table.Body>
-                  {archivedProducts.map((product) => (
-                    <Table.Row key={product.product.id}>
-                      {/* IMAGE */}
-                      <Table.Cell>
-                        <Link
-                          to={`/${product.product.href}${product.product.id}/${product.product.category}`}
-                        >
-                          <Image width={10} src={product.product.productImg} />
-                        </Link>
-                      </Table.Cell>
-
-                      {/* NAME */}
-                      <Table.Cell>
-                        <Text>{product.product.productName}</Text>
-                      </Table.Cell>
-
-                      {/* PRICE */}
-                      <Table.Cell>
-                        <Text>{product.product.productPrice}</Text>
-                      </Table.Cell>
-
-                      {/* ARCHIVE */}
-                      <Table.Cell>
-                        <Text>
-                          {product.date.getDate() +
-                            "/" +
-                            (product.date.getMonth() + 1) +
-                            "/" +
-                            product.date.getFullYear()}
-                        </Text>
-                      </Table.Cell>
-
-                      {/* ADD TO CART */}
-                      <Table.Cell>
-                        {/* <PurchaseProcess item={product} /> */}
-                        <Flex color="#a800b7" justifyContent={"center"}>
-                          <Link
-                            to={`${product.product.id}/${product.product.category}`}
-                          >
-                            More
-                          </Link>
-                        </Flex>
-                      </Table.Cell>
-
-                      {/* REMOVE (X) */}
-                      <Table.Cell textAlign="center">
-                        <IconButton
-                          aria-label="Remove item"
-                          variant="ghost"
-                          size="sm"
-                        >
-                          <MainDialog 
-                          id={product.product.id}
-                        completeTheProcess={(id)=>removeFromArchive(id)}
-                         parameter={product.product.id} 
-                         theProces="Remove From Archive"
-                          >
-                            <Text
-                              _hover={{
-                                bg: "red",
-                                color: "white",
-                                border: "none",
-                              }}
-                              transition={"0.3s"}
-                              paddingX={2}
-                              border={"1px solid #333"}
-                            >
-                              X
-                            </Text>
-                          </MainDialog>
-                        </IconButton>
-                      </Table.Cell>
-                    </Table.Row>
                   ))}
-                </Table.Body>
-              </Table.Root>
-            </Card.Root>
-          </GridItem>
-        </Grid>
+                </Table.Row>
+              </Table.Header>
+
+              {/* BODY */}
+              <Table.Body>
+                {archivedProducts.map((product) => (
+                  <Table.Row key={product.product.id}>
+                    {/* IMAGE */}
+                    <Table.Cell textAlign="center" p={{ base: 1, sm: 2 }}>
+                      <Link
+                        to={`/${product.product.href}${product.product.id}/${product.product.category}`}
+                      >
+                        <Image
+                          width={{ base: 6, sm: 8, md: 10 }}
+                          src={product.product.productImg}
+                        />
+                      </Link>
+                    </Table.Cell>
+
+                    {/* NAME */}
+                    <Table.Cell textAlign="center" p={{ base: 1, sm: 2 }}>
+                      <Text
+                        fontSize={{
+                          base: "7px",
+                          sm: "10px",
+                          md: "14px",
+                          lg: "18px",
+                        }}
+                      >
+                        {product.product.productName}
+                      </Text>
+                    </Table.Cell>
+
+                    {/* PRICE */}
+                    <Table.Cell textAlign="center" p={{ base: 1, sm: 2 }}>
+                      <Text
+                        fontSize={{
+                          base: "7px",
+                          sm: "10px",
+                          md: "14px",
+                          lg: "18px",
+                        }}
+                      >
+                        {product.product.productPrice}
+                      </Text>
+                    </Table.Cell>
+
+                    {/* ARCHIVE DATE */}
+                    <Table.Cell textAlign="center" p={{ base: 1, sm: 2 }}>
+                      <Text
+                        fontSize={{
+                          base: "7px",
+                          sm: "10px",
+                          md: "14px",
+                          lg: "18px",
+                        }}
+                      >
+                        {product.date.getDate() +
+                          "/" +
+                          (product.date.getMonth() + 1) +
+                          "/" +
+                          product.date.getFullYear()}
+                      </Text>
+                    </Table.Cell>
+
+                    {/* MORE */}
+                    <Table.Cell textAlign="center" p={{ base: 1, sm: 2 }}>
+                      <Flex
+                        color="#a800b7"
+                        justifyContent="center"
+                        fontSize={{
+                          base: "7px",
+                          sm: "10px",
+                          md: "14px",
+                          lg: "18px",
+                        }}
+                      >
+                        <Link
+                          to={`${product.product.id}/${product.product.category}`}
+                        >
+                          More
+                        </Link>
+                      </Flex>
+                    </Table.Cell>
+
+                    {/* REMOVE */}
+                    <Table.Cell textAlign="center" p={{ base: 1, sm: 2 }}>
+                      <IconButton
+                        aria-label="Remove item"
+                        variant="ghost"
+                        size="sm"
+                        minW={{ base: "20px", sm: "24px", md: "28px" }}
+                        h={{ base: "20px", sm: "24px", md: "28px" }}
+                        p={0}
+                      >
+                        <MainDialog
+                          id={product.product.id}
+                          completeTheProcess={(id) => removeFromArchive(id)}
+                          parameter={product.product.id}
+                          theProces="Remove From Archive"
+                        >
+                          <Text
+                            _hover={{
+                              bg: "red",
+                              color: "white",
+                              border: "none",
+                            }}
+                            transition="0.3s"
+                            w="100%"
+                            h="100%"
+                            display="flex"
+                            alignItems="center"
+                            justifyContent="center"
+                            border="1px solid #333"
+                            borderRadius="md"
+                            fontSize={{
+                              base: "8px",
+                              sm: "10px",
+                              md: "14px",
+                              lg: "18px",
+                            }}
+                          >
+                            X
+                          </Text>
+                        </MainDialog>
+                      </IconButton>
+                    </Table.Cell>
+                  </Table.Row>
+                ))}
+              </Table.Body>
+            </Table.Root>
+          </Card.Root>
+        </Flex>
       </Box>
     </>
   );

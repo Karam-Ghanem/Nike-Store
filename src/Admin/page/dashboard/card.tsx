@@ -24,7 +24,7 @@ const Card = ({ icon, title, subTitle, increase, data, scheme }: Props) => {
     <Paper
       sx={{
         flexGrow: 1,
-        minWidth: "333px",
+        // minWidth: "333px",
         p: 1.5,
         display: "flex",
         justifyContent: "space-between",

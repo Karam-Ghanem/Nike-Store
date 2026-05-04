@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 
 import Line from "./Line";
-import Header from "../../components/Header";
+import Header from "../../components/Header/Header";
 
 const LineChart = () => {
   // const theme = useTheme();

@@ -18,8 +18,9 @@ import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
-import { SimpleGrid } from "@chakra-ui/react";
-
+import { Text } from "@chakra-ui/react";
+import AdminLinks from "./Header/AdminLinks";
+import MobileLinks from "./Header/MobileLinks";
 const drawerWidth = 240;
 
 
@@ -45,46 +46,6 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
-// const Search = styled("div")(({ theme }) => ({
-//   position: "relative",
-//   borderRadius: theme.shape.borderRadius,
-//   backgroundColor: alpha(theme.palette.common.white, 0.15),
-//   "&:hover": {
-//     backgroundColor: alpha(theme.palette.common.white, 0.25),
-//   },
-//   marginRight: theme.spacing(2),
-//   marginLeft: 0,
-//   width: "100%",
-//   [theme.breakpoints.up("sm")]: {
-//     marginLeft: theme.spacing(3),
-//     width: "auto",
-//   },
-// }));
-
-// const SearchIconWrapper = styled("div")(({ theme }) => ({
-//   padding: theme.spacing(0, 2),
-//   height: "100%",
-//   position: "absolute",
-//   pointerEvents: "none",
-//   display: "flex",
-//   alignItems: "center",
-//   justifyContent: "center",
-// }));
-
-// const StyledInputBase = styled(InputBase)(({ theme }) => ({
-//   color: "inherit",
-//   "& .MuiInputBase-input": {
-//     padding: theme.spacing(1, 1, 1, 0),
-//     // vertical padding + font size from searchIcon
-//     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-//     transition: theme.transitions.create("width"),
-//     width: "100%",
-//     [theme.breakpoints.up("md")]: {
-//       width: "20ch",
-//     },
-//   },
-// }));
-
 
 interface Props {
   open: boolean;
@@ -107,43 +68,35 @@ const TopBar = ({ open, handleDrawerOpen, setMode }:Props) => {
           }}
         >
           <MenuIcon />
-        </IconButton>
+        </IconButton>     
 
-        {/* <Search>
-          <SearchIconWrapper>
-            <SearchIcon />
-          </SearchIconWrapper>
-          <StyledInputBase
-            placeholder="Search…"
-            inputProps={{ "aria-label": "search" }}
-          />
-        </Search> */}
+        <Box className="hidden md:block">
+            <Stack
+              direction="row"
+              justifyContent={{ sm: "start", md: "start", lg: "space-between" }}
+            >
+              {AdminLinks.map((link) => (
+                <Link to={link.href} key={link.id}>
+                  <Text                    
+                    marginEnd={{ md: "2.5", lg: "4" }}
+                    fontSize={{ md: "11px", lg: "16px", xl: "21px" }}
+                    _hover={{
+                      marginTop: "-8px",
+                      cursor: "pointer",
+                    }}
+                    transition="0.5s"
+                  >
+                    {link.label}
+                  </Text>
+                </Link>
+              ))}
+            </Stack>
+        </Box>
 
-        <SimpleGrid columns={7} gap={5} justifyContent={"space-evenly"}>
-          <Box>
-            <Link to="/">User Page Home</Link>
-          </Box>
-          <Box>
-            <Link to="sale">Sales</Link>
-          </Box>
-          <Box>
-            <Link to="addproduct">Add Product</Link>
-          </Box>
-          <Box>
-            <Link to="/products">Products</Link>
-          </Box>
-          <Box>
-            <Link to="edit_delete_product">Edit & Archive</Link>
-          </Box>
-          <Box>
-            <Link to="archive">Archive</Link>
-          </Box>
-          <Box>
-            <Link to="usersReview">Review</Link>
-          </Box>
-        </SimpleGrid>
-
+        <MobileLinks/>
         <Box flexGrow={1} />
+
+
         <Stack direction={"row"}>
           {theme.palette.mode === "light" ? (
             <IconButton

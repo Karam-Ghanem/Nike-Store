@@ -120,8 +120,8 @@ const Products = ({ homePage,edit_delete }: Props) => {
               {actualProductList.map((item) => (
                 <Card.Root
                   display={item.isArchived ? "none" : "block"}
-                  height={edit_delete ? 570 : ""}
-                  scale={0.9}
+                  // height={edit_delete ? 500 : ""}
+                  marginTop={4}
                   cursor="pointer"
                   maxW="2xl"
                   overflow="hidden"
@@ -141,13 +141,13 @@ const Products = ({ homePage,edit_delete }: Props) => {
                     <Image
                       padding={{ base: 0, sm: 1 }}
                       width={"100%"}
-                      height={{base:'150px',sm:'250px'}}
+                      height={{ base: "150px", sm: "250px" }}
                       src={item.productImg}
                       alt="error"
                       backgroundColor="#f6f6f6"
                     />
                   </Link>
-                  <Card.Body gap={{base:0,sm:1}} marginY={-4}>
+                  <Card.Body gap={{ base: 0, sm: 1 }} marginY={-4}>
                     <Card.Title fontSize={{ base: 17, sm: 18, lg: 20, xl: 20 }}>
                       {item.productName}
                     </Card.Title>
@@ -185,7 +185,7 @@ const Products = ({ homePage,edit_delete }: Props) => {
                         {item.productPrice}
                       </Text>
                     </HStack>
-                  </Card.Body >
+                  </Card.Body>
                   <Card.Footer gap="0">
                     <PurchaseProcess item={item} />
 
@@ -228,10 +228,19 @@ const Products = ({ homePage,edit_delete }: Props) => {
                     <HStack
                       justifyContent={"space-between"}
                       width={"100%"}
-                      padding={{ base: 0, sm: 2 }}
+                      padding={{ base: 2, sm: 2 }}
                       borderTop={"1px solid #6c14d0"}
                     >
-                      <Button bg={"blue"}>
+                      <Button
+                        bg={"blue"}
+                        fontSize={{ base: 6, sm: 10, md: 12, lg: 15 }}
+                        width={{
+                          base: "20px",
+                          sm: "60px",
+                          md: "80px",
+                          lg: "100px",
+                        }}
+                      >
                         <Link to={`/admin/editproduct/${item.id}`}>Edit</Link>
                       </Button>
 
@@ -241,7 +250,18 @@ const Products = ({ homePage,edit_delete }: Props) => {
                         completeTheProcess={(item) => archiveProduct(item)}
                         theProces="Archive"
                       >
-                        <Button bg={"red"}>Archive</Button>
+                        <Button
+                          fontSize={{ base: 6, sm: 10, md: 12, lg: 15 }}
+                          width={{
+                            base: "20px",
+                            sm: "60px",
+                            md: "80px",
+                            lg: "100px",
+                          }}
+                          bg={"red"}
+                        >
+                          Archive
+                        </Button>
                       </MainDialog>
                     </HStack>
                   )}

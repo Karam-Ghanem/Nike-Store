@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { Alert, Button, MenuItem, Snackbar, Stack } from "@mui/material";
 import { useForm, type SubmitHandler } from "react-hook-form";
-import Header from "../../components/Header";
+import Header from "../../components/Header/Header";
 
 // -----------------------------
 // 1) Types

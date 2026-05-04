@@ -5,7 +5,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Box, Stack } from "@mui/material";
-import Header from "../../components/Header";
+import Header from "../../components/Header/Header";
 
 const FAQ = () => {
   // expanded = panel name OR false
